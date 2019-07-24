@@ -249,7 +249,7 @@ A Blockchain funciona como um registro universal de eventos que aconteceram e su
 
 Se você é familiarizado com a arquitetura Redux, é possível pensarmos nesses eventos como ações ao estado (computado) atual da Blockchain naquele ponto por dispatchers fora da rede.
 
-### Registro de Empresa:
+## Registro de Empresa:
 
 > Formato para Registro de Empresa:
 
