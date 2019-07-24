@@ -251,26 +251,28 @@ Se você é familiarizado com a arquitetura Redux, é possível pensarmos nesses
 
 ### Registro de Empresa:
 
-Você pode registrar empresas seguindo esse formato:
+> Formato para Registro de Empresa:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "razao": "",
+  "fantasia": "",
+  "cnpj": "",
+  "logEnd": "",
+  "numEnd": "",
+  "compEnd": "",
+  "bairroEnd": "",
+  "cidadeEnd": "",
+  "estadoEnd": "",
+  "paisEnd": "",
+  "cepEnd": "",
+  "email": "",
+  "tel": "",
+  "endBlock": ""
+}
 ```
+
+> Se lembre que a publicação de JSON's necessita de um objeto com somente a chave `json` que mapeia para seu objeto. Exemplo de JSON válido para publicação: `{ json: {a: 1, b: "2"} }`.
 
 ### Alteração no Registro da Empresa:
 
