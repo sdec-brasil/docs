@@ -261,22 +261,9 @@ O registro da empresa deve ser feita pela Junta Comercial responsável. Além da
 
 <aside class="notice">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas recomendamos que cada um deles seja único à ela e não seja reutilizado.</aside>
 
-| Informação                   	| O.C 	| Descrição                                                                                                             	| Ob 	| Tip 	| Tam 	|
-|------------------------------	|-----	|-----------------------------------------------------------------------------------------------------------------------	|----	|-----	|-----	|
-| razao         	| 1-1 	| Razão Social do prestador do serviço                                                                                  	| S  	| C   	| 150 	|
-| fantasia        	| 0-1 	| Nome Fantasia do prestador do serviço                                                                                 	| N  	| C   	| 60  	|
-| logEnd            	| 1-1 	| Tipo e nome do logradouro (Av.., Rua..., ...)                                                                         	| S  	| C   	| 125 	|
-| numEnd      	| 1-1 	| Número do imóvel                                                                                                      	| S  	| C   	| 10  	|
-| compEnd 	| 0-1 	| Complemento do endereço do prestador                                                                                  	| N  	| C   	| 60  	|
-| bairroEnd              	| 1-1 	| Bairro do prestador                                                                                                   	| S  	| C   	| 60  	|
-| cidadeEnd              	| 1-1 	| Código do município do estabelecimento prestador do serviço (Tabela do IBGE)                                          	| S  	| N   	| 7   	|
-| estadoEnd                  	| 1-1 	| Sigla da unidade da federação do prestador                                                                            	| S  	| C   	| 2   	|
-| paisEnd                	| 0-1 	| Código do país onde o tomador está estabelecido (Tabela do BACEN). Preencher somente se CidadePrestador igual 9999999 	| N  	| N   	| 4   	|
-| cepEnd                 	| 1-1 	| Número do CEP                                                                                                         	| S  	| C   	| 8   	|
-| email               	| 0-1 	| E-mail do prestador                                                                                                   	| N  	| C   	| 80  	|
-| tel            	| 0-1 	| Número do telefone do prestador                                                                                       	| N  	| C   	| 20  	|
-| cnpj        	| 1-1 	| Número do CNPJ do Prestador do Serviço                                                                            	| S  	| C   	| 14  	|
-| endBlock            	| 1-1 	| Endereço Público da Empresa no Sistema para emissão de NFSD                                                                            	| S  	| C   	| 38  	|
+Parâmetro | Obrigatório (S/N) | Descrição                  | Tamanho      |
+--------- | ----------------- | -------------------------- | ------------ |
+razao     |         S         | Nome razão da Empresa      | 20 < X <  60 |
 
 > Exemplo de Registro de Empresa:
 
