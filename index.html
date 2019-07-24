@@ -248,7 +248,16 @@
                     <a href="#eventos" class="toc-h2 toc-link" data-title="Eventos:">Eventos:</a>
                   </li>
                   <li>
-                    <a href="#registro-de-empresa" class="toc-h2 toc-link" data-title="Registro de Empresa:">Registro de Empresa:</a>
+                    <a href="#publicacoes" class="toc-h2 toc-link" data-title="Publicações:">Publicações:</a>
+                  </li>
+                  <li>
+                    <a href="#novo-registro-de-empresa" class="toc-h2 toc-link" data-title="Novo Registro de Empresa:">Novo Registro de Empresa:</a>
+                  </li>
+                  <li>
+                    <a href="#alteracoes-no-registro-da-empresa" class="toc-h2 toc-link" data-title="Alterações no Registro da Empresa:">Alterações no Registro da Empresa:</a>
+                  </li>
+                  <li>
+                    <a href="#emissao-de-notas-fiscais" class="toc-h2 toc-link" data-title="Emissão de Notas Fiscais:">Emissão de Notas Fiscais:</a>
                   </li>
               </ul>
           </li>
@@ -390,7 +399,7 @@ Remember — a happy kitten is an authenticated kitten!
 </span></code></pre>
 <p>This endpoint retrieves a specific kitten.</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<aside class="warning">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas cada um deles deve ser único à ela.</aside>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -450,33 +459,162 @@ Remember — a happy kitten is an authenticated kitten!
 <p>A Blockchain funciona como um registro universal de eventos que aconteceram e suas ordens. Para se ter o &quot;estado&quot; do sistema é necessário computar toda a história dele até o bloco mais recente.</p>
 
 <p>Se você é familiarizado com a arquitetura Redux, é possível pensarmos nesses eventos como ações ao estado (computado) atual da Blockchain naquele ponto por dispatchers fora da rede.</p>
-<h2 id='registro-de-empresa'>Registro de Empresa:</h2>
+
+<p>Os eventos funcionam a partir de publicações.</p>
+<h2 id='publicacoes'>Publicações:</h2>
+<p>Publicações são.</p>
+<h2 id='novo-registro-de-empresa'>Novo Registro de Empresa:</h2>
+<p>O registro da empresa deve ser feita pela Junta Comercial responsável. Além da publicação das informações na Blockchain, a Junta também estará autorizando os endereços respectivos a serem emissores de nota.</p>
+
+<aside class="notice">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas recomendamos que cada um deles seja único à ela e não seja reutilizado.</aside>
+
+<table><thead>
+<tr>
+<th>Informação</th>
+<th>O.C</th>
+<th>Descrição</th>
+<th>Ob</th>
+<th>Tip</th>
+<th>Tam</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>razao</td>
+<td>1-1</td>
+<td>Razão Social do prestador do serviço</td>
+<td>S</td>
+<td>C</td>
+<td>150</td>
+</tr>
+<tr>
+<td>fantasia</td>
+<td>0-1</td>
+<td>Nome Fantasia do prestador do serviço</td>
+<td>N</td>
+<td>C</td>
+<td>60</td>
+</tr>
+<tr>
+<td>logEnd</td>
+<td>1-1</td>
+<td>Tipo e nome do logradouro (Av.., Rua..., ...)</td>
+<td>S</td>
+<td>C</td>
+<td>125</td>
+</tr>
+<tr>
+<td>numEnd</td>
+<td>1-1</td>
+<td>Número do imóvel</td>
+<td>S</td>
+<td>C</td>
+<td>10</td>
+</tr>
+<tr>
+<td>compEnd</td>
+<td>0-1</td>
+<td>Complemento do endereço do prestador</td>
+<td>N</td>
+<td>C</td>
+<td>60</td>
+</tr>
+<tr>
+<td>bairroEnd</td>
+<td>1-1</td>
+<td>Bairro do prestador</td>
+<td>S</td>
+<td>C</td>
+<td>60</td>
+</tr>
+<tr>
+<td>cidadeEnd</td>
+<td>1-1</td>
+<td>Código do município do estabelecimento prestador do serviço (Tabela do IBGE)</td>
+<td>S</td>
+<td>N</td>
+<td>7</td>
+</tr>
+<tr>
+<td>estadoEnd</td>
+<td>1-1</td>
+<td>Sigla da unidade da federação do prestador</td>
+<td>S</td>
+<td>C</td>
+<td>2</td>
+</tr>
+<tr>
+<td>paisEnd</td>
+<td>0-1</td>
+<td>Código do país onde o tomador está estabelecido (Tabela do BACEN). Preencher somente se CidadePrestador igual 9999999</td>
+<td>N</td>
+<td>N</td>
+<td>4</td>
+</tr>
+<tr>
+<td>cepEnd</td>
+<td>1-1</td>
+<td>Número do CEP</td>
+<td>S</td>
+<td>C</td>
+<td>8</td>
+</tr>
+<tr>
+<td>email</td>
+<td>0-1</td>
+<td>E-mail do prestador</td>
+<td>N</td>
+<td>C</td>
+<td>80</td>
+</tr>
+<tr>
+<td>tel</td>
+<td>0-1</td>
+<td>Número do telefone do prestador</td>
+<td>N</td>
+<td>C</td>
+<td>20</td>
+</tr>
+<tr>
+<td>cnpj</td>
+<td>1-1</td>
+<td>Número do CNPJ do Prestador do Serviço</td>
+<td>S</td>
+<td>C</td>
+<td>14</td>
+</tr>
+<tr>
+<td>endBlock</td>
+<td>1-1</td>
+<td>Endereço Público da Empresa no Sistema para emissão de NFSD</td>
+<td>S</td>
+<td>C</td>
+<td>38</td>
+</tr>
+</tbody></table>
+
 <blockquote>
-<p>Formato para Registro de Empresa:</p>
+<p>Exemplo de Registro de Empresa:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"razao"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fantasia"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"paisEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tel"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"endBlock"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="s2">"razao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME Demolições LTDA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fantasia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indústrias ACME"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"97.163.041/0001-30"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua do Desfiladeiro"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Perto da Rocha"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zona Centro"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5100250"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"78580-000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"acme@boom.pow"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65 3313-4100"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"enderecosEmissores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1Bw41hdEenVKdNdYN22r7Kc47qVPkSeie1"</span><span class="p">],</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
-</span></code></pre><pre class="highlight markdown tab-markdown"><code><span class="gh"># Does this work?</span>
-lol
-</code></pre>
+</span></code></pre>
 <blockquote>
 <p>Se lembre que a publicação de JSON&#39;s necessita de um objeto com somente a chave <code>json</code> que mapeia para seu objeto. Exemplo de JSON válido para publicação: <code>{ json: {a: 1, b: &quot;2&quot;} }</code>.</p>
 </blockquote>
-<h3 id='alteracao-no-registro-da-empresa'>Alteração no Registro da Empresa:</h3><h3 id='emissao-de-notas-fiscais'>Emissão de Notas Fiscais:</h3><h1 id='errors'>Errors</h1>
+<h2 id='alteracoes-no-registro-da-empresa'>Alterações no Registro da Empresa:</h2><h2 id='emissao-de-notas-fiscais'>Emissão de Notas Fiscais:</h2><h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
