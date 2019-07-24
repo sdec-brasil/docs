@@ -176,7 +176,7 @@ let max = api.kittens.get(2);
 
 This endpoint retrieves a specific kitten.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<aside class="warning">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas cada um deles deve ser único à ela.</aside>
 
 ### HTTP Request
 
@@ -249,36 +249,57 @@ A Blockchain funciona como um registro universal de eventos que aconteceram e su
 
 Se você é familiarizado com a arquitetura Redux, é possível pensarmos nesses eventos como ações ao estado (computado) atual da Blockchain naquele ponto por dispatchers fora da rede.
 
-## Registro de Empresa:
+Os eventos funcionam a partir de publicações.
 
-> Formato para Registro de Empresa:
+## Publicações:
+
+Publicações são.
+
+## Novo Registro de Empresa:
+
+O registro da empresa deve ser feita pela Junta Comercial responsável. Além da publicação das informações na Blockchain, a Junta também estará autorizando os endereços respectivos a serem emissores de nota.
+
+<aside class="notice">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas recomendamos que cada um deles seja único à ela e não seja reutilizado.</aside>
+
+| Informação                   	| O.C 	| Descrição                                                                                                             	| Ob 	| Tip 	| Tam 	|
+|------------------------------	|-----	|-----------------------------------------------------------------------------------------------------------------------	|----	|-----	|-----	|
+| razao         	| 1-1 	| Razão Social do prestador do serviço                                                                                  	| S  	| C   	| 150 	|
+| fantasia        	| 0-1 	| Nome Fantasia do prestador do serviço                                                                                 	| N  	| C   	| 60  	|
+| logEnd            	| 1-1 	| Tipo e nome do logradouro (Av.., Rua..., ...)                                                                         	| S  	| C   	| 125 	|
+| numEnd      	| 1-1 	| Número do imóvel                                                                                                      	| S  	| C   	| 10  	|
+| compEnd 	| 0-1 	| Complemento do endereço do prestador                                                                                  	| N  	| C   	| 60  	|
+| bairroEnd              	| 1-1 	| Bairro do prestador                                                                                                   	| S  	| C   	| 60  	|
+| cidadeEnd              	| 1-1 	| Código do município do estabelecimento prestador do serviço (Tabela do IBGE)                                          	| S  	| N   	| 7   	|
+| estadoEnd                  	| 1-1 	| Sigla da unidade da federação do prestador                                                                            	| S  	| C   	| 2   	|
+| paisEnd                	| 0-1 	| Código do país onde o tomador está estabelecido (Tabela do BACEN). Preencher somente se CidadePrestador igual 9999999 	| N  	| N   	| 4   	|
+| cepEnd                 	| 1-1 	| Número do CEP                                                                                                         	| S  	| C   	| 8   	|
+| email               	| 0-1 	| E-mail do prestador                                                                                                   	| N  	| C   	| 80  	|
+| tel            	| 0-1 	| Número do telefone do prestador                                                                                       	| N  	| C   	| 20  	|
+| cnpj        	| 1-1 	| Número do CNPJ do Prestador do Serviço                                                                            	| S  	| C   	| 14  	|
+| endBlock            	| 1-1 	| Endereço Público da Empresa no Sistema para emissão de NFSD                                                                            	| S  	| C   	| 38  	|
+
+> Exemplo de Registro de Empresa:
 
 ```json
 {
-  "razao": "",
-  "fantasia": "",
-  "cnpj": "",
-  "logEnd": "",
-  "numEnd": "",
-  "compEnd": "",
-  "bairroEnd": "",
-  "cidadeEnd": "",
-  "estadoEnd": "",
-  "paisEnd": "",
-  "cepEnd": "",
-  "email": "",
-  "tel": "",
-  "endBlock": ""
+  "razao": "ACME Demolições LTDA",
+  "fantasia": "Indústrias ACME",
+  "cnpj": "97.163.041/0001-30",
+  "logEnd": "Rua do Desfiladeiro",
+  "numEnd": "1",
+  "compEnd": "Perto da Rocha",
+  "bairroEnd": "Zona Centro",
+  "cidadeEnd": "5100250",
+  "estadoEnd": "MT",
+  "cepEnd": "78580-000",
+  "email": "acme@boom.pow",
+  "tel": "65 3313-4100",
+  "enderecosEmissores": ["1Bw41hdEenVKdNdYN22r7Kc47qVPkSeie1"], 
 }
-```
-
-```markdown
-# Does this work?
-lol
 ```
 
 > Se lembre que a publicação de JSON's necessita de um objeto com somente a chave `json` que mapeia para seu objeto. Exemplo de JSON válido para publicação: `{ json: {a: 1, b: "2"} }`.
 
-### Alteração no Registro da Empresa:
+## Alterações no Registro da Empresa:
 
-### Emissão de Notas Fiscais:
+## Emissão de Notas Fiscais:
