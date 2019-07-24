@@ -26,219 +26,6 @@ We have language bindings in Shell, Ruby, Python, and JavaScript! You can view c
 
 This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas cada um deles deve ser único à ela.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
-
 # SDEC Blockchain
 
 A SDEC Blockchain é uma blockchain permissionada. Isso quer dizer que, todos podem conectar, verificar e auditar as informações públicas, mas a construção do consenso é reservada à participantes selecionados. Nesse caso, esses participantes são as Juntas Comerciais de cada Estado, Banco do Brasil e eventuais órgãos governamentais.
@@ -253,19 +40,13 @@ Os eventos funcionam a partir de publicações.
 
 ## Publicações:
 
-Publicações são.
+Publicações são arquivos JSON's publicados na Blockchain que descrevem eventos. A publicação de itens se dá através do comando `publish` pelo `sdec-cli`. 
+
+Para acessar a documentação do `sdec-cli` clique [aqui.](https://sdec-brasil.github.io)
 
 ## Novo Registro de Empresa:
 
 O registro da empresa deve ser feita pela Junta Comercial responsável. Além da publicação das informações na Blockchain, a Junta também estará autorizando os endereços respectivos a serem emissores de nota.
-
-<aside class="notice">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas recomendamos que cada um deles seja único à ela e não seja reutilizado.</aside>
-
-Parâmetro | Exigido | Descrição                                           | Tam. |
---------- | ------- | -------------------------------------               | ---- |
-razao     |    S    | Razão Social do prestador do serviço                | 150  |
-fantasia  |    N    | Nome Fantasia do prestador do serviço               |  60  |
-
 
 > Exemplo de Registro de Empresa:
 
@@ -283,11 +64,30 @@ fantasia  |    N    | Nome Fantasia do prestador do serviço               |  60
   "cepEnd": "78580-000",
   "email": "acme@boom.pow",
   "tel": "65 3313-4100",
-  "enderecosEmissores": ["1Bw41hdEenVKdNdYN22r7Kc47qVPkSeie1"], 
+  "emissores": ["1Bw41hdEenVKdNdYN22r7Kc47qVPkSeie1"], 
 }
 ```
 
-> Se lembre que a publicação de JSON's necessita de um objeto com somente a chave `json` que mapeia para seu objeto. Exemplo de JSON válido para publicação: `{ json: {a: 1, b: "2"} }`.
+> Note que a publicação de JSON's necessita de um objeto com somente a chave `json` que mapeia para seu objeto. Exemplo de JSON válido para publicação: `{ json: {a: 1, b: "2"} }`.
+
+
+Parâmetro | Exigido | Descrição                                           | Tam. |
+--------- | ------- | -------------------------------------               | ---- |
+razao     |    S    | Razão Social do prestador do serviço                | 150  |
+fantasia  |    N    | Nome Fantasia do prestador do serviço               |  60  |
+cnpj      |    S    | Número do CNPJ do Prestador do Serviço              |  14  |
+logEnd    |    S    | Tipo e nome do logradouro (Av.., Rua..., ...)       | 125  |
+numEnd    |    S    | Número do imóvel                                    |  10  |
+compEnd   |    N    | Complemento do endereço do prestador                |  60  |
+bairroEnd |    S    | Bairro da empresa prestadora de serviço             |  60  |
+cidadeEnd |    S    | Código do município do estabelecimento (do IBGE)    |   7  |
+estadoEnd |    S    | Sigla da unidade da federação da empresa            |   2  |
+cepEnd    |    N    | Número do CEP                                       |   8  |
+email     |    N    | E-mail do prestador                                 |  80  |
+tel       |    N    | Número do telefone do prestador                     |  20  |
+emissores |    S    | Vetor de Endereços Públicos que emitirão notas      | >=1  |
+
+<aside class="notice">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas recomendamos que cada um deles seja único à ela e não reutilizado.</aside>
 
 ## Alterações no Registro da Empresa:
 
