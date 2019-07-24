@@ -18,13 +18,11 @@ search: true
 
 # Introdução
 
-SDEC é um sistema distribuído 
+*SDEC: Sistema Distribuído de Emissão de Contribuição*
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+O SDEC foi um sistema criado com a intenção de uniformizar o padrão de notas fiscais de serviços entre os mais de 5500 municípios brasileiros, facilitando a cobrança e o repasse dos tributos provenientes (ISS).
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Por ser um sistema público, ele busca também melhorar a transparência e disponibilidade desses dados.
 
 # SDEC Blockchain
 
