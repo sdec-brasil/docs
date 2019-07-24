@@ -261,9 +261,11 @@ O registro da empresa deve ser feita pela Junta Comercial responsável. Além da
 
 <aside class="notice">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas recomendamos que cada um deles seja único à ela e não seja reutilizado.</aside>
 
-Parâmetro | Obrigatório (S/N) | Descrição                  | Tamanho      |
---------- | ----------------- | -------------------------- | ------------ |
-razao     |         S         | Nome razão da Empresa      | 20 < X <  60 |
+Parâmetro | Exigido | Descrição                                           | Tam. |
+--------- | ------- | -------------------------------------               | ---- |
+razao     |    S    | Razão Social do prestador do serviço                | 150  |
+fantasia  |    N    | Nome Fantasia do prestador do serviço               |  60  |
+
 
 > Exemplo de Registro de Empresa:
 
