@@ -272,6 +272,11 @@ Se você é familiarizado com a arquitetura Redux, é possível pensarmos nesses
 }
 ```
 
+```markdown
+# Does this work?
+lol
+```
+
 > Se lembre que a publicação de JSON's necessita de um objeto com somente a chave `json` que mapeia para seu objeto. Exemplo de JSON válido para publicação: `{ json: {a: 1, b: "2"} }`.
 
 ### Alteração no Registro da Empresa:
