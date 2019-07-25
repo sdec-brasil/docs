@@ -62,7 +62,8 @@ O registro da empresa deve ser feita pela Junta Comercial responsável. Além da
   "cepEnd": "78580-000",
   "email": "acme@boom.pow",
   "tel": "65 3313-4100",
-  "emissores": ["1Bw41hdEenVKdNdYN22r7Kc47qVPkSeie1"], 
+  "emissores": ["1Bw41hdEenVKdNdYN22r7Kc47qVPkSeie1"],
+  "cnaes": ["3811-4/00", "3911-4/00"] 
 }
 ```
 
@@ -84,6 +85,7 @@ cepEnd    |    N    | Número do CEP                                       |   8
 email     |    N    | E-mail do prestador                                 |  80  |
 tel       |    N    | Número do telefone do prestador                     |  20  |
 emissores |    S    | Vetor de Endereços Públicos que emitirão notas      | >=1  |
+cnaes     |    S    | Vetor de CNAE's que a empresa está permitida        | >=1  |
 
 <aside class="notice">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas recomendamos que cada um deles seja único à ela e não reutilizado.</aside>
 
