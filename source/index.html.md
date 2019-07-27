@@ -34,6 +34,16 @@ O Explorer também possui uma API Rest (*GraphQL em breve*) para os desenvolvedo
 
 ## Referência da API:
 
+### Notas Fiscais
+
+#### `GET INVOICES`
+
+#### `GET INVOICE/:txid`
+
+### Empresas
+
+### Prefeituras
+
 # SDEC Blockchain
 
 A SDEC Blockchain é uma blockchain permissionada. Isso quer dizer que, todos podem conectar, verificar e auditar as informações públicas, mas a construção do consenso é reservada à participantes selecionados. Nesse caso, esses participantes são as Juntas Comerciais de cada Estado, Banco do Brasil e eventuais órgãos governamentais.
@@ -44,15 +54,51 @@ A Blockchain funciona como um registro universal de eventos que aconteceram e su
 
 Se você é familiarizado com a arquitetura Redux, é possível pensarmos nesses eventos como ações ao estado (computado) atual da Blockchain naquele ponto por dispatchers fora da rede.
 
-Os eventos funcionam a partir de publicações.
+Lista dos possíveis eventos e permissões relacionadas à eles:
+
+> Sugestão: Uma firma de contabilidade deve gerar um novo endereço público e esse ser adicionado ao registro da empresa. Dessa maneira, ela conseguirá emitir notas fiscais válidas para seus clientes.
+
+Evento                        | Juntas Comerciais | Empresa | Instituição Liquidadora |
+----------------------------- | ----------------- | ------- | ----------------------- |
+Cadastro de uma nova empresa  |       Sim         |   Não   |         Não             |
+Alteração em empresa*         |       Sim         |   Sim   |         Não             |
+Emissão de Nota Fiscal        |       Não         |   Sim   |         Não             |
+Substituição NF               |       Não         |   Sim   |         Não             |
+Emissão Nota de Pagamento     |       Não         |   Sim   |         Não             |
+Atualização Nota de Pagamento |       Não         |   Não   |         Sim             |
+
+**alteração de dados, um novo endereço emissor de notas, status, regime fiscal, etc*
+
+Os eventos são emitidos no sistema através de publicações.
 
 ## Publicações:
 
 Publicações são arquivos JSON's publicados na Blockchain que descrevem eventos. A publicação de itens se dá através do comando `publish` pelo `sdec-cli`. 
 
-Para acessar a documentação do `sdec-cli` clique [aqui.](https://sdec-brasil.github.io)
+As publicações em JSON possuem duas partes:
 
-## Novo Registro de Empresa:
+- Chaves da Publicação (Vetor de Strings)
+
+- Conteúdo da Publicação (Objeto com uma única chave `json`)
+
+O vetor das chaves da publicação é formadas pela descrição do evento ([0]), e pelo CNPJ **formatado** da Empresa a que diz respeito ([1]). As descrições possíveis são:
+
+- COMPANY_NEW
+- COMPANY_UPDATE
+- INVOICE_NEW
+- INVOICE_UPDATE
+- SETTLEMENT_NEW
+- SETTLEMENT_UPDATE
+
+> Em algumas partições é necessário envolver a chave e o conteúdo em aspas únicas. Exemplo: `... events '["...", "..."]' '{"json": $data}'`
+
+Um exemplo de publicação válida usando a `cli`: `sdec-cli SDEC publish events ["INVOICE_NEW", "97.163.041/0001-30"] {"json": $nota_fiscal }`
+
+Para acessar a documentação do `sdec-cli` clique [aqui.](https://sdec-brasil.github.io).
+
+As descrições das publicações e dos modelos esperados pelo sistema segue abaixo.
+
+### Novo Registro de Empresa:
 
 O registro da empresa deve ser feita pela Junta Comercial responsável. Além da publicação das informações na Blockchain, a Junta também estará autorizando os endereços respectivos a serem emissores de nota.
 
@@ -99,6 +145,6 @@ cnaes     |    S    | Vetor de CNAE's que a empresa está permitida        | >=1
 
 <aside class="notice">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas recomendamos que cada um deles seja único à ela e não reutilizado.</aside>
 
-## Alterações no Registro da Empresa:
+### Alterações no Registro da Empresa:
 
-## Emissão de Notas Fiscais:
+### Emissão de Notas Fiscais:
