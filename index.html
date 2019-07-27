@@ -225,6 +225,33 @@
             <a href="#introducao" class="toc-h1 toc-link" data-title="Introdução">Introdução</a>
           </li>
           <li>
+            <a href="#invoice-explorer" class="toc-h1 toc-link" data-title="Invoice Explorer">Invoice Explorer</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#referencia-da-api" class="toc-h2 toc-link" data-title="Referência da API:">Referência da API:</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#notas-fiscais" class="toc-h3 toc-link" data-title="Notas Fiscais">Notas Fiscais</a>
+                            <ul class="toc-list-h4">
+                                <li>
+                                  <a href="#get-invoices" class="toc-h4 toc-link" data-title="<code>GET INVOICES</code>"><code>GET INVOICES</code></a>
+                                </li>
+                                <li>
+                                  <a href="#get-invoice-txid" class="toc-h4 toc-link" data-title="<code>GET INVOICE/:txid</code>"><code>GET INVOICE/:txid</code></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                          <a href="#empresas" class="toc-h3 toc-link" data-title="Empresas">Empresas</a>
+                        </li>
+                        <li>
+                          <a href="#prefeituras" class="toc-h3 toc-link" data-title="Prefeituras">Prefeituras</a>
+                        </li>
+                    </ul>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#sdec-blockchain" class="toc-h1 toc-link" data-title="SDEC Blockchain">SDEC Blockchain</a>
               <ul class="toc-list-h2">
                   <li>
@@ -232,15 +259,17 @@
                   </li>
                   <li>
                     <a href="#publicacoes" class="toc-h2 toc-link" data-title="Publicações:">Publicações:</a>
-                  </li>
-                  <li>
-                    <a href="#novo-registro-de-empresa" class="toc-h2 toc-link" data-title="Novo Registro de Empresa:">Novo Registro de Empresa:</a>
-                  </li>
-                  <li>
-                    <a href="#alteracoes-no-registro-da-empresa" class="toc-h2 toc-link" data-title="Alterações no Registro da Empresa:">Alterações no Registro da Empresa:</a>
-                  </li>
-                  <li>
-                    <a href="#emissao-de-notas-fiscais" class="toc-h2 toc-link" data-title="Emissão de Notas Fiscais:">Emissão de Notas Fiscais:</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#novo-registro-de-empresa" class="toc-h3 toc-link" data-title="Novo Registro de Empresa:">Novo Registro de Empresa:</a>
+                        </li>
+                        <li>
+                          <a href="#alteracoes-no-registro-da-empresa" class="toc-h3 toc-link" data-title="Alterações no Registro da Empresa:">Alterações no Registro da Empresa:</a>
+                        </li>
+                        <li>
+                          <a href="#emissao-de-notas-fiscais" class="toc-h3 toc-link" data-title="Emissão de Notas Fiscais:">Emissão de Notas Fiscais:</a>
+                        </li>
+                    </ul>
                   </li>
               </ul>
           </li>
@@ -261,19 +290,105 @@
 <p>O SDEC foi um sistema criado com a intenção de uniformizar o padrão de notas fiscais de serviços entre os mais de 5500 municípios brasileiros, facilitando a cobrança e o repasse dos tributos provenientes (ISS).</p>
 
 <p>Por ser um sistema público, ele busca também melhorar a transparência e disponibilidade desses dados.</p>
-<h1 id='sdec-blockchain'>SDEC Blockchain</h1>
+<h1 id='invoice-explorer'>Invoice Explorer</h1>
+<p>O <em>Invoice Explorer</em> é uma ferramenta pública de fácil acesso que busca facilitar o desenvolvimento de aplicações para o sistema e aumentar a transparência e visibilidade desses dados. </p>
+
+<p>O Explorer possui uma interface gráfica para visualização das prefeituras, fornecendo uma espécie de painel de controle sobre as atividades econômicas daquele município e de suas empresas no sistema. Na perspectiva das empresas, é possível acompanhar sua atividade em tempo real no sistema e ter estatísticas sobre suas notas fiscais. Para o cidadão, é possível acompanhar o pagamento de impostos de empresas que participam de licitação, ou acompanhar uma parcela do orçamento da sua cidade proveninente do ISS.</p>
+
+<p>O Explorer também possui uma API Rest (<em>GraphQL em breve</em>) para os desenvolvedores e parceiros. A referência da API pode ser encontrada logo mais abaixo.</p>
+<h2 id='referencia-da-api'>Referência da API:</h2><h3 id='notas-fiscais'>Notas Fiscais</h3><h4 id='get-invoices'><code>GET INVOICES</code></h4><h4 id='get-invoice-txid'><code>GET INVOICE/:txid</code></h4><h3 id='empresas'>Empresas</h3><h3 id='prefeituras'>Prefeituras</h3><h1 id='sdec-blockchain'>SDEC Blockchain</h1>
 <p>A SDEC Blockchain é uma blockchain permissionada. Isso quer dizer que, todos podem conectar, verificar e auditar as informações públicas, mas a construção do consenso é reservada à participantes selecionados. Nesse caso, esses participantes são as Juntas Comerciais de cada Estado, Banco do Brasil e eventuais órgãos governamentais.</p>
 <h2 id='eventos'>Eventos:</h2>
 <p>A Blockchain funciona como um registro universal de eventos que aconteceram e suas ordens. Para se ter o &quot;estado&quot; do sistema é necessário computar toda a história dele até o bloco mais recente.</p>
 
 <p>Se você é familiarizado com a arquitetura Redux, é possível pensarmos nesses eventos como ações ao estado (computado) atual da Blockchain naquele ponto por dispatchers fora da rede.</p>
 
-<p>Os eventos funcionam a partir de publicações.</p>
+<p>Lista dos possíveis eventos e permissões relacionadas à eles:</p>
+
+<blockquote>
+<p>Sugestão: Uma firma de contabilidade deve gerar um novo endereço público e esse ser adicionado ao registro da empresa. Dessa maneira, ela conseguirá emitir notas fiscais válidas para seus clientes.</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Evento</th>
+<th>Juntas Comerciais</th>
+<th>Empresa</th>
+<th>Instituição Liquidadora</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Cadastro de uma nova empresa</td>
+<td>Sim</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>Alteração em empresa*</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>Emissão de Nota Fiscal</td>
+<td>Não</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>Substituição NF</td>
+<td>Não</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>Emissão Nota de Pagamento</td>
+<td>Não</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>Atualização Nota de Pagamento</td>
+<td>Não</td>
+<td>Não</td>
+<td>Sim</td>
+</tr>
+</tbody></table>
+
+<p>*<em>alteração de dados, um novo endereço emissor de notas, status, regime fiscal, etc</em></p>
+
+<p>Os eventos são emitidos no sistema através de publicações.</p>
 <h2 id='publicacoes'>Publicações:</h2>
 <p>Publicações são arquivos JSON&#39;s publicados na Blockchain que descrevem eventos. A publicação de itens se dá através do comando <code>publish</code> pelo <code>sdec-cli</code>. </p>
 
-<p>Para acessar a documentação do <code>sdec-cli</code> clique <a href="https://sdec-brasil.github.io">aqui.</a></p>
-<h2 id='novo-registro-de-empresa'>Novo Registro de Empresa:</h2>
+<p>As publicações em JSON possuem duas partes:</p>
+
+<ul>
+<li><p>Chaves da Publicação (Vetor de Strings)</p></li>
+<li><p>Conteúdo da Publicação (Objeto com uma única chave <code>json</code>)</p></li>
+</ul>
+
+<p>O vetor das chaves da publicação é formadas pela descrição do evento ([0]), e pelo CNPJ <strong>formatado</strong> da Empresa a que diz respeito ([1]). As descrições possíveis são:</p>
+
+<ul>
+<li>COMPANY_NEW</li>
+<li>COMPANY_UPDATE</li>
+<li>INVOICE_NEW</li>
+<li>INVOICE_UPDATE</li>
+<li>SETTLEMENT_NEW</li>
+<li>SETTLEMENT_UPDATE</li>
+</ul>
+
+<blockquote>
+<p>Em algumas partições é necessário envolver a chave e o conteúdo em aspas únicas. Exemplo: <code>... events &#39;[&quot;...&quot;, &quot;...&quot;]&#39; &#39;{&quot;json&quot;: $data}&#39;</code></p>
+</blockquote>
+
+<p>Um exemplo de publicação válida usando a <code>cli</code>: <code>sdec-cli SDEC publish events [&quot;INVOICE_NEW&quot;, &quot;97.163.041/0001-30&quot;] {&quot;json&quot;: $nota_fiscal }</code></p>
+
+<p>Para acessar a documentação do <code>sdec-cli</code> clique <a href="https://sdec-brasil.github.io">aqui.</a>.</p>
+
+<p>As descrições das publicações e dos modelos esperados pelo sistema segue abaixo.</p>
+<h3 id='novo-registro-de-empresa'>Novo Registro de Empresa:</h3>
 <p>O registro da empresa deve ser feita pela Junta Comercial responsável. Além da publicação das informações na Blockchain, a Junta também estará autorizando os endereços respectivos a serem emissores de nota.</p>
 
 <blockquote>
@@ -292,7 +407,8 @@
   </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"78580-000"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"acme@boom.pow"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"tel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65 3313-4100"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"emissores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1Bw41hdEenVKdNdYN22r7Kc47qVPkSeie1"</span><span class="p">],</span><span class="w"> 
+  </span><span class="s2">"emissores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1Bw41hdEenVKdNdYN22r7Kc47qVPkSeie1"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"cnaes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"3811-4/00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"3911-4/00"</span><span class="p">]</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -385,10 +501,16 @@
 <td>Vetor de Endereços Públicos que emitirão notas</td>
 <td>&gt;=1</td>
 </tr>
+<tr>
+<td>cnaes</td>
+<td>S</td>
+<td>Vetor de CNAE&#39;s que a empresa está permitida</td>
+<td>&gt;=1</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas recomendamos que cada um deles seja único à ela e não reutilizado.</aside>
-<h2 id='alteracoes-no-registro-da-empresa'>Alterações no Registro da Empresa:</h2><h2 id='emissao-de-notas-fiscais'>Emissão de Notas Fiscais:</h2><h1 id='errors'>Errors</h1>
+<h3 id='alteracoes-no-registro-da-empresa'>Alterações no Registro da Empresa:</h3><h3 id='emissao-de-notas-fiscais'>Emissão de Notas Fiscais:</h3><h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
