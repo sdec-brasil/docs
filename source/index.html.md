@@ -32,17 +32,582 @@ O Explorer possui uma interface gráfica para visualização das prefeituras, fo
 
 O Explorer também possui uma API Rest (*GraphQL em breve*) para os desenvolvedores e parceiros. A referência da API pode ser encontrada logo mais abaixo.
 
-## Referência da API:
+# Referência da API:
 
-### Notas Fiscais
+## Notas Fiscais
 
-#### `GET INVOICES`
+### Listando notas fiscais
 
-#### `GET INVOICE/:txid`
+>Listando notas fiscais
 
-### Empresas
+```json
+{
+  "meta": {
+    "url": "/v1",
+    "query": {
+      "limit": "2",
+      "offset": "4"
+    },
+    "params": {},
+    "time": 1565988308026,
+    "count": 69
+  },
+  "cursor": {
+    "offset": 4,
+    "limit": 2,
+    "next": "http://localhost:8000/v1/invoices/?limit=2&offset=6&filter=nonce lte 69",
+    "previous": "http://localhost:8000/v1/invoices/?limit=2&offset=2&filter=nonce lte 69"
+  },
+  "data": [
+    {
+      "nonce": 5,
+      "txId": "9ac09495db0a091bc04a2d4f76e644960a554e494eecda4d747712acfd65c08d",
+      "substitui": null,
+      "substituidaPor": null,
+      "assetName": null,
+      "estado": 0,
+      "tomadorEncriptado": null,
+      "emissor": "1UQo4dWebdbWEiUg2Xv7Vmt5TeJJbvUAtk1NF4",
+      "cnpj": "29260066000100",
+      "notaPagamento": null,
+      "blocoConfirmacao": "80",
+      "prestacao": {
+        "dataPrestacao": "1973-04-07",
+        "prefeituraPrestacao": "1100346",
+        "codTributMunicipio": "1100015",
+        "itemLista": "76.66",
+        "codCnae": "4572840",
+        "codServico": "33",
+        "codNBS": "807073030",
+        "discriminacao": "whisper sand stereo surprise answer engine hungry wrestle section warm rubber bargain",
+        "valServicos": 13084,
+        "descontoIncond": null,
+        "descontoCond": null,
+        "exigibilidadeISS": 1,
+        "numProcesso": null,
+        "valDeducoes": 7,
+        "baseCalculo": 13077
+      },
+      "tributos": {
+        "issRetido": 2,
+        "respRetencao": null,
+        "regimeEspTribut": null,
+        "incentivoFiscal": true,
+        "aliqServicos": "46.0",
+        "valIss": 60186,
+        "valPis": 471,
+        "valCofins": null,
+        "valInss": 238,
+        "valIr": null,
+        "valCsll": 158,
+        "outrasRetencoes": 68,
+        "valTotalTributos": 728,
+        "valLiquiNfse": 12149
+      },
+      "tomador": {
+        "identificacaoTomador": null,
+        "nif": null,
+        "nomeRazaoTomador": null,
+        "logEnd": null,
+        "numEnd": null,
+        "compEnd": null,
+        "bairroEnd": null,
+        "cidadeEnd": null,
+        "estadoEnd": null,
+        "paisEnd": null,
+        "cepEnd": null,
+        "email": null,
+        "tel": null
+      },
+      "intermediario": {
+        "identificacaoIntermed": null,
+        "nomeRazaoIntermed": null,
+        "cidadeIntermed": null
+      },
+      "constCivil": {
+        "codObra": null,
+        "art": null
+      }
+    },
+    {
+      "nonce": 6,
+      "txId": "b1dbedc7de5f0f157dbf673a03e2c0e1a911793603a1ba1d4f5d839d1367f1c8",
+      "substitui": null,
+      "substituidaPor": null,
+      "assetName": null,
+      "estado": 0,
+      "tomadorEncriptado": null,
+      "emissor": "1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ",
+      "cnpj": "67188967000110",
+      "notaPagamento": null,
+      "blocoConfirmacao": "80",
+      "prestacao": {
+        "dataPrestacao": "1931-09-28",
+        "prefeituraPrestacao": "1100403",
+        "codTributMunicipio": "1100379",
+        "itemLista": "41.36",
+        "codCnae": null,
+        "codServico": "45",
+        "codNBS": null,
+        "discriminacao": "hover urban volcano attend stool actor tissue other never crop reveal prevent",
+        "valServicos": 11968,
+        "descontoIncond": null,
+        "descontoCond": null,
+        "exigibilidadeISS": 3,
+        "numProcesso": null,
+        "valDeducoes": 6,
+        "baseCalculo": 11962
+      },
+      "tributos": {
+        "issRetido": 2,
+        "respRetencao": null,
+        "regimeEspTribut": null,
+        "incentivoFiscal": 2,
+        "aliqServicos": "47.0",
+        "valIss": 56250,
+        "valPis": 218,
+        "valCofins": 181,
+        "valInss": null,
+        "valIr": null,
+        "valCsll": null,
+        "outrasRetencoes": null,
+        "valTotalTributos": null,
+        "valLiquiNfse": 11569
+      },
+      "tomador": {
+        "identificacaoTomador": null,
+        "nif": null,
+        "nomeRazaoTomador": null,
+        "logEnd": null,
+        "numEnd": null,
+        "compEnd": null,
+        "bairroEnd": null,
+        "cidadeEnd": null,
+        "estadoEnd": null,
+        "paisEnd": null,
+        "cepEnd": null,
+        "email": null,
+        "tel": null
+      },
+      "intermediario": {
+        "identificacaoIntermed": null,
+        "nomeRazaoIntermed": null,
+        "cidadeIntermed": null
+      },
+      "constCivil": {
+        "codObra": null,
+        "art": null
+      }
+    }
+  ]
+}
+```
 
-### Prefeituras
+`GET https://localhost:8000/v1/invoices/`
+
+Endpoint para retornar uma lista de notas ficais. Como a lista é longa e novas notas fiscais poderão ser lançadas no sistema, o parâmetro nonce é utilizado como filtro para não quebrar a paginação. Repare como no `cursor.next`e `cursor.prev` já incluíram um filtro por nonce.
+
+Parâmetro | Descrição
+----------|----------
+limit | limite de objetos por página.
+offset | numero de objetos a serem pulados.
+
+### Retornando uma nota fiscal
+
+>Retornando uma nota fiscal
+
+```json
+{
+  "nonce": 1,
+  "txId": "3550bbdba7934f3b02b940cc4c27f25fb0b796ef2216af639c79de37d8485d68",
+  "substitui": null,
+  "substituidaPor": null,
+  "assetName": null,
+  "estado": 0,
+  "tomadorEncriptado": null,
+  "emissor": "1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ",
+  "cnpj": "67188967000110",
+  "notaPagamento": null,
+  "blocoConfirmacao": "80",
+  "prestacao": {
+    "dataPrestacao": "1998-09-06",
+    "prefeituraPrestacao": "1100346",
+    "codTributMunicipio": "1100015",
+    "itemLista": "58.54",
+    "codCnae": null,
+    "codServico": "42",
+    "codNBS": "972191070",
+    "discriminacao": "museum cram rookie seed acoustic nurse side hundred wink capital junior acquire",
+    "valServicos": 9452,
+    "descontoIncond": null,
+    "descontoCond": null,
+    "exigibilidadeISS": 4,
+    "numProcesso": null,
+    "valDeducoes": 2,
+    "baseCalculo": 9450
+  },
+  "tributos": {
+    "issRetido": true,
+    "respRetencao": null,
+    "regimeEspTribut": null,
+    "incentivoFiscal": true,
+    "aliqServicos": "25.0",
+    "valIss": 23630,
+    "valPis": null,
+    "valCofins": 15,
+    "valInss": 385,
+    "valIr": null,
+    "valCsll": null,
+    "outrasRetencoes": 40,
+    "valTotalTributos": 753,
+    "valLiquiNfse": 9012
+  },
+  "tomador": {
+    "identificacaoTomador": null,
+    "nif": null,
+    "nomeRazaoTomador": null,
+    "logEnd": null,
+    "numEnd": null,
+    "compEnd": null,
+    "bairroEnd": null,
+    "cidadeEnd": null,
+    "estadoEnd": null,
+    "paisEnd": null,
+    "cepEnd": null,
+    "email": null,
+    "tel": null
+  },
+  "intermediario": {
+    "identificacaoIntermed": null,
+    "nomeRazaoIntermed": null,
+    "cidadeIntermed": null
+  },
+  "constCivil": {
+    "codObra": null,
+    "art": null
+  }
+}
+```
+
+`GET https://localhost:8000/v1/invoices/:txId`
+
+* `txId`: id de transação da invoice a ser retornada.
+
+Endpoint para retornar uma nota fiscal.
+
+## Empresas
+
+### Listando empresas
+
+>Listando empresas
+
+```json
+{
+  "meta": {
+    "url": "/v1",
+    "query": {
+      "limit": "2",
+      "offset": "4"
+    },
+    "params": {},
+    "time": 1565991149635,
+    "count": 16
+  },
+  "cursor": {
+    "offset": 4,
+    "limit": 2,
+    "next": "http://localhost:8000/v1/companies/?limit=2&offset=6",
+    "previous": "http://localhost:8000/v1/companies/?limit=2&offset=2"
+  },
+  "data": [
+    {
+      "cnpj": "23435652000154",
+      "razao": "Igor Moreira Razão Social",
+      "fantasia": "Apenas um Nome Fantasia LTDA",
+      "cepEnd": "47486820",
+      "logEnd": "Rua Estados Unidos",
+      "numEnd": "237",
+      "compEnd": "Fazenda",
+      "bairroEnd": "Tremembé",
+      "cidadeEnd": "5778811",
+      "estadoEnd": "MT",
+      "regTrib": 3,
+      "email": null,
+      "telefone": null,
+      "endBlock": "1XM3YRWcQpTfC1FvVRPxbPEudFbQAHUJgQnY1m"
+    },
+    {
+      "cnpj": "28083309000101",
+      "razao": "Amanda Ostitty Razão Social",
+      "fantasia": "Apenas um Nome Fantasia LTDA",
+      "cepEnd": "37591382",
+      "logEnd": "Rua Haddock Lobo",
+      "numEnd": "91",
+      "compEnd": "Lote 113",
+      "bairroEnd": "Cidade Dutra",
+      "cidadeEnd": "4972503",
+      "estadoEnd": "PB",
+      "regTrib": 4,
+      "email": null,
+      "telefone": null,
+      "endBlock": "1QPqXVqLvKDdpUyde53xABipYaa1EvpDC41rdF"
+    }
+  ]
+}
+```
+
+`GET https://localhost:8000/v1/companies/`
+
+Endpoint para listar as empresas cadastradas no sistema.
+
+Parâmetro | Descrição
+----------|----------
+limit | limite de objetos por página.
+offset | numero de objetos a serem pulados.
+
+### Retornando uma empresa
+
+>Retornando uma empresa
+
+```json
+{
+  "cnpj": "23435652000154",
+  "razao": "Igor Moreira Razão Social",
+  "fantasia": "Apenas um Nome Fantasia LTDA",
+  "cepEnd": "47486820",
+  "logEnd": "Rua Estados Unidos",
+  "numEnd": "237",
+  "compEnd": "Fazenda",
+  "bairroEnd": "Tremembé",
+  "cidadeEnd": "5778811",
+  "estadoEnd": "MT",
+  "regTrib": 3,
+  "email": null,
+  "telefone": null,
+  "endBlock": "1XM3YRWcQpTfC1FvVRPxbPEudFbQAHUJgQnY1m"
+}
+```
+
+`http://localhost:8000/v1/companies/:cnpj`
+
+* `cnpj`: cnpj da empresa a ser retornada
+
+Endpoint para retornar uma empresa.
+
+## Prefeituras
+
+### Listando prefeituras
+
+>Listando prefeituras
+
+```json
+{
+  "meta": {
+    "url": "/v1",
+    "query": {},
+    "params": {},
+    "time": 1565992229064,
+    "count": 5
+  },
+  "cursor": {
+    "offset": 0,
+    "limit": 100,
+    "next": null,
+    "previous": null
+  },
+  "data": [
+    {
+      "codigoIbge": "1100015",
+      "nome": "Alta Floresta D'Oeste",
+      "cnpj": "18511471000120",
+      "uf": "RO"
+    },
+    {
+      "codigoIbge": "1100023",
+      "nome": "Ariquemes",
+      "cnpj": "18511471000124",
+      "uf": "RO"
+    },
+    {
+      "codigoIbge": "1100346",
+      "nome": "Alvorada D'Oeste",
+      "cnpj": "18511471000123",
+      "uf": "RO"
+    },
+    {
+      "codigoIbge": "1100379",
+      "nome": "Alto Alegre dos Parecis",
+      "cnpj": "18511471000121",
+      "uf": "RO"
+    },
+    {
+      "codigoIbge": "1100403",
+      "nome": "Alto ParaÃ­so",
+      "cnpj": "18511471000122",
+      "uf": "RO"
+    }
+  ]
+}
+```
+
+`GET http://localhost:8000/v1/cities/`
+
+Endpoint para listar as prefeituras cadastradas no sistema.
+
+### Retornando uma prefeitura
+
+>Retornando uma prefeitura
+
+```json
+{
+  "codigoIbge": "1100015",
+  "nome": "Alta Floresta D'Oeste",
+  "cnpj": "18511471000120",
+  "uf": "RO",
+  "generalStats": {
+    "avgLiquidValue": 10405,
+    "emittedInvoicesCount": 24,
+    "avgIss": 40009,
+    "lateIssValue": 0,
+    "lateIssCount": 0
+  },
+  "dailyIssuing": {
+    "count": 0,
+    "url": "http://localhost:8000/v1/cities/1100015/daily-issuing/?year=2019&month=8"
+  },
+  "yearRevenue": {},
+  "invoiceStatusDistribution": {
+    "count": 0,
+    "status": {}
+  },
+  "alreadyPaidThisMonth": 0,
+  "expectedMonthIncome": 0
+}
+```
+
+`GET http://localhost:8000/v1/cities/:codigoIbge`
+
+* `codigoIbge`: código do IBGE para a prefeitura a ser retornada.
+
+Endpoint para retornar uma prefeitura.
+
+### Emissões diárias
+
+>Emissões diárias
+
+```json
+{
+  "city": {
+    "codigoIbge": "1100015",
+    "nome": "Alta Floresta D'Oeste",
+    "cnpj": "18511471000120",
+    "uf": "RO"
+  },
+  "dailyIssuing": [
+    {
+      "dataPrestacao": "1998-09-06",
+      "emittedInvoicesCount": 1
+    },
+    {
+      "dataPrestacao": "1998-09-10",
+      "emittedInvoicesCount": 1
+    }
+  ]
+}
+```
+
+`GET http://localhost:8000/v1/cities/:codigoIbge/daily-issuing`
+
+* `codigoIbge`: código do IBGE para a prefeitura a ser retornada.
+
+Parâmetro | Descrição
+----------|----------
+month | mês referente ao qual serão buscadas as notas ficais
+year | ano referente ao qual serão buscadas as notas ficais
+
+Endpoint para retornar a contagem diária de notas fiscais emitidas em um certo mês.
+
+### Distribuição por status
+
+>Distribuição por status
+
+```json
+{
+  "city": {
+    "codigoIbge": "1100015",
+    "nome": "Alta Floresta D'Oeste",
+    "cnpj": "18511471000120",
+    "uf": "RO"
+  },
+  "statusSplit": {
+    "count": 24,
+    "status": {
+      "0": 24,
+      "1": 35,
+      "2": 2
+    }
+  }
+}
+```
+
+`GET http://localhost:8000/v1/cities/:codigoIbge/invoices/distribution?range=:range`
+
+* `codigoIbge`: código do IBGE para a prefeitura a ser retornada.
+* `range`: considerar apenas notas ficais emitidas nos ultimos tantos dias, conforme tabela abaixo.
+
+range | descrição
+------|----------
+0 | todas as notas fiscais
+1 | notas fiscais emitidas nos ultimos 12 meses
+2 | notas fiscais emitidas nos ultimos 6 meses
+3 | notas fiscais emitidas nos ultimos 30 dias
+4 | notas fiscais emitidas nos ultimos 7 dias
+
+
+Endpoint para retornar a distribuição de notas fiscais por estado da nota. Os estados da nota podem ser consultados na tabela abaixo:
+
+estado | descrição
+------|----------
+0 | pendente - a nota não foi paga
+1 | atrasado - a nota já deveria ter sido paga e não foi
+2 | pago - a nota já foi paga
+3 | substituída - foi emitida uma nova nota com correções sobre esta
+4 | notas fiscais emitidas nos ultimos 30 dias
+
+
+### Receita passada
+
+>Receita passada
+
+```json
+{
+  "1": {
+    "amountReceived": 59101
+  },
+  "2": {
+    "amountReceived": 7287
+  },
+  "3": {
+    "amountReceived": 8882
+  },
+  "4": {
+    "amountReceived": 8898
+  },
+  "5": {
+    "amountReceived": 3422
+  },
+  "6": {
+    "amountReceived": 3232
+  }
+}
+```
+
+`GET http://localhost:8000/v1/cities/:codigoIbge/past-revenue/?year=:year`
+
+* `codigoIbge`: código do IBGE para a prefeitura a ser retornada.
+* `year`: ano sobre o qual se quer a receita.
+
+Endpoint para retornar a receita mensal de uma prefeitura, para um certo ano. É retornado um objeto onde as chaves no nível raíz são os meses, e o amountReceived é a receita do respectivo mês.
 
 # SDEC Blockchain
 
