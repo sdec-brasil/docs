@@ -226,26 +226,49 @@
           </li>
           <li>
             <a href="#invoice-explorer" class="toc-h1 toc-link" data-title="Invoice Explorer">Invoice Explorer</a>
+          </li>
+          <li>
+            <a href="#referencia-da-api" class="toc-h1 toc-link" data-title="Referência da API:">Referência da API:</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#referencia-da-api" class="toc-h2 toc-link" data-title="Referência da API:">Referência da API:</a>
+                    <a href="#notas-fiscais" class="toc-h2 toc-link" data-title="Notas Fiscais">Notas Fiscais</a>
                     <ul class="toc-list-h3">
                         <li>
-                          <a href="#notas-fiscais" class="toc-h3 toc-link" data-title="Notas Fiscais">Notas Fiscais</a>
-                            <ul class="toc-list-h4">
-                                <li>
-                                  <a href="#get-invoices" class="toc-h4 toc-link" data-title="<code>GET INVOICES</code>"><code>GET INVOICES</code></a>
-                                </li>
-                                <li>
-                                  <a href="#get-invoice-txid" class="toc-h4 toc-link" data-title="<code>GET INVOICE/:txid</code>"><code>GET INVOICE/:txid</code></a>
-                                </li>
-                            </ul>
+                          <a href="#listando-notas-fiscais" class="toc-h3 toc-link" data-title="Listando notas fiscais">Listando notas fiscais</a>
                         </li>
                         <li>
-                          <a href="#empresas" class="toc-h3 toc-link" data-title="Empresas">Empresas</a>
+                          <a href="#retornando-uma-nota-fiscal" class="toc-h3 toc-link" data-title="Retornando uma nota fiscal">Retornando uma nota fiscal</a>
+                        </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#empresas" class="toc-h2 toc-link" data-title="Empresas">Empresas</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#listando-empresas" class="toc-h3 toc-link" data-title="Listando empresas">Listando empresas</a>
                         </li>
                         <li>
-                          <a href="#prefeituras" class="toc-h3 toc-link" data-title="Prefeituras">Prefeituras</a>
+                          <a href="#retornando-uma-empresa" class="toc-h3 toc-link" data-title="Retornando uma empresa">Retornando uma empresa</a>
+                        </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#prefeituras" class="toc-h2 toc-link" data-title="Prefeituras">Prefeituras</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#listando-prefeituras" class="toc-h3 toc-link" data-title="Listando prefeituras">Listando prefeituras</a>
+                        </li>
+                        <li>
+                          <a href="#retornando-uma-prefeitura" class="toc-h3 toc-link" data-title="Retornando uma prefeitura">Retornando uma prefeitura</a>
+                        </li>
+                        <li>
+                          <a href="#emissoes-diarias" class="toc-h3 toc-link" data-title="Emissões diárias">Emissões diárias</a>
+                        </li>
+                        <li>
+                          <a href="#distribuicao-por-status" class="toc-h3 toc-link" data-title="Distribuição por status">Distribuição por status</a>
+                        </li>
+                        <li>
+                          <a href="#receita-passada" class="toc-h3 toc-link" data-title="Receita passada">Receita passada</a>
                         </li>
                     </ul>
                   </li>
@@ -296,7 +319,632 @@
 <p>O Explorer possui uma interface gráfica para visualização das prefeituras, fornecendo uma espécie de painel de controle sobre as atividades econômicas daquele município e de suas empresas no sistema. Na perspectiva das empresas, é possível acompanhar sua atividade em tempo real no sistema e ter estatísticas sobre suas notas fiscais. Para o cidadão, é possível acompanhar o pagamento de impostos de empresas que participam de licitação, ou acompanhar uma parcela do orçamento da sua cidade proveninente do ISS.</p>
 
 <p>O Explorer também possui uma API Rest (<em>GraphQL em breve</em>) para os desenvolvedores e parceiros. A referência da API pode ser encontrada logo mais abaixo.</p>
-<h2 id='referencia-da-api'>Referência da API:</h2><h3 id='notas-fiscais'>Notas Fiscais</h3><h4 id='get-invoices'><code>GET INVOICES</code></h4><h4 id='get-invoice-txid'><code>GET INVOICE/:txid</code></h4><h3 id='empresas'>Empresas</h3><h3 id='prefeituras'>Prefeituras</h3><h1 id='sdec-blockchain'>SDEC Blockchain</h1>
+<h1 id='referencia-da-api'>Referência da API:</h1><h2 id='notas-fiscais'>Notas Fiscais</h2><h3 id='listando-notas-fiscais'>Listando notas fiscais</h3>
+<blockquote>
+<p>Listando notas fiscais</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1565988308026</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">69</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8000/v1/invoices/?limit=2&amp;offset=6&amp;filter=nonce lte 69"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8000/v1/invoices/?limit=2&amp;offset=2&amp;filter=nonce lte 69"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ac09495db0a091bc04a2d4f76e644960a554e494eecda4d747712acfd65c08d"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"substitui"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"substituidaPor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"assetName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tomadorEncriptado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"emissor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1UQo4dWebdbWEiUg2Xv7Vmt5TeJJbvUAtk1NF4"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29260066000100"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notaPagamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"blocoConfirmacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"prestacao"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"dataPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1973-04-07"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prefeituraPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100346"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codTributMunicipio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100015"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"itemLista"</span><span class="p">:</span><span class="w"> </span><span class="s2">"76.66"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codCnae"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4572840"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codServico"</span><span class="p">:</span><span class="w"> </span><span class="s2">"33"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codNBS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"807073030"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discriminacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"whisper sand stereo surprise answer engine hungry wrestle section warm rubber bargain"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valServicos"</span><span class="p">:</span><span class="w"> </span><span class="mi">13084</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"descontoIncond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"descontoCond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exigibilidadeISS"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"numProcesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valDeducoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"baseCalculo"</span><span class="p">:</span><span class="w"> </span><span class="mi">13077</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tributos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"issRetido"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"respRetencao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"regimeEspTribut"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"incentivoFiscal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"aliqServicos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46.0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valIss"</span><span class="p">:</span><span class="w"> </span><span class="mi">60186</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valPis"</span><span class="p">:</span><span class="w"> </span><span class="mi">471</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valCofins"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valInss"</span><span class="p">:</span><span class="w"> </span><span class="mi">238</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valIr"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valCsll"</span><span class="p">:</span><span class="w"> </span><span class="mi">158</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"outrasRetencoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">68</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valTotalTributos"</span><span class="p">:</span><span class="w"> </span><span class="mi">728</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valLiquiNfse"</span><span class="p">:</span><span class="w"> </span><span class="mi">12149</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tomador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"identificacaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nif"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nomeRazaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"paisEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tel"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"intermediario"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"identificacaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nomeRazaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cidadeIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"constCivil"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"codObra"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"art"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1dbedc7de5f0f157dbf673a03e2c0e1a911793603a1ba1d4f5d839d1367f1c8"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"substitui"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"substituidaPor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"assetName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tomadorEncriptado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"emissor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67188967000110"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notaPagamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"blocoConfirmacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"prestacao"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"dataPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1931-09-28"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prefeituraPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100403"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codTributMunicipio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100379"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"itemLista"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41.36"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codCnae"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codServico"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"codNBS"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discriminacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hover urban volcano attend stool actor tissue other never crop reveal prevent"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valServicos"</span><span class="p">:</span><span class="w"> </span><span class="mi">11968</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"descontoIncond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"descontoCond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exigibilidadeISS"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"numProcesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valDeducoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"baseCalculo"</span><span class="p">:</span><span class="w"> </span><span class="mi">11962</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tributos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"issRetido"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"respRetencao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"regimeEspTribut"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"incentivoFiscal"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"aliqServicos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47.0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valIss"</span><span class="p">:</span><span class="w"> </span><span class="mi">56250</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valPis"</span><span class="p">:</span><span class="w"> </span><span class="mi">218</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valCofins"</span><span class="p">:</span><span class="w"> </span><span class="mi">181</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valInss"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valIr"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valCsll"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"outrasRetencoes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valTotalTributos"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"valLiquiNfse"</span><span class="p">:</span><span class="w"> </span><span class="mi">11569</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tomador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"identificacaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nif"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nomeRazaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"paisEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tel"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"intermediario"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"identificacaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nomeRazaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cidadeIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"constCivil"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"codObra"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"art"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET https://localhost:8000/v1/invoices/</code></p>
+
+<p>Endpoint para retornar uma lista de notas ficais. Como a lista é longa e novas notas fiscais poderão ser lançadas no sistema, o parâmetro nonce é utilizado como filtro para não quebrar a paginação. Repare como no <code>cursor.next</code>e <code>cursor.prev</code> já incluíram um filtro por nonce.</p>
+
+<table><thead>
+<tr>
+<th>Parâmetro</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>limite de objetos por página.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>numero de objetos a serem pulados.</td>
+</tr>
+</tbody></table>
+<h3 id='retornando-uma-nota-fiscal'>Retornando uma nota fiscal</h3>
+<blockquote>
+<p>Retornando uma nota fiscal</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3550bbdba7934f3b02b940cc4c27f25fb0b796ef2216af639c79de37d8485d68"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"substitui"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"substituidaPor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"assetName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tomadorEncriptado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"emissor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67188967000110"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notaPagamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"blocoConfirmacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"prestacao"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"dataPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1998-09-06"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"prefeituraPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100346"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"codTributMunicipio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100015"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"itemLista"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58.54"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"codCnae"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"codServico"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"codNBS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"972191070"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"discriminacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"museum cram rookie seed acoustic nurse side hundred wink capital junior acquire"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valServicos"</span><span class="p">:</span><span class="w"> </span><span class="mi">9452</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"descontoIncond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"descontoCond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exigibilidadeISS"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"numProcesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valDeducoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"baseCalculo"</span><span class="p">:</span><span class="w"> </span><span class="mi">9450</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tributos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"issRetido"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"respRetencao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"regimeEspTribut"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"incentivoFiscal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"aliqServicos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valIss"</span><span class="p">:</span><span class="w"> </span><span class="mi">23630</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valPis"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valCofins"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valInss"</span><span class="p">:</span><span class="w"> </span><span class="mi">385</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valIr"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valCsll"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"outrasRetencoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valTotalTributos"</span><span class="p">:</span><span class="w"> </span><span class="mi">753</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valLiquiNfse"</span><span class="p">:</span><span class="w"> </span><span class="mi">9012</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tomador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"identificacaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nif"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nomeRazaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"paisEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tel"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"intermediario"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"identificacaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nomeRazaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cidadeIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"constCivil"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"codObra"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"art"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET https://localhost:8000/v1/invoices/:txId</code></p>
+
+<ul>
+<li><code>txId</code>: id de transação da invoice a ser retornada.</li>
+</ul>
+
+<p>Endpoint para retornar uma nota fiscal.</p>
+<h2 id='empresas'>Empresas</h2><h3 id='listando-empresas'>Listando empresas</h3>
+<blockquote>
+<p>Listando empresas</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1565991149635</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8000/v1/companies/?limit=2&amp;offset=6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8000/v1/companies/?limit=2&amp;offset=2"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23435652000154"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"razao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Igor Moreira Razão Social"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fantasia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apenas um Nome Fantasia LTDA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47486820"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua Estados Unidos"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"237"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fazenda"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tremembé"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5778811"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"regTrib"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endBlock"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1XM3YRWcQpTfC1FvVRPxbPEudFbQAHUJgQnY1m"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28083309000101"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"razao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amanda Ostitty Razão Social"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fantasia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apenas um Nome Fantasia LTDA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37591382"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua Haddock Lobo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lote 113"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cidade Dutra"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4972503"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PB"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"regTrib"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endBlock"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1QPqXVqLvKDdpUyde53xABipYaa1EvpDC41rdF"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET https://localhost:8000/v1/companies/</code></p>
+
+<p>Endpoint para listar as empresas cadastradas no sistema.</p>
+
+<table><thead>
+<tr>
+<th>Parâmetro</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>limite de objetos por página.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>numero de objetos a serem pulados.</td>
+</tr>
+</tbody></table>
+<h3 id='retornando-uma-empresa'>Retornando uma empresa</h3>
+<blockquote>
+<p>Retornando uma empresa</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23435652000154"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"razao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Igor Moreira Razão Social"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fantasia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apenas um Nome Fantasia LTDA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47486820"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua Estados Unidos"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"237"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fazenda"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tremembé"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5778811"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"regTrib"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"endBlock"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1XM3YRWcQpTfC1FvVRPxbPEudFbQAHUJgQnY1m"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>http://localhost:8000/v1/companies/:cnpj</code></p>
+
+<ul>
+<li><code>cnpj</code>: cnpj da empresa a ser retornada</li>
+</ul>
+
+<p>Endpoint para retornar uma empresa.</p>
+<h2 id='prefeituras'>Prefeituras</h2><h3 id='listando-prefeituras'>Listando prefeituras</h3>
+<blockquote>
+<p>Listando prefeituras</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1565992229064</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"codigoIbge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100015"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nome"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alta Floresta D'Oeste"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18511471000120"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RO"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"codigoIbge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100023"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nome"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ariquemes"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18511471000124"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RO"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"codigoIbge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100346"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nome"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alvorada D'Oeste"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18511471000123"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RO"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"codigoIbge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100379"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nome"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alto Alegre dos Parecis"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18511471000121"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RO"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"codigoIbge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100403"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nome"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alto ParaÃ­so"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18511471000122"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RO"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET http://localhost:8000/v1/cities/</code></p>
+
+<p>Endpoint para listar as prefeituras cadastradas no sistema.</p>
+<h3 id='retornando-uma-prefeitura'>Retornando uma prefeitura</h3>
+<blockquote>
+<p>Retornando uma prefeitura</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"codigoIbge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100015"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nome"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alta Floresta D'Oeste"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18511471000120"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"generalStats"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"avgLiquidValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">10405</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"emittedInvoicesCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avgIss"</span><span class="p">:</span><span class="w"> </span><span class="mi">40009</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lateIssValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lateIssCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"dailyIssuing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8000/v1/cities/1100015/daily-issuing/?year=2019&amp;month=8"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"yearRevenue"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"invoiceStatusDistribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"alreadyPaidThisMonth"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expectedMonthIncome"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET http://localhost:8000/v1/cities/:codigoIbge</code></p>
+
+<ul>
+<li><code>codigoIbge</code>: código do IBGE para a prefeitura a ser retornada.</li>
+</ul>
+
+<p>Endpoint para retornar uma prefeitura.</p>
+<h3 id='emissoes-diarias'>Emissões diárias</h3>
+<blockquote>
+<p>Emissões diárias</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"codigoIbge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100015"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nome"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alta Floresta D'Oeste"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18511471000120"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RO"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"dailyIssuing"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"dataPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1998-09-06"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"emittedInvoicesCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"dataPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1998-09-10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"emittedInvoicesCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET http://localhost:8000/v1/cities/:codigoIbge/daily-issuing</code></p>
+
+<ul>
+<li><code>codigoIbge</code>: código do IBGE para a prefeitura a ser retornada.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parâmetro</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>month</td>
+<td>mês referente ao qual serão buscadas as notas ficais</td>
+</tr>
+<tr>
+<td>year</td>
+<td>ano referente ao qual serão buscadas as notas ficais</td>
+</tr>
+</tbody></table>
+
+<p>Endpoint para retornar a contagem diária de notas fiscais emitidas em um certo mês.</p>
+<h3 id='distribuicao-por-status'>Distribuição por status</h3>
+<blockquote>
+<p>Distribuição por status</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"codigoIbge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100015"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nome"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alta Floresta D'Oeste"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18511471000120"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RO"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"statusSplit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"0"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET http://localhost:8000/v1/cities/:codigoIbge/invoices/distribution?range=:range</code></p>
+
+<ul>
+<li><code>codigoIbge</code>: código do IBGE para a prefeitura a ser retornada.</li>
+<li><code>range</code>: considerar apenas notas ficais emitidas nos ultimos tantos dias, conforme tabela abaixo.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>range</th>
+<th>descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>todas as notas fiscais</td>
+</tr>
+<tr>
+<td>1</td>
+<td>notas fiscais emitidas nos ultimos 12 meses</td>
+</tr>
+<tr>
+<td>2</td>
+<td>notas fiscais emitidas nos ultimos 6 meses</td>
+</tr>
+<tr>
+<td>3</td>
+<td>notas fiscais emitidas nos ultimos 30 dias</td>
+</tr>
+<tr>
+<td>4</td>
+<td>notas fiscais emitidas nos ultimos 7 dias</td>
+</tr>
+</tbody></table>
+
+<p>Endpoint para retornar a distribuição de notas fiscais por estado da nota. Os estados da nota podem ser consultados na tabela abaixo:</p>
+
+<table><thead>
+<tr>
+<th>estado</th>
+<th>descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>pendente - a nota não foi paga</td>
+</tr>
+<tr>
+<td>1</td>
+<td>atrasado - a nota já deveria ter sido paga e não foi</td>
+</tr>
+<tr>
+<td>2</td>
+<td>pago - a nota já foi paga</td>
+</tr>
+<tr>
+<td>3</td>
+<td>substituída - foi emitida uma nova nota com correções sobre esta</td>
+</tr>
+<tr>
+<td>4</td>
+<td>notas fiscais emitidas nos ultimos 30 dias</td>
+</tr>
+</tbody></table>
+<h3 id='receita-passada'>Receita passada</h3>
+<blockquote>
+<p>Receita passada</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amountReceived"</span><span class="p">:</span><span class="w"> </span><span class="mi">59101</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amountReceived"</span><span class="p">:</span><span class="w"> </span><span class="mi">7287</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amountReceived"</span><span class="p">:</span><span class="w"> </span><span class="mi">8882</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"4"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amountReceived"</span><span class="p">:</span><span class="w"> </span><span class="mi">8898</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"5"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amountReceived"</span><span class="p">:</span><span class="w"> </span><span class="mi">3422</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"6"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"amountReceived"</span><span class="p">:</span><span class="w"> </span><span class="mi">3232</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET http://localhost:8000/v1/cities/:codigoIbge/past-revenue/?year=:year</code></p>
+
+<ul>
+<li><code>codigoIbge</code>: código do IBGE para a prefeitura a ser retornada.</li>
+<li><code>year</code>: ano sobre o qual se quer a receita.</li>
+</ul>
+
+<p>Endpoint para retornar a receita mensal de uma prefeitura, para um certo ano. É retornado um objeto onde as chaves no nível raíz são os meses, e o amountReceived é a receita do respectivo mês.</p>
+<h1 id='sdec-blockchain'>SDEC Blockchain</h1>
 <p>A SDEC Blockchain é uma blockchain permissionada. Isso quer dizer que, todos podem conectar, verificar e auditar as informações públicas, mas a construção do consenso é reservada à participantes selecionados. Nesse caso, esses participantes são as Juntas Comerciais de cada Estado, Banco do Brasil e eventuais órgãos governamentais.</p>
 <h2 id='eventos'>Eventos:</h2>
 <p>A Blockchain funciona como um registro universal de eventos que aconteceram e suas ordens. Para se ter o &quot;estado&quot; do sistema é necessário computar toda a história dele até o bloco mais recente.</p>
