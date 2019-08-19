@@ -320,19 +320,53 @@
             <a href="#sdec-blockchain" class="toc-h1 toc-link" data-title="SDEC Blockchain">SDEC Blockchain</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#eventos" class="toc-h2 toc-link" data-title="Eventos:">Eventos:</a>
+                    <a href="#introducao-3" class="toc-h2 toc-link" data-title="Introdução">Introdução</a>
                   </li>
                   <li>
-                    <a href="#publicacoes" class="toc-h2 toc-link" data-title="Publicações:">Publicações:</a>
+                    <a href="#blockchain" class="toc-h2 toc-link" data-title="Blockchain">Blockchain</a>
                     <ul class="toc-list-h3">
                         <li>
-                          <a href="#novo-registro-de-empresa" class="toc-h3 toc-link" data-title="Novo Registro de Empresa:">Novo Registro de Empresa:</a>
+                          <a href="#blocos" class="toc-h3 toc-link" data-title="Blocos">Blocos</a>
                         </li>
                         <li>
-                          <a href="#alteracoes-no-registro-da-empresa" class="toc-h3 toc-link" data-title="Alterações no Registro da Empresa:">Alterações no Registro da Empresa:</a>
+                          <a href="#cadeia-de-blocos" class="toc-h3 toc-link" data-title="Cadeia de Blocos">Cadeia de Blocos</a>
+                        </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#transacoes" class="toc-h2 toc-link" data-title="Transações">Transações</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#estrutura-de-uma-transacao" class="toc-h3 toc-link" data-title="Estrutura de Uma Transação">Estrutura de Uma Transação</a>
                         </li>
                         <li>
-                          <a href="#emissao-de-notas-fiscais" class="toc-h3 toc-link" data-title="Emissão de Notas Fiscais:">Emissão de Notas Fiscais:</a>
+                          <a href="#utxo" class="toc-h3 toc-link" data-title="UTXO">UTXO</a>
+                        </li>
+                        <li>
+                          <a href="#inputs-e-outputs" class="toc-h3 toc-link" data-title="Inputs e Outputs">Inputs e Outputs</a>
+                        </li>
+                        <li>
+                          <a href="#linguagem-script" class="toc-h3 toc-link" data-title="Linguagem Script">Linguagem Script</a>
+                        </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#eventos" class="toc-h2 toc-link" data-title="Eventos">Eventos</a>
+                  </li>
+                  <li>
+                    <a href="#permissoes" class="toc-h2 toc-link" data-title="Permissões">Permissões</a>
+                  </li>
+                  <li>
+                    <a href="#publicacoes" class="toc-h2 toc-link" data-title="Publicações">Publicações</a>
+                    <ul class="toc-list-h3">
+                        <li>
+                          <a href="#novo-registro-de-empresa" class="toc-h3 toc-link" data-title="Novo Registro de Empresa">Novo Registro de Empresa</a>
+                        </li>
+                        <li>
+                          <a href="#alteracoes-no-registro-da-empresa" class="toc-h3 toc-link" data-title="Alterações no Registro da Empresa">Alterações no Registro da Empresa</a>
+                        </li>
+                        <li>
+                          <a href="#emissao-de-notas-fiscais" class="toc-h3 toc-link" data-title="Emissão de Notas Fiscais">Emissão de Notas Fiscais</a>
                         </li>
                     </ul>
                   </li>
@@ -1652,17 +1686,237 @@ regtribut   0 - MEI; 1 - Simples Nacional; 2 - Lucro Presumido; 3 - Lucro Real
 </ul>
 
 <p>Endpoint para retornar a receita mensal de uma prefeitura, para um certo ano. É retornado um objeto onde as chaves no nível raíz são os meses, e o amountReceived é a receita do respectivo mês.</p>
-<h1 id='sdec-blockchain'>SDEC Blockchain</h1>
+<h1 id='sdec-blockchain'>SDEC Blockchain</h1><h2 id='introducao-3'>Introdução</h2>
 <p>A SDEC Blockchain é uma blockchain permissionada. Isso quer dizer que, todos podem conectar, verificar e auditar as informações públicas, mas a construção do consenso é reservada à participantes selecionados. Nesse caso, esses participantes são as Juntas Comerciais de cada Estado, Banco do Brasil e eventuais órgãos governamentais.</p>
-<h2 id='eventos'>Eventos:</h2>
+
 <p>A Blockchain funciona como um registro universal de eventos que aconteceram e suas ordens. Para se ter o &quot;estado&quot; do sistema é necessário computar toda a história dele até o bloco mais recente.</p>
 
-<p>Se você é familiarizado com a arquitetura Redux, é possível pensarmos nesses eventos como ações ao estado (computado) atual da Blockchain naquele ponto por dispatchers fora da rede.</p>
+<p>A SDEC Blockchain é derivada do código-fonte do Bitcoin, e segue suas estruturas.</p>
+<h2 id='blockchain'>Blockchain</h2>
+<aside class="notice" style="background-color: #ffae42">Seção "Blockchain" contém conteúdo técnico</aside>
 
+<p>A blockchain é uma estrutura de dados ordenada composta por blocos de transações criptograficamente ligados por uma referência direta ao bloco anterior, servindo como livro-razão público. A propriedade mais interessante da blockchain para o consenso de um sistema descentralizado é este elo criptográfico que liga os seus blocos entre si.</p>
+<h3 id='blocos'>Blocos</h3>
+<p>Cada bloco é uma estrutura de dados que contém as transações a serem incluidas na blockchain por meio do trabalho dos mineradores na rede.</p>
+
+<p>De uma forma geral, o bloco é composto por um cabeçalho contendo metadados sobre o bloco e uma lista de transações:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Tamanho do Bloco</td>
+<td>4 <em>bytes</em></td>
+<td>tamanho do bloco (<em>block size</em>) em <em>bytes</em> a partir deste campo</td>
+</tr>
+<tr>
+<td>Cabeçalho do Bloco</td>
+<td>80 <em>bytes</em></td>
+<td>o cabeçalho do bloco (<em>block header</em>) contendo metadados</td>
+</tr>
+<tr>
+<td>Contador de Transações</td>
+<td>1-9 <em>bytes</em></td>
+<td>número de transações neste bloco</td>
+</tr>
+<tr>
+<td>Transaçòes</td>
+<td>Variável</td>
+<td>as transações deste bloco</td>
+</tr>
+</tbody></table>
+
+<p>Como na descrição, o cabeçalho do bloco é responsável por conter os metadados referentes ao bloco e é nele que está a &quot;cola&quot; criptográfica fundamental para a segurança da blockchain. A estrutura do cabeçalho do bloco contém os seguintes campos:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Versão</td>
+<td>4 <em>bytes</em></td>
+<td>número de versão do bloco indica que regras este bloco segue</td>
+</tr>
+<tr>
+<td><em>Hash</em> do Cabeçalho do Bloco Anterior</td>
+<td>32 <em>bytes</em></td>
+<td><em>hash</em> do cabeçalho do bloco anterior (<em>parent block</em>) a este na blockchain</td>
+</tr>
+<tr>
+<td>Raiz de Merkle</td>
+<td>32 <em>bytes</em></td>
+<td><em>hash</em> da raiz de Merkle das transações deste bloco</td>
+</tr>
+<tr>
+<td><em>Timestamp</em></td>
+<td>4 <em>bytes</em></td>
+<td>hora aproximada da criação deste tempo em segundos no padrão UNIX</td>
+</tr>
+<tr>
+<td>Dificuldade Alvo</td>
+<td>4 <em>bytes</em></td>
+<td>dificuldade alvo do algoritmo de <em>proof-of-work</em> para este bloco</td>
+</tr>
+<tr>
+<td><em>Nonce</em></td>
+<td>4 <em>bytes</em></td>
+<td>contador utilizado como <em>nonce</em> no algoritmo de <em>proof-of-work</em></td>
+</tr>
+</tbody></table>
+
+<p>Os blocos carregam todas as informações necessárias para servirem como páginas de um livro-razão das transações confirmadas na rede.</p>
+<h3 id='cadeia-de-blocos'>Cadeia de Blocos</h3>
+<p>A ligação entre os Blocos se dá a partir da inserção da <em>hash</em> do cabeçalho <strong>anterior</strong> no cabeçalho do bloco atual. É possível </p>
+
+<p><img src="images/blockchain.png" alt="blockchain" /></p>
+
+<p>Na prática, cada novo bloco possui uma ligação à todos os anteriores, pois quaisquer mudanças em algum bloco antigo causará atlerações nos valores de todas as hashes adiante. Por causa disso, fraudes por alterações de dados são extremamente difíceis e detectáveis em sistemas de Blockchain.</p>
+<h2 id='transacoes'>Transações</h2>
+<aside class="notice" style="background-color: #ffae42">Seção "Transações" contém conteúdo técnico</aside>
+
+<p>Transações são a parte mais importante do sistema em Blockchain. Todo o resto é desenhado para garantir que as transações possam ser criadas, propagadas na rede, validadas e finalmente adicionadas ao livro-razão de transações (a própria Blockchain). Transações são estruturas de dados que codificam a transferência de valor (ou informação!) entre os participantes daquele sistema. Cada transação é uma entrada pública na Blockchain.</p>
+<h3 id='estrutura-de-uma-transacao'>Estrutura de Uma Transação</h3>
+<p>Na nossa Blockchain, uma transação é a estrutura de dados responsável por formalizar em código a transferência (ou publicação) de informação de um ou mais <em>inputs</em> (entrada de informações anteriores) para um ou mais <em>outputs</em> (saída das novas informações). Aqui está o primeiro nível de uma transação:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><em>version</em></td>
+<td>Identifica as regras que a transação segue</td>
+</tr>
+<tr>
+<td><em>tx_in count</em></td>
+<td>Identifica quantos <em>inputs</em> a transação tem</td>
+</tr>
+<tr>
+<td><em>tx_in</em></td>
+<td>O(s) <em>input(s)</em> da transação</td>
+</tr>
+<tr>
+<td><em>tx_out count</em></td>
+<td>Identifica quantos <em>outputs</em> a transação tem</td>
+</tr>
+<tr>
+<td><em>tx_out</em></td>
+<td>O(s) <em>output(s)</em> da transação</td>
+</tr>
+<tr>
+<td><em>lock_time</em></td>
+<td>Um <em>timestamp UNIX</em> ou um número de bloco a partir de quando/qual a transação poderá ser destrancada</td>
+</tr>
+</tbody></table>
+
+<p>Os campos mais importantes são <code>tx_in</code> e <code>tx_out</code>, responsáveis, respectivamente, pela referência das informações anteriores (<em>inputs</em>) e a criação de novas saídas de informações (<em>outputs</em>).</p>
+<h3 id='utxo'>UTXO</h3>
+<p>Os inputs e outputs são os elementos fundamentais de uma transação. As transações são ligadas umas às outras por estes dois elementos; Os inputs de uma transação são, simplemente, referências aos outputs de uma transação anterior. Estes outputs prontos para serem usado por uma nova transação são chamados de UTXO (unspent transaction output/output de transação não gasto).</p>
+
+<p>O modo como as transações funcionam, faz com que elas formem uma sucessiva corrente de inputs e outputs trancando e destrancando valores na rede.</p>
+
+<p><img src="images/tx-chain.png" alt="Tx chain" /></p>
+
+<aside class="notice">A exceção da exigência de se "transacionar" por cima de uma transação antiga é privilégio das transações chamadas de <i>coinbase</i>, incluídas pela assinatura do minerador de um determiando bloco.</aside>
+<h3 id='inputs-e-outputs'>Inputs e Outputs</h3>
+<p>Todas transações criam um ou mais <em>outputs</em> para serem destrancados posteriormente quando usados em outra transação. Agora, nosso entendimento sobre transações fica mais interessante e preciso ao dissecarmos a estrutura do <em>output</em> para entendermos cada uma de suas peças:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Tamanho</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><em>value</em></td>
+<td>Número de moedas nativas a serem transferidas <em>(nosso caso 0)</em></td>
+<td>8 <em>bytes</em></td>
+</tr>
+<tr>
+<td><em>locking-script-length</em></td>
+<td>O tamanho do <em>locking script</em> em <em>bytes</em></td>
+<td>1-9 <em>bytes</em></td>
+</tr>
+<tr>
+<td><em>locking-script</em></td>
+<td>Um <em>script</em> com as condições necessárias para o <em>output</em> ser gasto</td>
+<td>Tamanho variável</td>
+</tr>
+</tbody></table>
+
+<p>Os <em>locking-scripts</em> são códigos de programas que ditam a condição necessária para que aquele <em>output</em> possa ser gasto. O exemplo mais simples disso é a criação de um <em>script</em> que permite que o output seja gasto (<em>usado</em>) por quem produzir uma assinatura de uma determinada chave pública.</p>
+
+<p>Esses códigos são escritos na linguagem <em>Script</em>.</p>
+<h3 id='linguagem-script'>Linguagem Script</h3>
+<p><em>Script</em> é uma linguagem similar à <a href="https://pt.wikipedia.org/wiki/Forth">Forth</a> com notação em <a href="https://pt.wikipedia.org/wiki/Nota%C3%A7%C3%A3o_polonesa_inversa">Polonesa Reversa/Inversa</a> com método de execução em pilha interpretada da esquerda para a direita. Apesar de limitada, é possível criar regras arbitrárias complexas para as transações.</p>
+
+<p>Todos os <em>scripts</em> são verificados independentemente por cada nó da rede, e essa verificação é chamada de &quot;validação&quot;. Quando o nó recebe uma transação nova ele verifica que seus <em>inputs</em> podem &quot;desbloquear&quot; os <em>scripts</em> dos <em>outputs</em> referenciados.</p>
+
+<p>A linguagem <em>Script</em> possui códigos determinados chamados de <strong>OPCODES</strong>, que funcionam como uma espécie de funções da linguagem e auxiliam na construção de novos programas.</p>
+
+<p>A presença de certos <em>OPCODES</em> permite a Blockchain interpretar aquela transação (de dados) com o significado desejado, validando-a de maneira correta e fazendo com que cada nó atualize o seu estado local de maneira compatível com o resto da rede. Chamamos essas transações com significados especiais de <strong>eventos</strong>, e vamos vê-los mais abaixos.</p>
+
+<p>Além desses <strong>eventos</strong>, fazemos uso de um conjunto de <em>opcodes</em> específicos para sinalizarmos que o código que se seguirá deverá ser interpretado como um <strong>Smart Filter</strong> - que falaremos mais sobre adiante. </p>
+<h2 id='eventos'>Eventos</h2>
+<p>Os eventos existentes na nossa Blockchain são:</p>
+
+<table><thead>
+<tr>
+<th>Evento</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Ativação de Smart Filters</td>
+<td>Permite a criação de novas regras de negócios para serem aplicadas aos demais eventos</td>
+</tr>
+<tr>
+<td>Desativação de Smart Fitlers</td>
+<td>Desativa um filtro já existente que está ultrapassado por algum motivo</td>
+</tr>
+<tr>
+<td>Registro de uma nova Empresa</td>
+<td>Cadastro incial de uma empresa onde será guardado os dados base dela</td>
+</tr>
+<tr>
+<td>Alteração Cadastrais</td>
+<td>Alteração dos dados de uma empresa (endereço, nome, etc.)</td>
+</tr>
+<tr>
+<td>Autorização de Emissores</td>
+<td>Autorização de novos emissores de notas fiscais de serviço para aquela empresa</td>
+</tr>
+<tr>
+<td>Emissão de Nota Fiscal</td>
+<td>A emissão de uma nota fiscal de serviço eletrônica</td>
+</tr>
+<tr>
+<td>Substituição NF</td>
+<td>Atualização de dados sobre uma nota fiscal de serviço já emitida</td>
+</tr>
+<tr>
+<td>Emissão Nota de Pagamento*</td>
+<td>Criação de uma nota de pagamento por uma empresa</td>
+</tr>
+<tr>
+<td>Confirmação de Liquidação</td>
+<td>A confirmação do recebimento dos tributos e dos repasses pela Instituição Liquidadora</td>
+</tr>
+</tbody></table>
+<h2 id='permissoes'>Permissões</h2>
 <p>Lista dos possíveis eventos e permissões relacionadas à eles:</p>
 
 <blockquote>
-<p>Sugestão: Uma firma de contabilidade deve gerar um novo endereço público e esse ser adicionado ao registro da empresa. Dessa maneira, ela conseguirá emitir notas fiscais válidas para seus clientes.</p>
+<p>Sugestão: Uma firma de contabilidade deve gerar um novo endereço público e esse ser autorizado pela empresa. Dessa maneira, ela conseguirá emitir notas fiscais válidas para seus clientes.</p>
 </blockquote>
 
 <table><thead>
@@ -1671,50 +1925,74 @@ regtribut   0 - MEI; 1 - Simples Nacional; 2 - Lucro Presumido; 3 - Lucro Real
 <th>Juntas Comerciais</th>
 <th>Empresa</th>
 <th>Instituição Liquidadora</th>
+<th>Tipo do Evento</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Cadastro de uma nova empresa</td>
+<td>Registro de uma nova Empresa</td>
 <td>Sim</td>
 <td>Não</td>
 <td>Não</td>
+<td>Emissão de um Ativo</td>
 </tr>
 <tr>
-<td>Alteração em empresa*</td>
+<td>Alteração Cadastrais</td>
 <td>Sim</td>
 <td>Sim</td>
 <td>Não</td>
+<td>Reemissão do Ativo</td>
+</tr>
+<tr>
+<td>Autorização de Emissores</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Não</td>
+<td>Atribuição de Permissão</td>
 </tr>
 <tr>
 <td>Emissão de Nota Fiscal</td>
 <td>Não</td>
 <td>Sim</td>
 <td>Não</td>
+<td>Emissão de um Ativo</td>
 </tr>
 <tr>
 <td>Substituição NF</td>
 <td>Não</td>
 <td>Sim</td>
 <td>Não</td>
+<td>Reemissão do Ativo</td>
 </tr>
 <tr>
 <td>Emissão Nota de Pagamento</td>
 <td>Não</td>
 <td>Sim</td>
 <td>Não</td>
+<td>Emissão de um Ativo</td>
 </tr>
 <tr>
-<td>Atualização Nota de Pagamento</td>
+<td>Confirmação de Liquidação</td>
 <td>Não</td>
 <td>Não</td>
 <td>Sim</td>
+<td>Publicação em Stream</td>
+</tr>
+<tr>
+<td>Ativação de Smart Filters</td>
+<td>Não</td>
+<td>Não</td>
+<td>Sim</td>
+<td>Smart Filters</td>
+</tr>
+<tr>
+<td>Desativação de Smart Filters</td>
+<td>Não</td>
+<td>Não</td>
+<td>Sim</td>
+<td>Smart Filters</td>
 </tr>
 </tbody></table>
-
-<p>*<em>alteração de dados, um novo endereço emissor de notas, status, regime fiscal, etc</em></p>
-
-<p>Os eventos são emitidos no sistema através de publicações.</p>
-<h2 id='publicacoes'>Publicações:</h2>
+<h2 id='publicacoes'>Publicações</h2>
 <p>Publicações são arquivos JSON&#39;s publicados na Blockchain que descrevem eventos. A publicação de itens se dá através do comando <code>publish</code> pelo <code>sdec-cli</code>. </p>
 
 <p>As publicações em JSON possuem duas partes:</p>
@@ -1744,7 +2022,7 @@ regtribut   0 - MEI; 1 - Simples Nacional; 2 - Lucro Presumido; 3 - Lucro Real
 <p>Para acessar a documentação do <code>sdec-cli</code> clique <a href="https://sdec-brasil.github.io">aqui.</a>.</p>
 
 <p>As descrições das publicações e dos modelos esperados pelo sistema segue abaixo.</p>
-<h3 id='novo-registro-de-empresa'>Novo Registro de Empresa:</h3>
+<h3 id='novo-registro-de-empresa'>Novo Registro de Empresa</h3>
 <p>O registro da empresa deve ser feita pela Junta Comercial responsável. Além da publicação das informações na Blockchain, a Junta também estará autorizando os endereços respectivos a serem emissores de nota.</p>
 
 <blockquote>
@@ -1866,7 +2144,7 @@ regtribut   0 - MEI; 1 - Simples Nacional; 2 - Lucro Presumido; 3 - Lucro Real
 </tbody></table>
 
 <aside class="notice">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas recomendamos que cada um deles seja único à ela e não reutilizado.</aside>
-<h3 id='alteracoes-no-registro-da-empresa'>Alterações no Registro da Empresa:</h3><h3 id='emissao-de-notas-fiscais'>Emissão de Notas Fiscais:</h3><h1 id='errors'>Errors</h1>
+<h3 id='alteracoes-no-registro-da-empresa'>Alterações no Registro da Empresa</h3><h3 id='emissao-de-notas-fiscais'>Emissão de Notas Fiscais</h3><h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
