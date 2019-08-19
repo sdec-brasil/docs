@@ -82,11 +82,337 @@ O papel da empresa pouca muda no novo sistema. Sistemas mudarão e serão reduzi
 
 # Invoice Explorer
 
+## Introdução
+
 O *Invoice Explorer* é uma ferramenta pública de fácil acesso que busca facilitar o desenvolvimento de aplicações para o sistema e aumentar a transparência e visibilidade desses dados. 
 
 O Explorer possui uma interface gráfica para visualização das prefeituras, fornecendo uma espécie de painel de controle sobre as atividades econômicas daquele município e de suas empresas no sistema. Na perspectiva das empresas, é possível acompanhar sua atividade em tempo real no sistema e ter estatísticas sobre suas notas fiscais. Para o cidadão, é possível acompanhar o pagamento de impostos de empresas que participam de licitação, ou acompanhar uma parcela do orçamento da sua cidade proveninente do ISS.
 
 O Explorer também possui uma API Rest (*GraphQL em breve*) para os desenvolvedores e parceiros. A referência da API pode ser encontrada logo mais abaixo.
+
+Site de Acesso: [Invoice Explorer](#)
+Repositório: [GH](https://github.com/sdec-brasil/invoice-explorer)
+
+## Modelos
+
+As seções abaixo descrevem os modelos estruturais das tabelas relacionadas ao domínio da aplicação no Banco de Dados e que são retornados em respostas da API.
+
+### Empresa
+
+> Exemplo de Empresa
+
+```json
+{
+  "cnpj": "23435652000154",
+  "razao": "Igor Moreira Razão Social",
+  "fantasia": "Apenas um Nome Fantasia LTDA",
+  "cepEnd": "47486820",
+  "logEnd": "Rua Estados Unidos",
+  "numEnd": "237",
+  "compEnd": "Fazenda",
+  "bairroEnd": "Tremembé",
+  "cidadeEnd": "5778811",
+  "estadoEnd": "MT",
+  "regTrib": 3,
+  "email": null,
+  "telefone": null,
+  "endBlock": "1XM3YRWcQpTfC1FvVRPxbPEudFbQAHUJgQnY1m"
+}
+```
+
+Campo     | Descrição                                       | Optativo? |
+----------|-------------------------------------------------|-----------|
+cnpj      | Cadastro Nacional da Pessoa Jurídica            |     N
+razao     | Razão Social da Empresa                         |     N
+fantasia  | Nome Fantasia da Empresa                        |     N
+cepEnd    | Código Postal do Endereço Sede da Empresa       |     N
+logEnd    | Logradouro do Endereço Sede da Empresa          |     N
+numEnd    | Número do Endereço Sede da Empresa              |     N
+compEnd   | Complemento do Endereço Sede da Empresa         |     N
+bairroEnd | Bairro do Endereço Sede da Empresa              |     N
+cidadeEnd | Cidade do Endereço Sede da Empresa              |     N
+estadoEnd | Unidade Federativa do Endereço Sede da Empresa  |     N
+regTrib   | Regime Tributário da Empresa (1-4)              |     N
+email     | E-mail de Contato Público da Empresa            |     S
+telefone  | Telefone de Contato Público da Empresa          |     S      
+endBlock  | Endereço Público de Cadastro da Empresa         |     N
+
+Regime Tributário:
+
+Valor   | Descrição
+--------|-----------
+1       | MEI
+2       | Simples Nacional
+3       | Lucro Presumido
+4       | Lucro Real
+
+### Emissores
+
+*Emissor* é o nome atribuído à um endereço público na Blockchain que possui permissão para emitir notas fiscais em nome de um CNPJ. É recomendado que um endereço seja autorizado por somente uma empresa para emissão de notas afim de evitar erros e diminuir cenários de risco.
+
+Campo           | Descrição
+----------------|-------------------------------------------
+cnpj            | Cadastro Nacional da Pessoa Jurídica
+emissorAddress  | Endereço Público na Blockchain
+
+A *tupla*, então, *(CNPJ, emissorAddress)* explicita a relação "O endereço público *emissorAddress* pode emitir notas fiscais que dizem respeito à empresa de *CNPJ*".
+
+### Nota Fiscal
+
+Campo               | Descrição                                       | Origem da Inf. |  Optativo  |
+--------------------|-------------------------------------------------|----------------|------------|
+nonce               | Contador da Nota Fiscal no BD para Paginaçào    |    *Worker\**  |      N     |
+txId                | Identificador Único da Nota Fiscal              |  *Blockchain*  |      N     |
+substitui           | txId da Nota Fiscal que está sendo substituída  |    *Usuário*   |      S     |
+substituidaPor      | txId da Nota Fiscal que substitui essa          |  *Blockchain*  |      S     |
+assetName           | Nome do Ativo que representa a NF na Blockchain |  *Blockchain*  |      N     |
+dataPrestacao       | Dia, mês e ano da prestação de serviço          |    *Usuário*   |      N     |
+prefeituraPrestacao | Código do Município onde é prestado o serviço   |    *Usuário*   |      N     |
+codTributMunicipio  | Cód. do Município onde é a incidência do imposto|    *Usuário*   |      N     |
+itemLista           | Código do serviço prestado Item da LC 116/2003  |    *Usuário*   |      N     |
+codCnae             | CNAE do serivço prestado na Nota Fiscal         |    *Usuário*   |      S     |
+
+``
+    // campo codTributMunicipio
+    itemLista: {
+      type: DataTypes.STRING(5),
+      allowNull: false,
+    },
+    codCnae: {
+      type: DataTypes.STRING(20),
+      allowNull: true,
+    },
+    // This may need to be a table
+    codServico: {
+      type: DataTypes.STRING(20),
+      allowNull: true,
+    },
+    codNBS: {
+      type: DataTypes.STRING(9),
+      allowNull: true,
+    },
+    discriminacao: {
+      type: DataTypes.STRING(2000),
+      allowNull: false,
+    },
+    valServicos: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: false,
+    },
+    descontoIncond: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: true,
+    },
+    descontoCond: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: true,
+    },
+    exigibilidadeISS: {
+      // * `1` - Exigível
+      // * `2` - Não incidência
+      // * `3` - Isenção
+      // * `4` - Exportação
+      // * `5` - Imunidade
+      // * `6` - Exigibilidade Suspensa por Decisão Judicial
+      // * `7` - Exigibilidade Suspensa por Processo Administrativo
+      type: DataTypes.TINYINT({ unsigned: true }),
+      allowNull: false,
+    },
+    numProcesso: {
+      type: DataTypes.STRING(30),
+      allowNull: true,
+    },
+    valDeducoes: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: true,
+    },
+    baseCalculo: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: false,
+    },
+
+    // ----- Campos de Taxas:
+    issRetido: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    respRetencao: {
+      // Informado somente se IssRetido igual a "true".
+      // A opção “2 – Intermediário” somente poderá ser selecionada
+      // se “CpfCnpjIntermediario” informado.
+      //       * `1` - Tomador
+      //       * `2` - Intermediário
+      type: DataTypes.TINYINT({ unsigned: true }),
+      allowNull: true,
+    },
+    regimeEspTribut: {
+      // * `1` – Microempresa Municipal
+      // * `2` – Estimativa
+      // * `3` – Sociedade de Profissionais
+      // * `4` – Cooperativa
+      // * `5` – Microempresário Individual (MEI)
+      // * `6` – Microempresário e Empresa de Pequeno Porte (ME EPP).
+      type: DataTypes.TINYINT({ unsigned: true }),
+      allowNull: true,
+    },
+    incentivoFiscal: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    aliqServicos: {
+      type: DataTypes.DECIMAL(10, 1),
+      allowNull: true,
+    },
+    valIss: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: false,
+    },
+    valPis: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: true,
+    },
+    valCofins: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: true,
+    },
+    valInss: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: true,
+    },
+    valIr: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: true,
+    },
+    valCsll: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: true,
+    },
+    outrasRetencoes: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: true,
+    },
+    valTotalTributos: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: true,
+    },
+    valLiquiNfse: {
+      type: DataTypes.BIGINT({ unsigned: true }),
+      allowNull: true,
+    },
+
+    // ----- Campos do Tomador:
+    identificacaoTomador: {
+      type: DataTypes.STRING(14),
+      allowNull: true,
+    },
+    nif: {
+      type: DataTypes.STRING(40),
+      allowNull: true,
+    },
+    nomeRazaoTomador: {
+      type: DataTypes.STRING(150),
+      allowNull: true,
+    },
+    logEnd: {
+      type: DataTypes.STRING(125),
+      allowNull: true,
+    },
+    numEnd: {
+      type: DataTypes.STRING(10),
+      allowNull: true,
+    },
+    compEnd: {
+      type: DataTypes.STRING(60),
+      allowNull: true,
+    },
+    bairroEnd: {
+      type: DataTypes.STRING(60),
+      allowNull: true,
+    },
+    cidadeEnd: {
+      type: DataTypes.INTEGER({ unsigned: true }),
+      allowNull: true,
+    },
+    estadoEnd: {
+      type: DataTypes.STRING(2),
+      allowNull: true,
+    },
+    paisEnd: {
+      type: DataTypes.INTEGER({ unsigned: true }),
+      allowNull: true,
+    },
+    cepEnd: {
+      type: DataTypes.STRING(8),
+      allowNull: true,
+    },
+    email: {
+      type: DataTypes.STRING(80),
+      allowNull: true,
+    },
+    tel: {
+      type: DataTypes.STRING(20),
+      allowNull: true,
+    },
+    // ----- Campos do Intermediário:
+    identificacaoIntermed: {
+      type: DataTypes.STRING(14),
+      allowNull: true,
+    },
+    nomeRazaoIntermed: {
+      type: DataTypes.STRING(150),
+      allowNull: true,
+    },
+    cidadeIntermed: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    // ----- Campos da Construção Civil:
+    codObra: {
+      type: DataTypes.STRING(30),
+      allowNull: true,
+    },
+    art: {
+      type: DataTypes.STRING(30),
+      allowNull: true,
+    },
+    //
+    // ----- Campos que não estão na documentação:
+    estado: {
+      // 0 - pendente,
+      // 1 - atrasado,
+      // 2 - pago,
+      // 3 - substituida,
+      // 4 - dados inconsistentes
+      type: DataTypes.TINYINT({ unsigned: true }),
+      allowNull: false,
+      defaultValue: 0,
+    },
+    tomadorEncriptado: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+  },
+  {
+    underscored: false,
+    tableName: 'invoice',
+    freezeTableName: true,
+    timestamps: false,
+  });
+
+  invoice.associate = (models) => {
+    invoice.belongsTo(models.emissor, { targetKey: 'address', as: 'emittedBy', foreignKey: { name: 'emissor', allowNull: false } });
+    invoice.belongsTo(models.empresa, { targetKey: 'cnpj', foreignKey: { name: 'cnpj', allowNull: false } });
+    invoice.belongsTo(models.nota_pagamento, { targetKey: 'guid', foreignKey: { name: 'notaPagamento', allowNull: true } });
+    invoice.belongsTo(models.municipio, { targetKey: 'codigoIbge', foreignKey: { name: 'prefeituraPrestacao', allowNull: false } });
+    invoice.belongsTo(models.municipio, { targetKey: 'codigoIbge', foreignKey: { name: 'codTributMunicipio', allowNull: false } });
+    invoice.belongsTo(models.block, { targetKey: 'block_id', as: 'block', foreignKey: { name: 'blocoConfirmacao', allowNull: true } });
+  };
+
+
+
+### Nota de Pagamento
+
+### Comprovante de Liquidação
 
 ## API: Notas Fiscais
 
