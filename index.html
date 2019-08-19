@@ -259,10 +259,10 @@
                           <a href="#empresa" class="toc-h3 toc-link" data-title="Empresa">Empresa</a>
                         </li>
                         <li>
-                          <a href="#emissores" class="toc-h3 toc-link" data-title="Emissores">Emissores</a>
+                          <a href="#emissor" class="toc-h3 toc-link" data-title="Emissor">Emissor</a>
                         </li>
                         <li>
-                          <a href="#nota-fiscal" class="toc-h3 toc-link" data-title="Nota Fiscal">Nota Fiscal</a>
+                          <a href="#nota-fiscal-de-servico" class="toc-h3 toc-link" data-title="Nota Fiscal de Serviço">Nota Fiscal de Serviço</a>
                         </li>
                         <li>
                           <a href="#nota-de-pagamento" class="toc-h3 toc-link" data-title="Nota de Pagamento">Nota de Pagamento</a>
@@ -273,7 +273,7 @@
                     </ul>
                   </li>
                   <li>
-                    <a href="#api-notas-fiscais" class="toc-h2 toc-link" data-title="API: Notas Fiscais">API: Notas Fiscais</a>
+                    <a href="#api-de-notas-fiscais" class="toc-h2 toc-link" data-title="API de Notas Fiscais">API de Notas Fiscais</a>
                     <ul class="toc-list-h3">
                         <li>
                           <a href="#listando-notas-fiscais" class="toc-h3 toc-link" data-title="Listando notas fiscais">Listando notas fiscais</a>
@@ -284,7 +284,7 @@
                     </ul>
                   </li>
                   <li>
-                    <a href="#api-empresas" class="toc-h2 toc-link" data-title="API: Empresas">API: Empresas</a>
+                    <a href="#api-de-empresas" class="toc-h2 toc-link" data-title="API de Empresas">API de Empresas</a>
                     <ul class="toc-list-h3">
                         <li>
                           <a href="#listando-empresas" class="toc-h3 toc-link" data-title="Listando empresas">Listando empresas</a>
@@ -295,7 +295,7 @@
                     </ul>
                   </li>
                   <li>
-                    <a href="#api-prefeituras" class="toc-h2 toc-link" data-title="API: Prefeituras">API: Prefeituras</a>
+                    <a href="#api-de-prefeituras" class="toc-h2 toc-link" data-title="API de Prefeituras">API de Prefeituras</a>
                     <ul class="toc-list-h3">
                         <li>
                           <a href="#listando-prefeituras" class="toc-h3 toc-link" data-title="Listando prefeituras">Listando prefeituras</a>
@@ -539,7 +539,7 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 <td>Lucro Real</td>
 </tr>
 </tbody></table>
-<h3 id='emissores'>Emissores</h3>
+<h3 id='emissor'>Emissor</h3>
 <p><em>Emissor</em> é o nome atribuído à um endereço público na Blockchain que possui permissão para emitir notas fiscais em nome de um CNPJ. É recomendado que um endereço seja autorizado por somente uma empresa para emissão de notas afim de evitar erros e diminuir cenários de risco.</p>
 
 <table><thead>
@@ -559,7 +559,83 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 </tbody></table>
 
 <p>A <em>tupla</em>, então, <em>(CNPJ, emissorAddress)</em> explicita a relação &quot;O endereço público <em>emissorAddress</em> pode emitir notas fiscais que dizem respeito à empresa de <em>CNPJ</em>&quot;.</p>
-<h3 id='nota-fiscal'>Nota Fiscal</h3>
+<h3 id='nota-fiscal-de-servico'>Nota Fiscal de Serviço</h3>
+<p>Todos os valores financeiros <em>(R$)</em> estão em centavos.</p>
+
+<blockquote>
+<p>Exemplo de Nota Fiscal de Serviço</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1dbedc7de5f0f157dbf673a03e2c0e1a911793603a1ba1d4f5d839d1367f1c8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"substitui"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"substituidaPor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"assetName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tomadorEncriptado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"emissor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67188967000110"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notaPagamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"blocoConfirmacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"prestacao"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"dataPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1931-09-28"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"prefeituraPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100403"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"codTributMunicipio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100379"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"itemLista"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41.36"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"codCnae"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"codServico"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"codNBS"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"discriminacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hover urban volcano attend stool actor tissue other never crop reveal prevent"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valServicos"</span><span class="p">:</span><span class="w"> </span><span class="mi">11968</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"descontoIncond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"descontoCond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exigibilidadeISS"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"numProcesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valDeducoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"baseCalculo"</span><span class="p">:</span><span class="w"> </span><span class="mi">11962</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tributos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"issRetido"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"respRetencao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"regimeEspTribut"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"incentivoFiscal"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"aliqServicos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valIss"</span><span class="p">:</span><span class="w"> </span><span class="mi">56250</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valPis"</span><span class="p">:</span><span class="w"> </span><span class="mi">218</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valCofins"</span><span class="p">:</span><span class="w"> </span><span class="mi">181</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valInss"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valIr"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valCsll"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"outrasRetencoes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valTotalTributos"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"valLiquiNfse"</span><span class="p">:</span><span class="w"> </span><span class="mi">11569</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tomador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"identificacaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nif"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nomeRazaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"paisEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tel"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"intermediario"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"identificacaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nomeRazaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cidadeIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"constCivil"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"codObra"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"art"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -571,7 +647,7 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 <tr>
 <td>nonce</td>
 <td>Contador da Nota Fiscal no BD para Paginaçào</td>
-<td><em>Worker*</em></td>
+<td><em>BD (Worker)</em></td>
 <td>N</td>
 </tr>
 <tr>
@@ -628,244 +704,330 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 <td><em>Usuário</em></td>
 <td>S</td>
 </tr>
+<tr>
+<td>codServico</td>
+<td>Código do serviço prestado próprio do município</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>codNBS</td>
+<td>Código da Nomenclatura Brasileira de Serviços</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>discriminacao</td>
+<td>Discriminação dos serviços</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valServicos</td>
+<td>Valor dos serviços em centavos</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>descontoIncond</td>
+<td>Valor do desconto incondicionado</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>descontoCond</td>
+<td>Valor do desconto condicionado</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>exigibilidadeISS</td>
+<td>Exigência do ISS para o serviço prestado (1-6)*</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>numProcesso</td>
+<td>Processo judicial de suspensão da exigibilidade</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valDeducoes</td>
+<td>Val. das deduções p/ Redução da Base de Cálculo</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>baseCalculo</td>
+<td>(valServicos – valDeducoes – descontoIncond)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>issRetido</td>
+<td>ISS foi retido? <em>(true or false)</em></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>respRetencao</td>
+<td>Retido por: <em>1 – Tomador; 2 – Intermediário</em></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>incentivoFiscal</td>
+<td><em>true – Sim; false – Não</em></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>aliqServicos</td>
+<td>Alíquota do serviço prestado</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valIss</td>
+<td>Valor do ISS devido em centavos</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valPis</td>
+<td>Valor da retenção do PIS em centavos</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valCofins</td>
+<td>Valor da retenção do CONFINS em centavos</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valInss</td>
+<td>Valor da retenção do INSS em centavos</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valIr</td>
+<td>Valor da retenção do IR em centavos</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valCsll</td>
+<td>Valor da retenção do CSLL em centavos</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>outrasRetencoes</td>
+<td>Outras retenções na Fonte  (em centavos)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valTotalTributos</td>
+<td>Valor total aprox. dos tributos das 3 esferas</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valLiquiNfse</td>
+<td>(valServicos - tributos - retenções - desconts)*</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tomadorEncriptado</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>identificacaoTomador</td>
+<td>Cadastro da Pessoa Jurídica ou Física do Tomador</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nif</td>
+<td>Identificação Fiscal da Empresa (SISCOSERV)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nomeRazaoTomador</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>logEnd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>numEnd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>compEnd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bairroEnd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cidadeEnd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>estadoEnd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>paisEnd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cepEnd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tel</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>codObra</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>art</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>estado</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>emissor</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cnpj</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>notaPagamento</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>blocoConfirmacao</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
 
-<p>`<code>
-    // campo codTributMunicipio
-    itemLista: {
-      type: DataTypes.STRING(5),
-      allowNull: false,
-    },
-    codCnae: {
-      type: DataTypes.STRING(20),
-      allowNull: true,
-    },
-    // This may need to be a table
-    codServico: {
-      type: DataTypes.STRING(20),
-      allowNull: true,
-    },
-    codNBS: {
-      type: DataTypes.STRING(9),
-      allowNull: true,
-    },
-    discriminacao: {
-      type: DataTypes.STRING(2000),
-      allowNull: false,
-    },
-    valServicos: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: false,
-    },
-    descontoIncond: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    descontoCond: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    exigibilidadeISS: {
-      // *</code>1<code>- Exigível
-      // *</code>2<code>- Não incidência
-      // *</code>3<code>- Isenção
-      // *</code>4<code>- Exportação
-      // *</code>5<code>- Imunidade
-      // *</code>6<code>- Exigibilidade Suspensa por Decisão Judicial
-      // *</code>7` - Exigibilidade Suspensa por Processo Administrativo
-      type: DataTypes.TINYINT({ unsigned: true }),
-      allowNull: false,
-    },
-    numProcesso: {
-      type: DataTypes.STRING(30),
-      allowNull: true,
-    },
-    valDeducoes: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    baseCalculo: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: false,
-    },</p>
+<ul>
+<li><em>exigibilidadeISS</em>:
 
-<p>// ----- Campos de Taxas:
-    issRetido: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-    respRetencao: {
-      // Informado somente se IssRetido igual a &quot;true&quot;.
-      // A opção “2 – Intermediário” somente poderá ser selecionada
-      // se “CpfCnpjIntermediario” informado.
-      //       * <code>1</code> - Tomador
-      //       * <code>2</code> - Intermediário
-      type: DataTypes.TINYINT({ unsigned: true }),
-      allowNull: true,
-    },
-    regimeEspTribut: {
-      // * <code>1</code> – Microempresa Municipal
-      // * <code>2</code> – Estimativa
-      // * <code>3</code> – Sociedade de Profissionais
-      // * <code>4</code> – Cooperativa
-      // * <code>5</code> – Microempresário Individual (MEI)
-      // * <code>6</code> – Microempresário e Empresa de Pequeno Porte (ME EPP).
-      type: DataTypes.TINYINT({ unsigned: true }),
-      allowNull: true,
-    },
-    incentivoFiscal: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-    aliqServicos: {
-      type: DataTypes.DECIMAL(10, 1),
-      allowNull: true,
-    },
-    valIss: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: false,
-    },
-    valPis: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valCofins: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valInss: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valIr: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valCsll: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    outrasRetencoes: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valTotalTributos: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valLiquiNfse: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },</p>
+<ul>
+<li>1 - Exigível</li>
+<li>2 - Não Incidência</li>
+<li>3 - Isenção</li>
+<li>4 - Exportação</li>
+<li>5 - Imunidade</li>
+<li>6 - Exigiblidade Suspensa por Decisão Judicial</li>
+<li>7 - Exigibilidade Suspensa por Processo Adminsitrativo</li>
+</ul></li>
+<li><em>valLiquiNfse</em>: <code>valServicos - valPis – valCofins – valIss – valIr – valCsll – OutrasRetençoes – ValorISSRetido – DescontoIncondicionado – DescontoCondicionado</code> em centavos </li>
+<li><em>estado</em>:
 
-<p>// ----- Campos do Tomador:
-    identificacaoTomador: {
-      type: DataTypes.STRING(14),
-      allowNull: true,
-    },
-    nif: {
-      type: DataTypes.STRING(40),
-      allowNull: true,
-    },
-    nomeRazaoTomador: {
-      type: DataTypes.STRING(150),
-      allowNull: true,
-    },
-    logEnd: {
-      type: DataTypes.STRING(125),
-      allowNull: true,
-    },
-    numEnd: {
-      type: DataTypes.STRING(10),
-      allowNull: true,
-    },
-    compEnd: {
-      type: DataTypes.STRING(60),
-      allowNull: true,
-    },
-    bairroEnd: {
-      type: DataTypes.STRING(60),
-      allowNull: true,
-    },
-    cidadeEnd: {
-      type: DataTypes.INTEGER({ unsigned: true }),
-      allowNull: true,
-    },
-    estadoEnd: {
-      type: DataTypes.STRING(2),
-      allowNull: true,
-    },
-    paisEnd: {
-      type: DataTypes.INTEGER({ unsigned: true }),
-      allowNull: true,
-    },
-    cepEnd: {
-      type: DataTypes.STRING(8),
-      allowNull: true,
-    },
-    email: {
-      type: DataTypes.STRING(80),
-      allowNull: true,
-    },
-    tel: {
-      type: DataTypes.STRING(20),
-      allowNull: true,
-    },
-    // ----- Campos do Intermediário:
-    identificacaoIntermed: {
-      type: DataTypes.STRING(14),
-      allowNull: true,
-    },
-    nomeRazaoIntermed: {
-      type: DataTypes.STRING(150),
-      allowNull: true,
-    },
-    cidadeIntermed: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    // ----- Campos da Construção Civil:
-    codObra: {
-      type: DataTypes.STRING(30),
-      allowNull: true,
-    },
-    art: {
-      type: DataTypes.STRING(30),
-      allowNull: true,
-    },
-    //
-    // ----- Campos que não estão na documentação:
-    estado: {
-      // 0 - pendente,
-      // 1 - atrasado,
-      // 2 - pago,
-      // 3 - substituida,
-      // 4 - dados inconsistentes
-      type: DataTypes.TINYINT({ unsigned: true }),
-      allowNull: false,
-      defaultValue: 0,
-    },
-    tomadorEncriptado: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-  },
-  {
-    underscored: false,
-    tableName: &#39;invoice&#39;,
-    freezeTableName: true,
-    timestamps: false,
-  });</p>
+<ul>
+<li>0 - Pendente</li>
+<li>1 - Atrasada</li>
+<li>2 - Pago</li>
+<li>3 - Substituída</li>
+<li>4 - Dados Inconsistentes</li>
+</ul></li>
+</ul>
 
-<p>invoice.associate = (models) =&gt; {
-    invoice.belongsTo(models.emissor, { targetKey: &#39;address&#39;, as: &#39;emittedBy&#39;, foreignKey: { name: &#39;emissor&#39;, allowNull: false } });
-    invoice.belongsTo(models.empresa, { targetKey: &#39;cnpj&#39;, foreignKey: { name: &#39;cnpj&#39;, allowNull: false } });
-    invoice.belongsTo(models.nota_pagamento, { targetKey: &#39;guid&#39;, foreignKey: { name: &#39;notaPagamento&#39;, allowNull: true } });
-    invoice.belongsTo(models.municipio, { targetKey: &#39;codigoIbge&#39;, foreignKey: { name: &#39;prefeituraPrestacao&#39;, allowNull: false } });
-    invoice.belongsTo(models.municipio, { targetKey: &#39;codigoIbge&#39;, foreignKey: { name: &#39;codTributMunicipio&#39;, allowNull: false } });
-    invoice.belongsTo(models.block, { targetKey: &#39;block_id&#39;, as: &#39;block&#39;, foreignKey: { name: &#39;blocoConfirmacao&#39;, allowNull: true } });
-  };</p>
-<h3 id='nota-de-pagamento'>Nota de Pagamento</h3><h3 id='comprovante-de-liquidacao'>Comprovante de Liquidação</h3><h2 id='api-notas-fiscais'>API: Notas Fiscais</h2><h3 id='listando-notas-fiscais'>Listando notas fiscais</h3>
+<!--> *regimeEspTribut  0 – Tributação Normal; 1 – Microempresa Municipal; 2 – Estimativa; 3 – Sociedade de Profissionais; 4 – Cooperativa; 5 – Microempresário Individual (MEI); 6 – Microempresário e Empresa de Pequeno Porte (ME EPP); 7 - Movimento Mensal/ISS/Fixo Autônomo; 8 - Sociedade Limitada/Média Empresa; 9 - Sociedade Anônima/Grande Empresa; 10 - Empresa Individual de Responsabilidade Limitada (EIRELI); 11 - Empresa Individual; 12 - Empresa de Pequeno Porte (EPP); 13 - Microempresário; 14 - Outros/Sem Vínculos; 15 - Nenhum; 16 - Nota Avulsa
+regtribut   0 - MEI; 1 - Simples Nacional; 2 - Lucro Presumido; 3 - Lucro Real
+<!-->
+<h3 id='nota-de-pagamento'>Nota de Pagamento</h3>
+<p><em>Nota de Pagamento</em> é o dispositivo por qual a empresa demonstra sua intenção de pagar os tributos provenientes à um conjunto de notas fiscais de serviços.</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Origem da Inf.</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TBD</td>
+<td>To be determined</td>
+<td>Blockchain</td>
+</tr>
+</tbody></table>
+<h3 id='comprovante-de-liquidacao'>Comprovante de Liquidação</h3>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Origem da Inf.</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TBD</td>
+<td>To be determined</td>
+<td>Blockchain</td>
+</tr>
+</tbody></table>
+<h2 id='api-de-notas-fiscais'>API de Notas Fiscais</h2><h3 id='listando-notas-fiscais'>Listando notas fiscais</h3>
 <blockquote>
 <p>Listando notas fiscais</p>
 </blockquote>
@@ -1131,7 +1293,7 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 </ul>
 
 <p>Endpoint para retornar uma nota fiscal.</p>
-<h2 id='api-empresas'>API: Empresas</h2><h3 id='listando-empresas'>Listando empresas</h3>
+<h2 id='api-de-empresas'>API de Empresas</h2><h3 id='listando-empresas'>Listando empresas</h3>
 <blockquote>
 <p>Listando empresas</p>
 </blockquote>
@@ -1235,7 +1397,7 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 </ul>
 
 <p>Endpoint para retornar uma empresa.</p>
-<h2 id='api-prefeituras'>API: Prefeituras</h2><h3 id='listando-prefeituras'>Listando prefeituras</h3>
+<h2 id='api-de-prefeituras'>API de Prefeituras</h2><h3 id='listando-prefeituras'>Listando prefeituras</h3>
 <blockquote>
 <p>Listando prefeituras</p>
 </blockquote>
