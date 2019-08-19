@@ -122,20 +122,20 @@ As seções abaixo descrevem os modelos estruturais das tabelas relacionadas ao 
 
 Campo     | Descrição                                       | Optativo? |
 ----------|-------------------------------------------------|-----------|
-cnpj      | Cadastro Nacional da Pessoa Jurídica            |     N
-razao     | Razão Social da Empresa                         |     N
-fantasia  | Nome Fantasia da Empresa                        |     N
-cepEnd    | Código Postal do Endereço Sede da Empresa       |     N
-logEnd    | Logradouro do Endereço Sede da Empresa          |     N
-numEnd    | Número do Endereço Sede da Empresa              |     N
-compEnd   | Complemento do Endereço Sede da Empresa         |     N
-bairroEnd | Bairro do Endereço Sede da Empresa              |     N
-cidadeEnd | Cidade do Endereço Sede da Empresa              |     N
-estadoEnd | Unidade Federativa do Endereço Sede da Empresa  |     N
-regTrib   | Regime Tributário da Empresa (1-4)              |     N
-email     | E-mail de Contato Público da Empresa            |     S
-telefone  | Telefone de Contato Público da Empresa          |     S      
-endBlock  | Endereço Público de Cadastro da Empresa         |     N
+cnpj      | Cadastro Nacional da Pessoa Jurídica            |     N     |
+razao     | Razão Social da Empresa                         |     N     |
+fantasia  | Nome Fantasia da Empresa                        |     N     |
+cepEnd    | Código Postal do Endereço Sede da Empresa       |     N     |
+logEnd    | Logradouro do Endereço Sede da Empresa          |     N     |
+numEnd    | Número do Endereço Sede da Empresa              |     N     |
+compEnd   | Complemento do Endereço Sede da Empresa         |     N     |
+bairroEnd | Bairro do Endereço Sede da Empresa              |     N     |
+cidadeEnd | Cidade do Endereço Sede da Empresa              |     N     |
+estadoEnd | Unidade Federativa do Endereço Sede da Empresa  |     N     |
+regTrib   | Regime Tributário da Empresa (1-4)              |     N     |
+email     | E-mail de Contato Público da Empresa            |     S     |
+telefone  | Telefone de Contato Público da Empresa          |     S     |      
+endBlock  | Endereço Público de Cadastro da Empresa         |     N     |
 
 Regime Tributário:
 
@@ -146,7 +146,7 @@ Valor   | Descrição
 3       | Lucro Presumido
 4       | Lucro Real
 
-### Emissores
+### Emissor
 
 *Emissor* é o nome atribuído à um endereço público na Blockchain que possui permissão para emitir notas fiscais em nome de um CNPJ. É recomendado que um endereço seja autorizado por somente uma empresa para emissão de notas afim de evitar erros e diminuir cenários de risco.
 
@@ -157,11 +157,88 @@ emissorAddress  | Endereço Público na Blockchain
 
 A *tupla*, então, *(CNPJ, emissorAddress)* explicita a relação "O endereço público *emissorAddress* pode emitir notas fiscais que dizem respeito à empresa de *CNPJ*".
 
-### Nota Fiscal
+### Nota Fiscal de Serviço
+
+Todos os valores financeiros *(R$)* estão em centavos.
+
+> Exemplo de Nota Fiscal de Serviço
+
+```json
+{
+  "nonce": 6,
+  "txId": "b1dbedc7de5f0f157dbf673a03e2c0e1a911793603a1ba1d4f5d839d1367f1c8",
+  "substitui": null,
+  "substituidaPor": null,
+  "assetName": null,
+  "estado": 0,
+  "tomadorEncriptado": null,
+  "emissor": "1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ",
+  "cnpj": "67188967000110",
+  "notaPagamento": null,
+  "blocoConfirmacao": "80",
+  "prestacao": {
+    "dataPrestacao": "1931-09-28",
+    "prefeituraPrestacao": "1100403",
+    "codTributMunicipio": "1100379",
+    "itemLista": "41.36",
+    "codCnae": null,
+    "codServico": "45",
+    "codNBS": null,
+    "discriminacao": "hover urban volcano attend stool actor tissue other never crop reveal prevent",
+    "valServicos": 11968,
+    "descontoIncond": null,
+    "descontoCond": null,
+    "exigibilidadeISS": 3,
+    "numProcesso": null,
+    "valDeducoes": 6,
+    "baseCalculo": 11962
+  },
+  "tributos": {
+    "issRetido": 2,
+    "respRetencao": null,
+    "regimeEspTribut": null,
+    "incentivoFiscal": 2,
+    "aliqServicos": "47.0",
+    "valIss": 56250,
+    "valPis": 218,
+    "valCofins": 181,
+    "valInss": null,
+    "valIr": null,
+    "valCsll": null,
+    "outrasRetencoes": null,
+    "valTotalTributos": null,
+    "valLiquiNfse": 11569
+  },
+  "tomador": {
+    "identificacaoTomador": null,
+    "nif": null,
+    "nomeRazaoTomador": null,
+    "logEnd": null,
+    "numEnd": null,
+    "compEnd": null,
+    "bairroEnd": null,
+    "cidadeEnd": null,
+    "estadoEnd": null,
+    "paisEnd": null,
+    "cepEnd": null,
+    "email": null,
+    "tel": null
+  },
+  "intermediario": {
+    "identificacaoIntermed": null,
+    "nomeRazaoIntermed": null,
+    "cidadeIntermed": null
+  },
+  "constCivil": {
+    "codObra": null,
+    "art": null
+  }
+}
+```
 
 Campo               | Descrição                                       | Origem da Inf. |  Optativo  |
 --------------------|-------------------------------------------------|----------------|------------|
-nonce               | Contador da Nota Fiscal no BD para Paginaçào    |    *Worker\**  |      N     |
+nonce               | Contador da Nota Fiscal no BD para Paginaçào    | *BD (Worker)*  |      N     |
 txId                | Identificador Único da Nota Fiscal              |  *Blockchain*  |      N     |
 substitui           | txId da Nota Fiscal que está sendo substituída  |    *Usuário*   |      S     |
 substituidaPor      | txId da Nota Fiscal que substitui essa          |  *Blockchain*  |      S     |
@@ -171,250 +248,89 @@ prefeituraPrestacao | Código do Município onde é prestado o serviço   |    *
 codTributMunicipio  | Cód. do Município onde é a incidência do imposto|    *Usuário*   |      N     |
 itemLista           | Código do serviço prestado Item da LC 116/2003  |    *Usuário*   |      N     |
 codCnae             | CNAE do serivço prestado na Nota Fiscal         |    *Usuário*   |      S     |
-
-``
-    // campo codTributMunicipio
-    itemLista: {
-      type: DataTypes.STRING(5),
-      allowNull: false,
-    },
-    codCnae: {
-      type: DataTypes.STRING(20),
-      allowNull: true,
-    },
-    // This may need to be a table
-    codServico: {
-      type: DataTypes.STRING(20),
-      allowNull: true,
-    },
-    codNBS: {
-      type: DataTypes.STRING(9),
-      allowNull: true,
-    },
-    discriminacao: {
-      type: DataTypes.STRING(2000),
-      allowNull: false,
-    },
-    valServicos: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: false,
-    },
-    descontoIncond: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    descontoCond: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    exigibilidadeISS: {
-      // * `1` - Exigível
-      // * `2` - Não incidência
-      // * `3` - Isenção
-      // * `4` - Exportação
-      // * `5` - Imunidade
-      // * `6` - Exigibilidade Suspensa por Decisão Judicial
-      // * `7` - Exigibilidade Suspensa por Processo Administrativo
-      type: DataTypes.TINYINT({ unsigned: true }),
-      allowNull: false,
-    },
-    numProcesso: {
-      type: DataTypes.STRING(30),
-      allowNull: true,
-    },
-    valDeducoes: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    baseCalculo: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: false,
-    },
-
-    // ----- Campos de Taxas:
-    issRetido: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-    respRetencao: {
-      // Informado somente se IssRetido igual a "true".
-      // A opção “2 – Intermediário” somente poderá ser selecionada
-      // se “CpfCnpjIntermediario” informado.
-      //       * `1` - Tomador
-      //       * `2` - Intermediário
-      type: DataTypes.TINYINT({ unsigned: true }),
-      allowNull: true,
-    },
-    regimeEspTribut: {
-      // * `1` – Microempresa Municipal
-      // * `2` – Estimativa
-      // * `3` – Sociedade de Profissionais
-      // * `4` – Cooperativa
-      // * `5` – Microempresário Individual (MEI)
-      // * `6` – Microempresário e Empresa de Pequeno Porte (ME EPP).
-      type: DataTypes.TINYINT({ unsigned: true }),
-      allowNull: true,
-    },
-    incentivoFiscal: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-    aliqServicos: {
-      type: DataTypes.DECIMAL(10, 1),
-      allowNull: true,
-    },
-    valIss: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: false,
-    },
-    valPis: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valCofins: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valInss: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valIr: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valCsll: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    outrasRetencoes: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valTotalTributos: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-    valLiquiNfse: {
-      type: DataTypes.BIGINT({ unsigned: true }),
-      allowNull: true,
-    },
-
-    // ----- Campos do Tomador:
-    identificacaoTomador: {
-      type: DataTypes.STRING(14),
-      allowNull: true,
-    },
-    nif: {
-      type: DataTypes.STRING(40),
-      allowNull: true,
-    },
-    nomeRazaoTomador: {
-      type: DataTypes.STRING(150),
-      allowNull: true,
-    },
-    logEnd: {
-      type: DataTypes.STRING(125),
-      allowNull: true,
-    },
-    numEnd: {
-      type: DataTypes.STRING(10),
-      allowNull: true,
-    },
-    compEnd: {
-      type: DataTypes.STRING(60),
-      allowNull: true,
-    },
-    bairroEnd: {
-      type: DataTypes.STRING(60),
-      allowNull: true,
-    },
-    cidadeEnd: {
-      type: DataTypes.INTEGER({ unsigned: true }),
-      allowNull: true,
-    },
-    estadoEnd: {
-      type: DataTypes.STRING(2),
-      allowNull: true,
-    },
-    paisEnd: {
-      type: DataTypes.INTEGER({ unsigned: true }),
-      allowNull: true,
-    },
-    cepEnd: {
-      type: DataTypes.STRING(8),
-      allowNull: true,
-    },
-    email: {
-      type: DataTypes.STRING(80),
-      allowNull: true,
-    },
-    tel: {
-      type: DataTypes.STRING(20),
-      allowNull: true,
-    },
-    // ----- Campos do Intermediário:
-    identificacaoIntermed: {
-      type: DataTypes.STRING(14),
-      allowNull: true,
-    },
-    nomeRazaoIntermed: {
-      type: DataTypes.STRING(150),
-      allowNull: true,
-    },
-    cidadeIntermed: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    // ----- Campos da Construção Civil:
-    codObra: {
-      type: DataTypes.STRING(30),
-      allowNull: true,
-    },
-    art: {
-      type: DataTypes.STRING(30),
-      allowNull: true,
-    },
-    //
-    // ----- Campos que não estão na documentação:
-    estado: {
-      // 0 - pendente,
-      // 1 - atrasado,
-      // 2 - pago,
-      // 3 - substituida,
-      // 4 - dados inconsistentes
-      type: DataTypes.TINYINT({ unsigned: true }),
-      allowNull: false,
-      defaultValue: 0,
-    },
-    tomadorEncriptado: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-  },
-  {
-    underscored: false,
-    tableName: 'invoice',
-    freezeTableName: true,
-    timestamps: false,
-  });
-
-  invoice.associate = (models) => {
-    invoice.belongsTo(models.emissor, { targetKey: 'address', as: 'emittedBy', foreignKey: { name: 'emissor', allowNull: false } });
-    invoice.belongsTo(models.empresa, { targetKey: 'cnpj', foreignKey: { name: 'cnpj', allowNull: false } });
-    invoice.belongsTo(models.nota_pagamento, { targetKey: 'guid', foreignKey: { name: 'notaPagamento', allowNull: true } });
-    invoice.belongsTo(models.municipio, { targetKey: 'codigoIbge', foreignKey: { name: 'prefeituraPrestacao', allowNull: false } });
-    invoice.belongsTo(models.municipio, { targetKey: 'codigoIbge', foreignKey: { name: 'codTributMunicipio', allowNull: false } });
-    invoice.belongsTo(models.block, { targetKey: 'block_id', as: 'block', foreignKey: { name: 'blocoConfirmacao', allowNull: true } });
-  };
+codServico          | Código do serviço prestado próprio do município |
+codNBS              | Código da Nomenclatura Brasileira de Serviços   |
+discriminacao       | Discriminação dos serviços                      |
+valServicos         | Valor dos serviços em centavos                  |
+descontoIncond      | Valor do desconto incondicionado                |
+descontoCond        | Valor do desconto condicionado                  |
+exigibilidadeISS    | Exigência do ISS para o serviço prestado (1-6)* |
+numProcesso         | Processo judicial de suspensão da exigibilidade |
+valDeducoes         | Val. das deduções p/ Redução da Base de Cálculo |
+baseCalculo         | (valServicos – valDeducoes – descontoIncond)    |
+issRetido           | ISS foi retido? *(true or false)*               |
+respRetencao        | Retido por: *1 – Tomador; 2 – Intermediário*    |
+incentivoFiscal     | *true – Sim; false – Não*                       |
+aliqServicos        | Alíquota do serviço prestado                    |
+valIss	            | Valor do ISS devido em centavos                 |
+valPis	            | Valor da retenção do PIS em centavos            |
+valCofins	          | Valor da retenção do CONFINS em centavos        |
+valInss	            | Valor da retenção do INSS em centavos           |
+valIr	              | Valor da retenção do IR em centavos             |
+valCsll             | Valor da retenção do CSLL em centavos           |
+outrasRetencoes     | Outras retenções na Fonte  (em centavos)        |
+valTotalTributos    | Valor total aprox. dos tributos das 3 esferas   |
+valLiquiNfse        | (valServicos - tributos - retenções - desconts)*|
+tomadorEncriptado   |
+identificacaoTomador| Cadastro da Pessoa Jurídica ou Física do Tomador|
+nif                 | Identificação Fiscal da Empresa (SISCOSERV)     |
+nomeRazaoTomador    | 
+logEnd              |
+numEnd              |
+compEnd             |
+bairroEnd           |
+cidadeEnd           |
+estadoEnd           |
+paisEnd             |
+cepEnd              |
+email               |
+tel                 |
+codObra             |
+art                 |
+estado              |
+emissor             |
+cnpj                |
+notaPagamento       |
+blocoConfirmacao    |
 
 
+- *exigibilidadeISS*:
+  - 1 - Exigível
+  - 2 - Não Incidência
+  - 3 - Isenção
+  - 4 - Exportação
+  - 5 - Imunidade
+  - 6 - Exigiblidade Suspensa por Decisão Judicial
+  - 7 - Exigibilidade Suspensa por Processo Adminsitrativo
+- *valLiquiNfse*: `valServicos - valPis – valCofins – valIss – valIr – valCsll – OutrasRetençoes – ValorISSRetido – DescontoIncondicionado – DescontoCondicionado` em centavos 
+- *estado*:
+  - 0 - Pendente
+  - 1 - Atrasada
+  - 2 - Pago
+  - 3 - Substituída
+  - 4 - Dados Inconsistentes
+  
+
+<!--> *regimeEspTribut	0 – Tributação Normal; 1 – Microempresa Municipal; 2 – Estimativa; 3 – Sociedade de Profissionais; 4 – Cooperativa; 5 – Microempresário Individual (MEI); 6 – Microempresário e Empresa de Pequeno Porte (ME EPP); 7 - Movimento Mensal/ISS/Fixo Autônomo; 8 - Sociedade Limitada/Média Empresa; 9 - Sociedade Anônima/Grande Empresa; 10 - Empresa Individual de Responsabilidade Limitada (EIRELI); 11 - Empresa Individual; 12 - Empresa de Pequeno Porte (EPP); 13 - Microempresário; 14 - Outros/Sem Vínculos; 15 - Nenhum; 16 - Nota Avulsa
+regtribut	0 - MEI; 1 - Simples Nacional; 2 - Lucro Presumido; 3 - Lucro Real
+<!-->
 
 ### Nota de Pagamento
 
+*Nota de Pagamento* é o dispositivo por qual a empresa demonstra sua intenção de pagar os tributos provenientes à um conjunto de notas fiscais de serviços.
+
+Campo               | Descrição                                       | Origem da Inf. |
+--------------------|-------------------------------------------------|----------------|
+TBD                 | To be determined                                |   Blockchain   | 
+
 ### Comprovante de Liquidação
 
-## API: Notas Fiscais
+Campo               | Descrição                                       | Origem da Inf. |
+--------------------|-------------------------------------------------|----------------|
+TBD                 | To be determined                                |   Blockchain   | 
+
+
+## API de Notas Fiscais
 
 ### Listando notas fiscais
 
@@ -675,7 +591,7 @@ offset | numero de objetos a serem pulados.
 
 Endpoint para retornar uma nota fiscal.
 
-## API: Empresas
+## API de Empresas
 
 ### Listando empresas
 
@@ -774,7 +690,7 @@ offset | numero de objetos a serem pulados.
 
 Endpoint para retornar uma empresa.
 
-## API: Prefeituras
+## API de Prefeituras
 
 ### Listando prefeituras
 
