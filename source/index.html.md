@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: SDEC - Documentação
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -20,9 +20,65 @@ search: true
 
 *SDEC: Sistema Distribuído de Emissão de Contribuição*
 
-O SDEC foi um sistema criado com a intenção de uniformizar o padrão de notas fiscais de serviços entre os mais de 5500 municípios brasileiros, facilitando a cobrança e o repasse dos tributos provenientes (ISS).
+O Sistema Distribuído de Emissão de Contribuição (SDEC), é um sistema no qual as notas fiscais de serviços serão gerenciadas e emitidas a partir de um sistema descentralizado e nacional, racionalizando a dinâmica dos atuais sistemas existentes, assim como aumentando a eficiência na arrecadação.
 
-Por ser um sistema público, ele busca também melhorar a transparência e disponibilidade desses dados.
+O objetivo central do sistema é mudar a dinâmica existente atualmente na emissão de notas fiscais de serviços ao redor do país e aproveitar a estrutura existente, porém dando uma nova função a ela.
+
+Enquanto no modelo atual cada município é o responsável pela arrecadação do Imposto Sobre Serviços de Qualquer Natureza, incorrendo em toda a estrutura necessária para tal feito, muitas cidades, por não possuírem arrecadação suficiente que justifique tal investimento, acabam por deixarem de possuir uma potencial fonte de renda a mais advinda da cobrança de tal imposto.
+
+Mas não somente as cidades perdem com isto, as empresas, obrigadas a cumprir com as regras tributárias, acabam por dispender muito recurso para conseguir se enquadrarem adequadamente e, mesmo assim, muitas vezes não o conseguem, acarretando, além de uma perda de produtividade na cadeia produtiva, uma perda na arrecadação das cidades.
+
+## Órgãos da Rede
+
+No modelo atual de arrecadação do ISS, cada cidade apresenta sua estrutura para arrecadação do imposto, o que acaba gerando uma falta de padrão entre órgãos e processos a mais para os empreendedores.
+
+Na maioria das cidades brasileiras, o município deixa a responsabilidade da arrecadação para a secretaria da fazenda, é nela que o empreendedor deve se cadastrar para conseguir emitir suas notas fiscais. Entretanto, existem dois extremos opostos nesta dinâmica que são:
+
+1.	Cidade Pequena: ela não possui estrutura o suficiente que justifique montar um sistema próprio para a arrecadação deste imposto;
+2.	Cidade Referência de Região Metropolitana: ela, por ser referência dentro de uma determinada região, acaba recebendo prestadores de serviços de cidades vizinhas, o que acarreta a necessidade do desenvolvimento de um outro órgão, o CPOM, que fica focado em cadastrar empreendedores de outras cidades.
+
+Porém, além desta obrigação junto à prefeitura da cidade em que a empresa se encontra localizada, tem-se o processo natural de abertura de CNPJ, este que é feito em nível estadual, através da Junta de Comércio daquela região.
+
+Com isto, é possível visualizar que as bases de um sistema robusto já existem atualmente, no entanto, não há uma linha lógica que preze pela racionalidade, de tempo e de recursos, tanto para os municípios como para as empresas.
+
+### Juntas Comerciais
+
+Apresentando uma estrutura robusta e em processo de digitalização de processos internos, as Juntas Comerciais do Brasil já possuem uma base de dados atualizada das empresas. Como são as responsáveis pela ordem dentro do sistema de registro das companhias e empreendedores, são validadores naturais das informações relativas às empresas.
+
+Este papel é subutilizado na dinâmica atual, uma vez que, apesar de haver uma comunicação em nível nacional para isto sob responsabilidade do ________(colocar o nome do órgão federal que reúne essas informações), esta se da de maneira unidirecional, ou seja, as informações saem das Juntas e vão para o _______, mas estas informações, além de não serem compartilhadas, as prefeituras dos municípios não conseguem utilizar estas informações, sendo obrigadas a fazer com que a empresa realize um processo burocrático a mais, o do cadastro junto ao órgão responsável da prefeitura.
+
+Este reprocesso para a empresa acaba por gerar perdas, seja no prolongamento natural que há em se cumprir mais uma etapa para se adequar às regras tributárias, assim como o gasto de tempo junto ao órgão para a emissão de uma senha para acesso ao sistema do município.
+
+Toda esta dinâmica, hoje inadequada, com o avanço da comunicação, pode ser transformada, gerando um processo mais rápido, menos custoso e mais transparente.
+
+No SDEC, a comunicação em relação às Juntas Comerciais será bidirecional, então, as informações que já são enviadas ao _____, começarão a serem disponibilizadas na rede do sistema, assim, o órgão responsável no município ficará responsável por checar estes dados diretamente na rede. Assim, não há necessidade de estrutura para receber estes documentos da empresa, há uma etapa a menos para o empreendedor e as informações continuam sendo corretas, uma vez que as Juntas Comerciais já realizam este processo junto às companhias.
+
+### Secretarias da Fazenda
+
+Aparentemente o maior desafio, haja visto que cada município, daqueles que possuem, apresenta sua própria estrutura de arrecadação e tributação. Entretanto, considerando o universo abrangido de mais de 5 mil municípios ao redor do Brasil, tem-se um padrão de sistema novo será amplamente aceito, as necessidades de adaptação referentes sistemas mais complexos poderão ser feitas e alinhadas, pois o básico de informação colhida pelas prefeituras é quase igual para todas.
+
+Nesta nova disposição, as Secretarias se interligarão ao sistema para acessar os dados referentes ao seu município, assim como o recolhimento junto ao Banco do Brasil dos impostos pagos pelos contribuintes.
+
+### Banco do Brasil
+
+Para o pleno funcionamento do Sistema, um ente responsável pela verificação e distribuição dos impostos arrecadados é de essencial importância. Por ser um banco nacional que abrange todos os municípios do país, o Banco do Brasil é este ente.
+
+Ele apresenta como função a verificação do imposto pago, a propagação desta informação no sistema e o devido repasse junto aos municípios de cada montante.
+
+Assim que o pagamento for verificado junto ao Banco do Brasil, este emite uma informação dentro da rede informando ao sistema que aquela empresa pagou o imposto devido e libera o montante na conta da prefeitura de cada cidade.
+
+### Da Empresa
+
+O papel da empresa pouca muda no novo sistema. Sistemas mudarão e serão reduzidas etapas, acarretando um impacto positivo para a companhia, reduzindo burocracia para o dia a dia da empresa.
+
+## Estrutura dos Projetos
+
+1. [*Worker*](https://github.com/sdec-brasil/worker): Responsável pelo parseamento dos dados da Blockchain em um banco de dados relacional (_MySQL_) e como PubSub de eventos usando o _Redis_, que podem ser usados para análise, queries, ou para serviços como o Invoice Explorer.
+1. [*Invoice Explorer*](https://github.com/sdec-brasil/invoice-explorer): _descrição do API Explorer_
+1. [*Dashboard Emissor*](https://github.com/sdec-brasil/dashboard-emissor): _descrição do Dashboard Emissor_
+1. [*SDEC*](https://github.com/sdec-brasil/SDEC): _descrição do SDEC_
+
+![](./images/architecture.png)
 
 # Invoice Explorer
 
@@ -32,9 +88,7 @@ O Explorer possui uma interface gráfica para visualização das prefeituras, fo
 
 O Explorer também possui uma API Rest (*GraphQL em breve*) para os desenvolvedores e parceiros. A referência da API pode ser encontrada logo mais abaixo.
 
-# Referência da API:
-
-## Notas Fiscais
+## API: Notas Fiscais
 
 ### Listando notas fiscais
 
@@ -295,7 +349,7 @@ offset | numero de objetos a serem pulados.
 
 Endpoint para retornar uma nota fiscal.
 
-## Empresas
+## API: Empresas
 
 ### Listando empresas
 
@@ -394,7 +448,7 @@ offset | numero de objetos a serem pulados.
 
 Endpoint para retornar uma empresa.
 
-## Prefeituras
+## API: Prefeituras
 
 ### Listando prefeituras
 
