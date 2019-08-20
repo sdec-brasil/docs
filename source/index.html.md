@@ -25,6 +25,15 @@ Enquanto no modelo atual cada município é o responsável pela arrecadação do
 
 Mas não somente as cidades perdem com isto, as empresas, obrigadas a cumprir com as regras tributárias, acabam por dispender muito recurso para conseguir se enquadrarem adequadamente e, mesmo assim, muitas vezes não o conseguem, acarretando, além de uma perda de produtividade na cadeia produtiva, uma perda na arrecadação das cidades.
 
+## Estrutura dos Projetos
+
+1. [*Worker*](https://github.com/sdec-brasil/worker): Responsável pelo parseamento dos dados da Blockchain em um banco de dados relacional (_MySQL_) e como PubSub de eventos usando o _Redis_, que podem ser usados para análise, queries, ou para serviços como o Invoice Explorer.
+1. [*Invoice Explorer*](https://github.com/sdec-brasil/invoice-explorer): _descrição do API Explorer_
+1. [*Dashboard Emissor*](https://github.com/sdec-brasil/dashboard-emissor): _descrição do Dashboard Emissor_
+1. [*SDEC*](https://github.com/sdec-brasil/SDEC): _descrição do SDEC_
+
+![](./images/architecture.png)
+
 ## Órgãos da Rede
 
 No modelo atual de arrecadação do ISS, cada cidade apresenta sua estrutura para arrecadação do imposto, o que acaba gerando uma falta de padrão entre órgãos e processos a mais para os empreendedores.
@@ -68,14 +77,6 @@ Assim que o pagamento for verificado junto ao Banco do Brasil, este emite uma in
 
 O papel da empresa pouca muda no novo sistema. Sistemas mudarão e serão reduzidas etapas, acarretando um impacto positivo para a companhia, reduzindo burocracia para o dia a dia da empresa.
 
-## Estrutura dos Projetos
-
-1. [*Worker*](https://github.com/sdec-brasil/worker): Responsável pelo parseamento dos dados da Blockchain em um banco de dados relacional (_MySQL_) e como PubSub de eventos usando o _Redis_, que podem ser usados para análise, queries, ou para serviços como o Invoice Explorer.
-1. [*Invoice Explorer*](https://github.com/sdec-brasil/invoice-explorer): _descrição do API Explorer_
-1. [*Dashboard Emissor*](https://github.com/sdec-brasil/dashboard-emissor): _descrição do Dashboard Emissor_
-1. [*SDEC*](https://github.com/sdec-brasil/SDEC): _descrição do SDEC_
-
-![](./images/architecture.png)
 
 # Invoice Explorer
 
