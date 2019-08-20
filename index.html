@@ -222,6 +222,9 @@
             <a href="#introducao" class="toc-h1 toc-link" data-title="Introdução">Introdução</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#estrutura-dos-projetos" class="toc-h2 toc-link" data-title="Estrutura dos Projetos">Estrutura dos Projetos</a>
+                  </li>
+                  <li>
                     <a href="#orgaos-da-rede" class="toc-h2 toc-link" data-title="Órgãos da Rede">Órgãos da Rede</a>
                     <ul class="toc-list-h3">
                         <li>
@@ -237,9 +240,6 @@
                           <a href="#da-empresa" class="toc-h3 toc-link" data-title="Da Empresa">Da Empresa</a>
                         </li>
                     </ul>
-                  </li>
-                  <li>
-                    <a href="#estrutura-dos-projetos" class="toc-h2 toc-link" data-title="Estrutura dos Projetos">Estrutura dos Projetos</a>
                   </li>
               </ul>
           </li>
@@ -390,6 +390,15 @@
 <p>Enquanto no modelo atual cada município é o responsável pela arrecadação do Imposto Sobre Serviços de Qualquer Natureza, incorrendo em toda a estrutura necessária para tal feito, muitas cidades, por não possuírem arrecadação suficiente que justifique tal investimento, acabam por deixarem de possuir uma potencial fonte de renda a mais advinda da cobrança de tal imposto.</p>
 
 <p>Mas não somente as cidades perdem com isto, as empresas, obrigadas a cumprir com as regras tributárias, acabam por dispender muito recurso para conseguir se enquadrarem adequadamente e, mesmo assim, muitas vezes não o conseguem, acarretando, além de uma perda de produtividade na cadeia produtiva, uma perda na arrecadação das cidades.</p>
+<h2 id='estrutura-dos-projetos'>Estrutura dos Projetos</h2>
+<ol>
+<li><a href="https://github.com/sdec-brasil/worker"><em>Worker</em></a>: Responsável pelo parseamento dos dados da Blockchain em um banco de dados relacional (<em>MySQL</em>) e como PubSub de eventos usando o <em>Redis</em>, que podem ser usados para análise, queries, ou para serviços como o Invoice Explorer.</li>
+<li><a href="https://github.com/sdec-brasil/invoice-explorer"><em>Invoice Explorer</em></a>: <em>descrição do API Explorer</em></li>
+<li><a href="https://github.com/sdec-brasil/dashboard-emissor"><em>Dashboard Emissor</em></a>: <em>descrição do Dashboard Emissor</em></li>
+<li><a href="https://github.com/sdec-brasil/SDEC"><em>SDEC</em></a>: <em>descrição do SDEC</em></li>
+</ol>
+
+<p><img src="images/architecture.png" alt="Architecture" /></p>
 <h2 id='orgaos-da-rede'>Órgãos da Rede</h2>
 <p>No modelo atual de arrecadação do ISS, cada cidade apresenta sua estrutura para arrecadação do imposto, o que acaba gerando uma falta de padrão entre órgãos e processos a mais para os empreendedores.</p>
 
@@ -425,15 +434,6 @@
 <p>Assim que o pagamento for verificado junto ao Banco do Brasil, este emite uma informação dentro da rede informando ao sistema que aquela empresa pagou o imposto devido e libera o montante na conta da prefeitura de cada cidade.</p>
 <h3 id='da-empresa'>Da Empresa</h3>
 <p>O papel da empresa pouca muda no novo sistema. Sistemas mudarão e serão reduzidas etapas, acarretando um impacto positivo para a companhia, reduzindo burocracia para o dia a dia da empresa.</p>
-<h2 id='estrutura-dos-projetos'>Estrutura dos Projetos</h2>
-<ol>
-<li><a href="https://github.com/sdec-brasil/worker"><em>Worker</em></a>: Responsável pelo parseamento dos dados da Blockchain em um banco de dados relacional (<em>MySQL</em>) e como PubSub de eventos usando o <em>Redis</em>, que podem ser usados para análise, queries, ou para serviços como o Invoice Explorer.</li>
-<li><a href="https://github.com/sdec-brasil/invoice-explorer"><em>Invoice Explorer</em></a>: <em>descrição do API Explorer</em></li>
-<li><a href="https://github.com/sdec-brasil/dashboard-emissor"><em>Dashboard Emissor</em></a>: <em>descrição do Dashboard Emissor</em></li>
-<li><a href="https://github.com/sdec-brasil/SDEC"><em>SDEC</em></a>: <em>descrição do SDEC</em></li>
-</ol>
-
-<p><img src="images/architecture.png" alt="Architecture" /></p>
 <h1 id='invoice-explorer'>Invoice Explorer</h1><h2 id='introducao-2'>Introdução</h2>
 <p>O <em>Invoice Explorer</em> é uma ferramenta pública de fácil acesso que busca facilitar o desenvolvimento de aplicações para o sistema e aumentar a transparência e visibilidade desses dados. </p>
 
