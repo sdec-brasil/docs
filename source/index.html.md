@@ -904,32 +904,146 @@ Endpoint para retornar a receita mensal de uma prefeitura, para um certo ano. É
 
 # SDEC Blockchain
 
-A SDEC Blockchain é uma blockchain permissionada. Isso quer dizer que, todos podem conectar, verificar e auditar as informações públicas, mas a construção do consenso é reservada à participantes selecionados. Nesse caso, esses participantes são as Juntas Comerciais de cada Estado, Banco do Brasil e eventuais órgãos governamentais.
+## Introdução
 
-## Eventos:
+A SDEC Blockchain é uma blockchain permissionada. Isso quer dizer que, todos podem conectar, verificar e auditar as informações públicas, mas a construção do consenso é reservada à participantes selecionados. Nesse caso, esses participantes são as Juntas Comerciais de cada Estado, Banco do Brasil e eventuais órgãos governamentais.
 
 A Blockchain funciona como um registro universal de eventos que aconteceram e suas ordens. Para se ter o "estado" do sistema é necessário computar toda a história dele até o bloco mais recente.
 
-Se você é familiarizado com a arquitetura Redux, é possível pensarmos nesses eventos como ações ao estado (computado) atual da Blockchain naquele ponto por dispatchers fora da rede.
+A SDEC Blockchain é derivada do código-fonte do Bitcoin, e segue suas estruturas.
+
+## Blockchain
+
+<aside class="notice" style="background-color: #ffae42">Seção "Blockchain" contém conteúdo técnico</aside>
+
+A blockchain é uma estrutura de dados ordenada composta por blocos de transações criptograficamente ligados por uma referência direta ao bloco anterior, servindo como livro-razão público. A propriedade mais interessante da blockchain para o consenso de um sistema descentralizado é este elo criptográfico que liga os seus blocos entre si.
+
+### Blocos
+
+Cada bloco é uma estrutura de dados que contém as transações a serem incluidas na blockchain por meio do trabalho dos mineradores na rede.
+
+De uma forma geral, o bloco é composto por um cabeçalho contendo metadados sobre o bloco e uma lista de transações:
+
+| Campo                  | Tamanho     | Descrição                                                       |
+|------------------------|-------------|-----------------------------------------------------------------|
+| Tamanho do Bloco       | 4 *bytes*   | tamanho do bloco (*block size*) em *bytes* a partir deste campo |
+| Cabeçalho do Bloco     | 80 *bytes*  | o cabeçalho do bloco (*block header*) contendo metadados        |
+| Contador de Transações | 1-9 *bytes* | número de transações neste bloco                                |
+| Transaçòes             | Variável    | as transações deste bloco                                       |
+
+Como na descrição, o cabeçalho do bloco é responsável por conter os metadados referentes ao bloco e é nele que está a "cola" criptográfica fundamental para a segurança da blockchain. A estrutura do cabeçalho do bloco contém os seguintes campos:
+
+| Campo                                   | Tamanho     | Descrição                                                                    |
+|-----------------------------------------|-------------|------------------------------------------------------------------------------|
+| Versão                                  | 4 *bytes*   | número de versão do bloco indica que regras este bloco segue                 |
+| *Hash* do Cabeçalho do Bloco Anterior   | 32 *bytes*  | *hash* do cabeçalho do bloco anterior (*parent block*) a este na blockchain  |
+| Raiz de Merkle                          | 32 *bytes*  | *hash* da raiz de Merkle das transações deste bloco                          |
+| *Timestamp*                             | 4 *bytes*   | hora aproximada da criação deste tempo em segundos no padrão UNIX            |
+| Dificuldade Alvo                        | 4 *bytes*   | dificuldade alvo do algoritmo de *proof-of-work* para este bloco             |
+| *Nonce*                                 | 4 *bytes*   | contador utilizado como *nonce* no algoritmo de *proof-of-work*              |
+
+Os blocos carregam todas as informações necessárias para servirem como páginas de um livro-razão das transações confirmadas na rede.
+
+### Cadeia de Blocos
+
+A ligação entre os Blocos se dá a partir da inserção da *hash* do cabeçalho **anterior** no cabeçalho do bloco atual. É possível 
+
+![blockchain](/images/blockchain.png)
+
+Na prática, cada novo bloco possui uma ligação à todos os anteriores, pois quaisquer mudanças em algum bloco antigo causará atlerações nos valores de todas as hashes adiante. Por causa disso, fraudes por alterações de dados são extremamente difíceis e detectáveis em sistemas de Blockchain.
+
+## Transações
+
+<aside class="notice" style="background-color: #ffae42">Seção "Transações" contém conteúdo técnico</aside>
+
+Transações são a parte mais importante do sistema em Blockchain. Todo o resto é desenhado para garantir que as transações possam ser criadas, propagadas na rede, validadas e finalmente adicionadas ao livro-razão de transações (a própria Blockchain). Transações são estruturas de dados que codificam a transferência de valor (ou informação!) entre os participantes daquele sistema. Cada transação é uma entrada pública na Blockchain.
+
+### Estrutura de Uma Transação
+
+Na nossa Blockchain, uma transação é a estrutura de dados responsável por formalizar em código a transferência (ou publicação) de informação de um ou mais *inputs* (entrada de informações anteriores) para um ou mais *outputs* (saída das novas informações). Aqui está o primeiro nível de uma transação:
+
+| Campo            | Descrição                                                                                            |
+|------------------|------------------------------------------------------------------------------------------------------|
+| *version*        | Identifica as regras que a transação segue                                                           |
+| *tx_in count*    | Identifica quantos *inputs* a transação tem                                                          |
+| *tx_in*          | O(s) *input(s)* da transação                                                                         |
+| *tx_out count*   | Identifica quantos *outputs* a transação tem                                                         |
+| *tx_out*         | O(s) *output(s)* da transação                                                                        |
+| *lock_time*      | Um *timestamp UNIX* ou um número de bloco a partir de quando/qual a transação poderá ser destrancada |
+
+Os campos mais importantes são `tx_in` e `tx_out`, responsáveis, respectivamente, pela referência das informações anteriores (*inputs*) e a criação de novas saídas de informações (*outputs*).
+
+### UTXO
+
+Os inputs e outputs são os elementos fundamentais de uma transação. As transações são ligadas umas às outras por estes dois elementos; Os inputs de uma transação são, simplemente, referências aos outputs de uma transação anterior. Estes outputs prontos para serem usado por uma nova transação são chamados de UTXO (unspent transaction output/output de transação não gasto).
+
+O modo como as transações funcionam, faz com que elas formem uma sucessiva corrente de inputs e outputs trancando e destrancando valores na rede.
+
+![](./images/tx-chain.png)
+
+<aside class="notice">A exceção da exigência de se "transacionar" por cima de uma transação antiga é privilégio das transações chamadas de <i>coinbase</i>, incluídas pela assinatura do minerador de um determiando bloco.</aside>
+
+### Inputs e Outputs
+
+Todas transações criam um ou mais *outputs* para serem destrancados posteriormente quando usados em outra transação. Agora, nosso entendimento sobre transações fica mais interessante e preciso ao dissecarmos a estrutura do *output* para entendermos cada uma de suas peças:
+
+| Campo                                | Descrição                                                          | Tamanho          |
+|--------------------------------------|--------------------------------------------------------------------|------------------|
+| *value*                              | Número de moedas nativas a serem transferidas *(nosso caso 0)*     | 8 *bytes*        |
+| *locking-script-length*              | O tamanho do *locking script* em *bytes*                           | 1-9 *bytes*      |
+| *locking-script*                     | Um *script* com as condições necessárias para o *output* ser gasto | Tamanho variável |
+
+Os *locking-scripts* são códigos de programas que ditam a condição necessária para que aquele *output* possa ser gasto. O exemplo mais simples disso é a criação de um *script* que permite que o output seja gasto (*usado*) por quem produzir uma assinatura de uma determinada chave pública.
+
+Esses códigos são escritos na linguagem *Script*.
+
+### Linguagem Script
+
+*Script* é uma linguagem similar à [Forth](https://pt.wikipedia.org/wiki/Forth) com notação em [Polonesa Reversa/Inversa](https://pt.wikipedia.org/wiki/Nota%C3%A7%C3%A3o_polonesa_inversa) com método de execução em pilha interpretada da esquerda para a direita. Apesar de limitada, é possível criar regras arbitrárias complexas para as transações.
+
+Todos os *scripts* são verificados independentemente por cada nó da rede, e essa verificação é chamada de "validação". Quando o nó recebe uma transação nova ele verifica que seus *inputs* podem "desbloquear" os *scripts* dos *outputs* referenciados.
+
+A linguagem *Script* possui códigos determinados chamados de **OPCODES**, que funcionam como uma espécie de funções da linguagem e auxiliam na construção de novos programas.
+
+A presença de certos *OPCODES* permite a Blockchain interpretar aquela transação (de dados) com o significado desejado, validando-a de maneira correta e fazendo com que cada nó atualize o seu estado local de maneira compatível com o resto da rede. Chamamos essas transações com significados especiais de **eventos**, e vamos vê-los mais abaixos.
+
+Além desses **eventos**, fazemos uso de um conjunto de *opcodes* específicos para sinalizarmos que o código que se seguirá deverá ser interpretado como um **Smart Filter** - que falaremos mais sobre adiante. 
+
+## Eventos
+
+Os eventos existentes na nossa Blockchain são:
+
+Evento                        | Descrição
+----------------------------- | ------------------------
+Ativação de Smart Filters     | Permite a criação de novas regras de negócios para serem aplicadas aos demais eventos
+Desativação de Smart Fitlers  | Desativa um filtro já existente que está ultrapassado por algum motivo
+Registro de uma nova Empresa  | Cadastro incial de uma empresa onde será guardado os dados base dela
+Alteração Cadastrais          | Alteração dos dados de uma empresa (endereço, nome, etc.)
+Autorização de Emissores      | Autorização de novos emissores de notas fiscais de serviço para aquela empresa
+Emissão de Nota Fiscal        | A emissão de uma nota fiscal de serviço eletrônica
+Substituição NF               | Atualização de dados sobre uma nota fiscal de serviço já emitida
+Emissão Nota de Pagamento*    | Criação de uma nota de pagamento por uma empresa
+Confirmação de Liquidação     | A confirmação do recebimento dos tributos e dos repasses pela Instituição Liquidadora
+
+## Permissões
 
 Lista dos possíveis eventos e permissões relacionadas à eles:
 
-> Sugestão: Uma firma de contabilidade deve gerar um novo endereço público e esse ser adicionado ao registro da empresa. Dessa maneira, ela conseguirá emitir notas fiscais válidas para seus clientes.
+> Sugestão: Uma firma de contabilidade deve gerar um novo endereço público e esse ser autorizado pela empresa. Dessa maneira, ela conseguirá emitir notas fiscais válidas para seus clientes.
 
-Evento                        | Juntas Comerciais | Empresa | Instituição Liquidadora |
------------------------------ | ----------------- | ------- | ----------------------- |
-Cadastro de uma nova empresa  |       Sim         |   Não   |         Não             |
-Alteração em empresa*         |       Sim         |   Sim   |         Não             |
-Emissão de Nota Fiscal        |       Não         |   Sim   |         Não             |
-Substituição NF               |       Não         |   Sim   |         Não             |
-Emissão Nota de Pagamento     |       Não         |   Sim   |         Não             |
-Atualização Nota de Pagamento |       Não         |   Não   |         Sim             |
+Evento                        | Juntas Comerciais | Empresa | Instituição Liquidadora | Tipo do Evento          |
+----------------------------- | ----------------- | ------- | ----------------------- | ----------------------- |
+Registro de uma nova Empresa  |       Sim         |   Não   |         Não             | Emissão de um Ativo     |
+Alteração Cadastrais          |       Sim         |   Sim   |         Não             | Reemissão do Ativo      |
+Autorização de Emissores      |       Sim         |   Sim   |         Não             | Atribuição de Permissão |
+Emissão de Nota Fiscal        |       Não         |   Sim   |         Não             | Emissão de um Ativo     |
+Substituição NF               |       Não         |   Sim   |         Não             | Reemissão do Ativo      |
+Emissão Nota de Pagamento     |       Não         |   Sim   |         Não             | Emissão de um Ativo     |
+Confirmação de Liquidação     |       Não         |   Não   |         Sim             | Publicação em Stream    |
+Ativação de Smart Filters     |       Não         |   Não   |         Sim             | Smart Filters           |
+Desativação de Smart Filters  |       Não         |   Não   |         Sim             | Smart Filters           |
 
-**alteração de dados, um novo endereço emissor de notas, status, regime fiscal, etc*
-
-Os eventos são emitidos no sistema através de publicações.
-
-## Publicações:
+## Publicações
 
 Publicações são arquivos JSON's publicados na Blockchain que descrevem eventos. A publicação de itens se dá através do comando `publish` pelo `sdec-cli`. 
 
@@ -956,7 +1070,7 @@ Para acessar a documentação do `sdec-cli` clique [aqui.](https://sdec-brasil.g
 
 As descrições das publicações e dos modelos esperados pelo sistema segue abaixo.
 
-### Novo Registro de Empresa:
+### Novo Registro de Empresa
 
 O registro da empresa deve ser feita pela Junta Comercial responsável. Além da publicação das informações na Blockchain, a Junta também estará autorizando os endereços respectivos a serem emissores de nota.
 
@@ -1003,6 +1117,6 @@ cnaes     |    S    | Vetor de CNAE's que a empresa está permitida        | >=1
 
 <aside class="notice">É possível autorizar mais de um endereço público para a emissão de notas em nome da empresa, mas recomendamos que cada um deles seja único à ela e não reutilizado.</aside>
 
-### Alterações no Registro da Empresa:
+### Alterações no Registro da Empresa
 
-### Emissão de Notas Fiscais:
+### Emissão de Notas Fiscais
