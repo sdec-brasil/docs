@@ -399,58 +399,7 @@ Endpoint para retornar uma nota fiscal.
 >Listando empresas
 
 ```json
-{
-  "meta": {
-    "url": "/v1",
-    "query": {
-      "limit": "2",
-      "offset": "4"
-    },
-    "params": {},
-    "time": 1565991149635,
-    "count": 16
-  },
-  "cursor": {
-    "offset": 4,
-    "limit": 2,
-    "next": "http://localhost:8000/v1/companies/?limit=2&offset=6",
-    "previous": "http://localhost:8000/v1/companies/?limit=2&offset=2"
-  },
-  "data": [
-    {
-      "cnpj": "23435652000154",
-      "razao": "Igor Moreira Razão Social",
-      "fantasia": "Apenas um Nome Fantasia LTDA",
-      "cepEnd": "47486820",
-      "logEnd": "Rua Estados Unidos",
-      "numEnd": "237",
-      "compEnd": "Fazenda",
-      "bairroEnd": "Tremembé",
-      "cidadeEnd": "5778811",
-      "estadoEnd": "MT",
-      "regTrib": 3,
-      "email": null,
-      "telefone": null,
-      "endBlock": "1XM3YRWcQpTfC1FvVRPxbPEudFbQAHUJgQnY1m"
-    },
-    {
-      "cnpj": "28083309000101",
-      "razao": "Amanda Ostitty Razão Social",
-      "fantasia": "Apenas um Nome Fantasia LTDA",
-      "cepEnd": "37591382",
-      "logEnd": "Rua Haddock Lobo",
-      "numEnd": "91",
-      "compEnd": "Lote 113",
-      "bairroEnd": "Cidade Dutra",
-      "cidadeEnd": "4972503",
-      "estadoEnd": "PB",
-      "regTrib": 4,
-      "email": null,
-      "telefone": null,
-      "endBlock": "1QPqXVqLvKDdpUyde53xABipYaa1EvpDC41rdF"
-    }
-  ]
-}
+preencher
 ```
 
 `GET https://localhost:8000/v1/companies/`
@@ -467,22 +416,7 @@ offset | numero de objetos a serem pulados.
 >Retornando uma empresa
 
 ```json
-{
-  "cnpj": "23435652000154",
-  "razao": "Igor Moreira Razão Social",
-  "fantasia": "Apenas um Nome Fantasia LTDA",
-  "cepEnd": "47486820",
-  "logEnd": "Rua Estados Unidos",
-  "numEnd": "237",
-  "compEnd": "Fazenda",
-  "bairroEnd": "Tremembé",
-  "cidadeEnd": "5778811",
-  "estadoEnd": "MT",
-  "regTrib": 3,
-  "email": null,
-  "telefone": null,
-  "endBlock": "1XM3YRWcQpTfC1FvVRPxbPEudFbQAHUJgQnY1m"
-}
+preencher
 ```
 
 `http://localhost:8000/v1/companies/:cnpj`
@@ -498,53 +432,7 @@ Endpoint para retornar uma empresa.
 >Listando prefeituras
 
 ```json
-{
-  "meta": {
-    "url": "/v1",
-    "query": {},
-    "params": {},
-    "time": 1565992229064,
-    "count": 5
-  },
-  "cursor": {
-    "offset": 0,
-    "limit": 100,
-    "next": null,
-    "previous": null
-  },
-  "data": [
-    {
-      "codigoIbge": "1100015",
-      "nome": "Alta Floresta D'Oeste",
-      "cnpj": "18511471000120",
-      "uf": "RO"
-    },
-    {
-      "codigoIbge": "1100023",
-      "nome": "Ariquemes",
-      "cnpj": "18511471000124",
-      "uf": "RO"
-    },
-    {
-      "codigoIbge": "1100346",
-      "nome": "Alvorada D'Oeste",
-      "cnpj": "18511471000123",
-      "uf": "RO"
-    },
-    {
-      "codigoIbge": "1100379",
-      "nome": "Alto Alegre dos Parecis",
-      "cnpj": "18511471000121",
-      "uf": "RO"
-    },
-    {
-      "codigoIbge": "1100403",
-      "nome": "Alto ParaÃ­so",
-      "cnpj": "18511471000122",
-      "uf": "RO"
-    }
-  ]
-}
+preencher
 ```
 
 `GET http://localhost:8000/v1/cities/`
@@ -557,9 +445,9 @@ Endpoint para listar as prefeituras cadastradas no sistema.
 
 ```json
 {
-  "codigoIbge": "1100015",
-  "nome": "Alta Floresta D'Oeste",
-  "cnpj": "18511471000120",
+  "cityCode": "1100015",
+  "cityName": "Alta Floresta D'Oeste",
+  "taxNumber": "18511471000120",
   "uf": "RO",
   "generalStats": {
     "avgLiquidValue": 10405,
@@ -595,9 +483,9 @@ Endpoint para retornar uma prefeitura.
 ```json
 {
   "city": {
-    "codigoIbge": "1100015",
+    "code": "1100015",
     "nome": "Alta Floresta D'Oeste",
-    "cnpj": "18511471000120",
+    "taxNumber": "18511471000120",
     "uf": "RO"
   },
   "dailyIssuing": [
@@ -631,9 +519,9 @@ Endpoint para retornar a contagem diária de notas fiscais emitidas em um certo 
 ```json
 {
   "city": {
-    "codigoIbge": "1100015",
-    "nome": "Alta Floresta D'Oeste",
-    "cnpj": "18511471000120",
+    "code": "1100015",
+    "name": "Alta Floresta D'Oeste",
+    "taxNumber": "18511471000120",
     "uf": "RO"
   },
   "statusSplit": {
