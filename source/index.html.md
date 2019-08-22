@@ -142,6 +142,7 @@ endBlock              | Endereço Público de Cadastro da Empresa         |     
 - *simpleNationalIssRate somente se taxRegime for 2 (Simples Nacional)*
 
 Regime Tributário:
+
 Valor   | Descrição
 --------|-----------
 1       | MEI
@@ -321,6 +322,28 @@ Valor | Descrição
 6     | Exigiblidade Suspensa por Decisão Judicial
 7     | Exigibilidade Suspensa por Processo Adminsitrativo
 
+##### specialTaxRegime
+
+Valor | Descrição
+------|----------
+0     | Tributação Normal
+1     | Microempresa Municipal
+2     | Estimativa
+3     | Sociedade de Profissionais
+4     | Cooperativa
+5     | Microempresário Individual (MEI)
+6     | Microempresário e Empresa de Pequeno Porte (MP EPP)
+7     | Movimento Mensal/ISS/Fixo Autônomo
+8     | Sociedade Limitada/Média Empresa
+9     | Sociedade Anônima/Grande Empresa
+10    | Empresa Individual de Responsabilidade Limita (EIRELI)
+11    | Empresa Individual
+12    | Empresa de Pequeno Porte (EPP)
+13    | Microempresário
+14    | Outros/Sem Vínculos
+15    | Nenhum
+16    | Nota Avulsa
+
 #### Borrower
 
 Campo                 | Descrição                                         | Origem da Inf. |  Optativo  |
@@ -338,11 +361,21 @@ country               | Código do País do Tomador                         |   
 postalCode            | Código Postal do Endereço Sede do Tomador         |    *Usuário*   |      ?     |
 email                 | E-mail de Contato Público do Tomador              |    *Usuário*   |      ?     |
 phoneNumber           | Telefone de Contato Público do Tomador            |    *Usuário*   |      ?     |
-  
 
-<!--> *regimeEspTribut	0 – Tributação Normal; 1 – Microempresa Municipal; 2 – Estimativa; 3 – Sociedade de Profissionais; 4 – Cooperativa; 5 – Microempresário Individual (MEI); 6 – Microempresário e Empresa de Pequeno Porte (ME EPP); 7 - Movimento Mensal/ISS/Fixo Autônomo; 8 - Sociedade Limitada/Média Empresa; 9 - Sociedade Anônima/Grande Empresa; 10 - Empresa Individual de Responsabilidade Limitada (EIRELI); 11 - Empresa Individual; 12 - Empresa de Pequeno Porte (EPP); 13 - Microempresário; 14 - Outros/Sem Vínculos; 15 - Nenhum; 16 - Nota Avulsa
-regtribut	0 - MEI; 1 - Simples Nacional; 2 - Lucro Presumido; 3 - Lucro Real
-<!-->
+#### Intermediary
+
+Campo                 | Descrição                                             | Origem da Inf. |  Optativo  |
+----------------------|-------------------------------------------------------|----------------|------------|
+taxNumber             | Cadastro da Pessoa Jurídica ou Física do Intermediário|    *Usuário*   |      ?     |
+name                  | Razão Social ou Nome do Intermediário                 |    *Usuário*   |      ?     |
+city                  | Cidade do Endereço Sede do Intermediário              |    *Usuário*   |      ?     |
+
+#### Construction
+
+Campo                 | Descrição                                             | Origem da Inf. |  Optativo  |
+----------------------|-------------------------------------------------------|----------------|------------|
+workCode              | Código da Obra da Construção Civil                    |    *Usuário*   |      ?     |
+art                   | Anotação de Responsabilidade Técnica                  |    *Usuário*   |      ?     |
 
 ### Nota de Pagamento
 
@@ -357,7 +390,6 @@ TBD                 | To be determined                                |   Blockc
 Campo               | Descrição                                       | Origem da Inf. |
 --------------------|-------------------------------------------------|----------------|
 TBD                 | To be determined                                |   Blockchain   | 
-
 
 ## API de Notas Fiscais
 
