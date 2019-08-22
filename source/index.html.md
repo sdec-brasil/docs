@@ -101,48 +101,54 @@ As seções abaixo descrevem os modelos estruturais das tabelas relacionadas ao 
 
 ```json
 {
-  "cnpj": "23435652000154",
-  "razao": "Igor Moreira Razão Social",
-  "fantasia": "Apenas um Nome Fantasia LTDA",
-  "cepEnd": "47486820",
-  "logEnd": "Rua Estados Unidos",
-  "numEnd": "237",
-  "compEnd": "Fazenda",
-  "bairroEnd": "Tremembé",
-  "cidadeEnd": "5778811",
-  "estadoEnd": "MT",
-  "regTrib": 3,
+  "taxNumber": "23435652000154",
+  "ranamezao": "Igor Moreira Razão Social",
+  "tradeName": "Apenas um Nome Fantasia LTDA",
+  "economicAtivites": ["5231-1/01", "6613-4/00"],
+  "postalCode": "47486820",
+  "street": "Rua Estados Unidos",
+  "number": "237",
+  "additionalInformation": "Fazenda",
+  "district": "Tremembé",
+  "city": "5778811",
+  "state": "MT",
+  "taxRegime": 3,
   "email": null,
-  "telefone": null,
+  "phoneNumber": null,
   "endBlock": "1XM3YRWcQpTfC1FvVRPxbPEudFbQAHUJgQnY1m"
 }
 ```
 
-Campo     | Descrição                                       | Optativo? |
-----------|-------------------------------------------------|-----------|
-cnpj      | Cadastro Nacional da Pessoa Jurídica            |     N     |
-razao     | Razão Social da Empresa                         |     N     |
-fantasia  | Nome Fantasia da Empresa                        |     N     |
-cepEnd    | Código Postal do Endereço Sede da Empresa       |     N     |
-logEnd    | Logradouro do Endereço Sede da Empresa          |     N     |
-numEnd    | Número do Endereço Sede da Empresa              |     N     |
-compEnd   | Complemento do Endereço Sede da Empresa         |     N     |
-bairroEnd | Bairro do Endereço Sede da Empresa              |     N     |
-cidadeEnd | Cidade do Endereço Sede da Empresa              |     N     |
-estadoEnd | Unidade Federativa do Endereço Sede da Empresa  |     N     |
-regTrib   | Regime Tributário da Empresa (1-4)              |     N     |
-email     | E-mail de Contato Público da Empresa            |     S     |
-telefone  | Telefone de Contato Público da Empresa          |     S     |      
-endBlock  | Endereço Público de Cadastro da Empresa         |     N     |
+Campo                 | Descrição                                       | Optativo? |
+----------------------|-------------------------------------------------|-----------|
+taxNumber*            | Cadastro Nacional da Pessoa Jurídica ou Física  |     N     |
+name                  | Razão Social da Empresa                         |     N     |
+tradeName             | Nome Fantasia da Empresa                        |     N     |
+taxRegime             | Regime Tributário da Empresa (1-4)              |     N     |
+economicAtivites      | Lista de CNAE's da Empresa                      |     N     |
+simpleNationalIssRate | Alíquota do ISS para Simples Nacional           |     S     |
+postalCode            | Código Postal do Endereço Sede da Empresa       |     N     |
+street                | Logradouro do Endereço Sede da Empresa          |     N     |
+number                | Número do Endereço Sede da Empresa              |     N     |
+additionalInformation | Complemento do Endereço Sede da Empresa         |     N     |
+district              | Bairro do Endereço Sede da Empresa              |     N     |
+city                  | Cidade do Endereço Sede da Empresa              |     N     |
+state                 | Unidade Federativa do Endereço Sede da Empresa  |     N     |
+email                 | E-mail de Contato Público da Empresa            |     S     |
+phoneNumber           | Telefone de Contato Público da Empresa          |     S     |
+endBlock              | Endereço Público de Cadastro da Empresa         |     N     |
+
+- *taxNumber pode ser CPF somente se taxRegime for 5 (Autônomo)*
+- *simpleNationalIssRate somente se taxRegime for 2 (Simples Nacional)*
 
 Regime Tributário:
-
 Valor   | Descrição
 --------|-----------
 1       | MEI
 2       | Simples Nacional
 3       | Lucro Presumido
 4       | Lucro Real
+5       | Autônomo
 
 ### Emissor
 
