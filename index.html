@@ -260,6 +260,20 @@
                         </li>
                         <li>
                           <a href="#nota-fiscal-de-servico" class="toc-h3 toc-link" data-title="Nota Fiscal de Serviço">Nota Fiscal de Serviço</a>
+                            <ul class="toc-list-h4">
+                                <li>
+                                  <a href="#invoice" class="toc-h4 toc-link" data-title="Invoice">Invoice</a>
+                                </li>
+                                <li>
+                                  <a href="#provision" class="toc-h4 toc-link" data-title="Provision">Provision</a>
+                                </li>
+                                <li>
+                                  <a href="#tributes" class="toc-h4 toc-link" data-title="Tributes">Tributes</a>
+                                </li>
+                                <li>
+                                  <a href="#borrower" class="toc-h4 toc-link" data-title="Borrower">Borrower</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                           <a href="#nota-de-pagamento" class="toc-h3 toc-link" data-title="Nota de Pagamento">Nota de Pagamento</a>
@@ -450,19 +464,20 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 <p>Exemplo de Empresa</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23435652000154"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"razao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Igor Moreira Razão Social"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fantasia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apenas um Nome Fantasia LTDA"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47486820"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua Estados Unidos"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"237"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fazenda"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tremembé"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5778811"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MT"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"regTrib"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"taxNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23435652000154"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ranamezao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Igor Moreira Razão Social"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tradeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apenas um Nome Fantasia LTDA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"economicAtivites"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5231-1/01"</span><span class="p">,</span><span class="w"> </span><span class="s2">"6613-4/00"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47486820"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rua Estados Unidos"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"237"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"additionalInformation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fazenda"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"district"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tremembé"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5778811"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"taxRegime"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"telefone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"endBlock"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1XM3YRWcQpTfC1FvVRPxbPEudFbQAHUJgQnY1m"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -474,58 +489,68 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 </tr>
 </thead><tbody>
 <tr>
-<td>cnpj</td>
-<td>Cadastro Nacional da Pessoa Jurídica</td>
+<td>taxNumber*</td>
+<td>Cadastro Nacional da Pessoa Jurídica ou Física</td>
 <td>N</td>
 </tr>
 <tr>
-<td>razao</td>
+<td>name</td>
 <td>Razão Social da Empresa</td>
 <td>N</td>
 </tr>
 <tr>
-<td>fantasia</td>
+<td>tradeName</td>
 <td>Nome Fantasia da Empresa</td>
 <td>N</td>
 </tr>
 <tr>
-<td>cepEnd</td>
+<td>taxRegime</td>
+<td>Regime Tributário da Empresa (1-4)</td>
+<td>N</td>
+</tr>
+<tr>
+<td>economicAtivites</td>
+<td>Lista de CNAE&#39;s da Empresa</td>
+<td>N</td>
+</tr>
+<tr>
+<td>simpleNationalIssRate</td>
+<td>Alíquota do ISS para Simples Nacional</td>
+<td>S</td>
+</tr>
+<tr>
+<td>postalCode</td>
 <td>Código Postal do Endereço Sede da Empresa</td>
 <td>N</td>
 </tr>
 <tr>
-<td>logEnd</td>
+<td>street</td>
 <td>Logradouro do Endereço Sede da Empresa</td>
 <td>N</td>
 </tr>
 <tr>
-<td>numEnd</td>
+<td>number</td>
 <td>Número do Endereço Sede da Empresa</td>
 <td>N</td>
 </tr>
 <tr>
-<td>compEnd</td>
+<td>additionalInformation</td>
 <td>Complemento do Endereço Sede da Empresa</td>
 <td>N</td>
 </tr>
 <tr>
-<td>bairroEnd</td>
+<td>district</td>
 <td>Bairro do Endereço Sede da Empresa</td>
 <td>N</td>
 </tr>
 <tr>
-<td>cidadeEnd</td>
+<td>city</td>
 <td>Cidade do Endereço Sede da Empresa</td>
 <td>N</td>
 </tr>
 <tr>
-<td>estadoEnd</td>
+<td>state</td>
 <td>Unidade Federativa do Endereço Sede da Empresa</td>
-<td>N</td>
-</tr>
-<tr>
-<td>regTrib</td>
-<td>Regime Tributário da Empresa (1-4)</td>
 <td>N</td>
 </tr>
 <tr>
@@ -534,7 +559,7 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 <td>S</td>
 </tr>
 <tr>
-<td>telefone</td>
+<td>phoneNumber</td>
 <td>Telefone de Contato Público da Empresa</td>
 <td>S</td>
 </tr>
@@ -545,31 +570,19 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 </tr>
 </tbody></table>
 
-<p>Regime Tributário:</p>
+<ul>
+<li><em>taxNumber pode ser CPF somente se taxRegime for 5 (Autônomo)</em></li>
+<li><em>simpleNationalIssRate somente se taxRegime for 2 (Simples Nacional)</em></li>
+</ul>
 
-<table><thead>
-<tr>
-<th>Valor</th>
-<th>Descrição</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>1</td>
-<td>MEI</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Simples Nacional</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Lucro Presumido</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Lucro Real</td>
-</tr>
-</tbody></table>
+<p>Regime Tributário:
+Valor   | Descrição
+--------|-----------
+1       | MEI
+2       | Simples Nacional
+3       | Lucro Presumido
+4       | Lucro Real
+5       | Autônomo</p>
 <h3 id='emissor'>Emissor</h3>
 <p><em>Emissor</em> é o nome atribuído à um endereço público na Blockchain que possui permissão para emitir notas fiscais em nome de um CNPJ. É recomendado que um endereço seja autorizado por somente uma empresa para emissão de notas afim de evitar erros e diminuir cenários de risco.</p>
 
@@ -580,16 +593,16 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 </tr>
 </thead><tbody>
 <tr>
-<td>cnpj</td>
-<td>Cadastro Nacional da Pessoa Jurídica</td>
+<td>taxNumber</td>
+<td>Cadastro Nacional da Pessoa Jurídica ou Física</td>
 </tr>
 <tr>
-<td>emissorAddress</td>
+<td>emitterAddress</td>
 <td>Endereço Público na Blockchain</td>
 </tr>
 </tbody></table>
 
-<p>A <em>tupla</em>, então, <em>(CNPJ, emissorAddress)</em> explicita a relação &quot;O endereço público <em>emissorAddress</em> pode emitir notas fiscais que dizem respeito à empresa de <em>CNPJ</em>&quot;.</p>
+<p>A <em>tupla</em>, então, <em>(taxNumber, emitterAddress)</em> explicita a relação &quot;O endereço público <em>emitterAddress</em> pode emitir notas fiscais que dizem respeito à empresa de <em>taxNumber</em>&quot;.</p>
 <h3 id='nota-fiscal-de-servico'>Nota Fiscal de Serviço</h3>
 <p>Todos os valores financeiros <em>(R$)</em> estão em centavos.</p>
 
@@ -598,75 +611,73 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1dbedc7de5f0f157dbf673a03e2c0e1a911793603a1ba1d4f5d839d1367f1c8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"substitui"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"substituidaPor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"assetName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tomadorEncriptado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"emissor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67188967000110"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"notaPagamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"blocoConfirmacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"prestacao"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"dataPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1931-09-28"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"prefeituraPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100403"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"codTributMunicipio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100379"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"itemLista"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41.36"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"codCnae"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"codServico"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"codNBS"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"discriminacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hover urban volcano attend stool actor tissue other never crop reveal prevent"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valServicos"</span><span class="p">:</span><span class="w"> </span><span class="mi">11968</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"descontoIncond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"descontoCond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"exigibilidadeISS"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"numProcesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valDeducoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"baseCalculo"</span><span class="p">:</span><span class="w"> </span><span class="mi">11962</span><span class="w">
+  </span><span class="s2">"invoiceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1dbedc7de5f0f157dbf673a03e2c0e1a911793603a1ba1d4f5d839d1367f1c8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"substitutes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"substitutedBy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"invoiceName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"encryptedBorrower"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"emitter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"taxNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67188967000110"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"paymentInstructionsCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"blockHeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"provision"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"issuedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1931-09-28"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cityServiceLocation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100403"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"serviceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41.36.01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cnaeCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nbsCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hover urban volcano attend stool actor tissue other never crop reveal prevent"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"servicesAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">11968</span><span class="p">,</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"tributos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"issRetido"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"respRetencao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"regimeEspTribut"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"incentivoFiscal"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"aliqServicos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47.0"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valIss"</span><span class="p">:</span><span class="w"> </span><span class="mi">56250</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valPis"</span><span class="p">:</span><span class="w"> </span><span class="mi">218</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valCofins"</span><span class="p">:</span><span class="w"> </span><span class="mi">181</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valInss"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valIr"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valCsll"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"outrasRetencoes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valTotalTributos"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valLiquiNfse"</span><span class="p">:</span><span class="w"> </span><span class="mi">11569</span><span class="w">
+  </span><span class="s2">"tributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"taxBenefit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"issExigibility"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"processNumber"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"issRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"issAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">56250</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"issWithheld"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"retentionResponsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"specialTaxRegime"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pisAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">218</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cofinsAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">181</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"inssAmount"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"irAmount"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"csllAmount"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unconditionedDiscountAmount"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"conditionedDiscountAmount"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"othersAmountsWithheld"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deductionsAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"calculationBasis"</span><span class="p">:</span><span class="w"> </span><span class="mi">11962</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"approximateTax"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"netValueNfse"</span><span class="p">:</span><span class="w"> </span><span class="mi">11569</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"tomador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"identificacaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"borrower"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"taxNumber"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"nif"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"nomeRazaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"paisEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"street"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"additionalInformation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"district"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tel"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"intermediario"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"identificacaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"nomeRazaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cidadeIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="s2">"intermediary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"taxNumber"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"constCivil"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"codObra"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"construction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"workCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"art"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><h4 id='invoice'>Invoice</h4>
 <table><thead>
 <tr>
 <th>Campo</th>
@@ -682,348 +693,438 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 <td>N</td>
 </tr>
 <tr>
-<td>txId</td>
+<td>invoiceCode</td>
 <td>Identificador Único da Nota Fiscal</td>
 <td><em>Blockchain</em></td>
 <td>N</td>
 </tr>
 <tr>
-<td>substitui</td>
+<td>substitutes</td>
 <td>txId da Nota Fiscal que está sendo substituída</td>
 <td><em>Usuário</em></td>
 <td>S</td>
 </tr>
 <tr>
-<td>substituidaPor</td>
+<td>substitutedBy</td>
 <td>txId da Nota Fiscal que substitui essa</td>
 <td><em>Blockchain</em></td>
 <td>S</td>
 </tr>
 <tr>
-<td>assetName</td>
+<td>invoiceName</td>
 <td>Nome do Ativo que representa a NF na Blockchain</td>
 <td><em>Blockchain</em></td>
 <td>N</td>
 </tr>
 <tr>
-<td>dataPrestacao</td>
+<td>status</td>
+<td>Estado da Nota Fiscal de Serviço na Data Atual*</td>
+<td><em>BD (Worker)</em></td>
+<td>N</td>
+</tr>
+<tr>
+<td>encryptedBorrower</td>
+<td>Tomador de Serviço Encriptado</td>
+<td><em>Usuãrio</em></td>
+<td>S</td>
+</tr>
+<tr>
+<td>emitter</td>
+<td>Endereço Público Emissor da Nota</td>
+<td><em>Usuãrio</em></td>
+<td>N</td>
+</tr>
+<tr>
+<td>taxNumber</td>
+<td>Cadastro de Pessoa Jurídica ou Física do Prestodor</td>
+<td><em>Usuãrio</em></td>
+<td>N</td>
+</tr>
+<tr>
+<td>paymentInstructionsCode</td>
+<td>ID da Nota de Pagamento responsável pela NFS</td>
+<td><em>Usuãrio</em></td>
+<td>S</td>
+</tr>
+<tr>
+<td>blockHeight</td>
+<td>Bloco de Confirmação da NFS-e na Blockchain</td>
+<td><em>Usuãrio</em></td>
+<td>N</td>
+</tr>
+<tr>
+<td>provision</td>
+<td>Objeto de Prestação do Serviço (campos abaixo)</td>
+<td><em>Usuãrio</em></td>
+<td>N</td>
+</tr>
+<tr>
+<td>tributes</td>
+<td>Objeto referente à Tributação (campos abaixo)</td>
+<td><em>Usuãrio</em></td>
+<td>N</td>
+</tr>
+<tr>
+<td>borrower</td>
+<td>Objeto do Tomador do Serviço (campos abaixo)</td>
+<td><em>Usuãrio</em></td>
+<td>S</td>
+</tr>
+<tr>
+<td>intermediary</td>
+<td>Objeto do Intermediário do Serviço (campos abaixo)</td>
+<td><em>Usuãrio</em></td>
+<td>S</td>
+</tr>
+<tr>
+<td>construction</td>
+<td>Objeto de Construções Civis</td>
+<td><em>Usuãrio</em></td>
+<td>S</td>
+</tr>
+</tbody></table>
+<h5 id='status'>Status</h5>
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Pendente</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Atrasada</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Pago</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Substituída</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Tributação por Outro Órgão</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Dados Inconsistentes</td>
+</tr>
+</tbody></table>
+<h4 id='provision'>Provision</h4>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Origem da Inf.</th>
+<th>Optativo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>issuedOn</td>
 <td>Dia, mês e ano da prestação de serviço</td>
 <td><em>Usuário</em></td>
 <td>N</td>
 </tr>
 <tr>
-<td>prefeituraPrestacao</td>
+<td>cityServiceLocation</td>
 <td>Código do Município onde é prestado o serviço</td>
 <td><em>Usuário</em></td>
 <td>N</td>
 </tr>
 <tr>
-<td>codTributMunicipio</td>
-<td>Cód. do Município onde é a incidência do imposto</td>
+<td>serviceCode</td>
+<td>Código do serviço prestado</td>
 <td><em>Usuário</em></td>
 <td>N</td>
 </tr>
 <tr>
-<td>itemLista</td>
-<td>Código do serviço prestado Item da LC 116/2003</td>
-<td><em>Usuário</em></td>
-<td>N</td>
-</tr>
-<tr>
-<td>codCnae</td>
+<td>cnaeCode</td>
 <td>CNAE do serivço prestado na Nota Fiscal</td>
 <td><em>Usuário</em></td>
 <td>S</td>
 </tr>
 <tr>
-<td>codServico</td>
-<td>Código do serviço prestado próprio do município</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>codNBS</td>
+<td>nbsCode</td>
 <td>Código da Nomenclatura Brasileira de Serviços</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>S</td>
 </tr>
 <tr>
-<td>discriminacao</td>
+<td>description</td>
 <td>Discriminação dos serviços</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>N</td>
 </tr>
 <tr>
-<td>valServicos</td>
+<td>servicesAmount</td>
 <td>Valor dos serviços em centavos</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>N</td>
+</tr>
+</tbody></table>
+<h4 id='tributes'>Tributes</h4>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Origem da Inf.</th>
+<th>Optativo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>taxBenefit</td>
+<td>Incentivo Fiscal <em>(true or false)</em></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>descontoIncond</td>
-<td>Valor do desconto incondicionado</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>descontoCond</td>
-<td>Valor do desconto condicionado</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>exigibilidadeISS</td>
+<td>issExigibility</td>
 <td>Exigência do ISS para o serviço prestado (1-6)*</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>numProcesso</td>
+<td>processNumber</td>
 <td>Processo judicial de suspensão da exigibilidade</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>valDeducoes</td>
-<td>Val. das deduções p/ Redução da Base de Cálculo</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>baseCalculo</td>
-<td>(valServicos – valDeducoes – descontoIncond)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>issRetido</td>
-<td>ISS foi retido? <em>(true or false)</em></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>respRetencao</td>
-<td>Retido por: <em>1 – Tomador; 2 – Intermediário</em></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>incentivoFiscal</td>
-<td><em>true – Sim; false – Não</em></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>aliqServicos</td>
+<td>issRate</td>
 <td>Alíquota do serviço prestado</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>valIss</td>
+<td>issAmount</td>
 <td>Valor do ISS devido em centavos</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>valPis</td>
+<td>issWithheld</td>
+<td>ISS foi retido? <em>(true or false)</em></td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>retentionResponsible</td>
+<td>Retido por: <em>1 – Tomador; 2 – Intermediário</em></td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>specialTaxRegime</td>
+<td>Regime Especial de Tributação da Empresa (abaixo)</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>pisAmount</td>
 <td>Valor da retenção do PIS em centavos</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>valCofins</td>
+<td>cofinsAmount</td>
 <td>Valor da retenção do CONFINS em centavos</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>valInss</td>
+<td>inssAMount</td>
 <td>Valor da retenção do INSS em centavos</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>valIr</td>
+<td>irAmount</td>
 <td>Valor da retenção do IR em centavos</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>valCsll</td>
+<td>csllAmount</td>
 <td>Valor da retenção do CSLL em centavos</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>outrasRetencoes</td>
+<td>unconditionedDiscountAmount</td>
+<td>Valor do desconto incondicionado</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>conditionedDiscountAmount</td>
+<td>Valor do desconto condicionado</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>othersAmountsWithheld</td>
 <td>Outras retenções na Fonte  (em centavos)</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>valTotalTributos</td>
+<td>deductionsAmount</td>
+<td>Val. das deduções p/ Redução da Base de Cálculo</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>calculationBasis</td>
+<td>(valServicos – valDeducoes – descontoIncond)</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>approximateTax</td>
 <td>Valor total aprox. dos tributos das 3 esferas</td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 <tr>
-<td>valLiquiNfse</td>
+<td>netValueNfse</td>
 <td>(valServicos - tributos - retenções - desconts)*</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>tomadorEncriptado</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>identificacaoTomador</td>
-<td>Cadastro da Pessoa Jurídica ou Física do Tomador</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>nif</td>
-<td>Identificação Fiscal da Empresa (SISCOSERV)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>nomeRazaoTomador</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>logEnd</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>numEnd</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>compEnd</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bairroEnd</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>cidadeEnd</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>estadoEnd</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>paisEnd</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>cepEnd</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>email</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>tel</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>codObra</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>art</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>estado</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>emissor</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>cnpj</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>notaPagamento</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>blocoConfirmacao</td>
-<td></td>
-<td></td>
-<td></td>
+<td><em>Usuário</em></td>
+<td>?</td>
 </tr>
 </tbody></table>
 
 <ul>
-<li><em>exigibilidadeISS</em>:
-
-<ul>
-<li>1 - Exigível</li>
-<li>2 - Não Incidência</li>
-<li>3 - Isenção</li>
-<li>4 - Exportação</li>
-<li>5 - Imunidade</li>
-<li>6 - Exigiblidade Suspensa por Decisão Judicial</li>
-<li>7 - Exigibilidade Suspensa por Processo Adminsitrativo</li>
-</ul></li>
-<li><em>valLiquiNfse</em>: <code>valServicos - valPis – valCofins – valIss – valIr – valCsll – OutrasRetençoes – ValorISSRetido – DescontoIncondicionado – DescontoCondicionado</code> em centavos </li>
-<li><em>estado</em>:
-
-<ul>
-<li>0 - Pendente</li>
-<li>1 - Atrasada</li>
-<li>2 - Pago</li>
-<li>3 - Substituída</li>
-<li>4 - Dados Inconsistentes</li>
-</ul></li>
+<li><em>netValueNfse</em>: <code>servicesAmount - pisAmount – cofinsAmount – issAmount – irAmount – csllAmount – othersAmountsWithheld – issWithheld – unconditionedDiscountAmount – conditionedDiscountAmount</code> em centavos</li>
 </ul>
+<h5 id='issexigibility'>issExigibility</h5>
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Exigível</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Não Incidência</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Isenção</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Exportação</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Imunidade</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Exigiblidade Suspensa por Decisão Judicial</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Exigibilidade Suspensa por Processo Adminsitrativo</td>
+</tr>
+</tbody></table>
+<h4 id='borrower'>Borrower</h4>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Origem da Inf.</th>
+<th>Optativo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>taxNumber</td>
+<td>Cadastro da Pessoa Jurídica ou Física do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>nif</td>
+<td>Identificação Fiscal da Empresa (SISCOSERV)</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Razão Social ou Nome do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>street</td>
+<td>Logradouro do Endereço Sede do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>number</td>
+<td>Número do Endereço Sede do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>additionalInformation</td>
+<td>Complemento do Endereço Sede do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>district</td>
+<td>Bairro do Endereço Sede do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>city</td>
+<td>Cidade do Endereço Sede do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>state</td>
+<td>Unidade Federativa do Endereço Sede do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>country</td>
+<td>Código do País do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>Código Postal do Endereço Sede do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail de Contato Público do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>phoneNumber</td>
+<td>Telefone de Contato Público do Tomador</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+</tbody></table>
 
 <!--> *regimeEspTribut  0 – Tributação Normal; 1 – Microempresa Municipal; 2 – Estimativa; 3 – Sociedade de Profissionais; 4 – Cooperativa; 5 – Microempresário Individual (MEI); 6 – Microempresário e Empresa de Pequeno Porte (ME EPP); 7 - Movimento Mensal/ISS/Fixo Autônomo; 8 - Sociedade Limitada/Média Empresa; 9 - Sociedade Anônima/Grande Empresa; 10 - Empresa Individual de Responsabilidade Limitada (EIRELI); 11 - Empresa Individual; 12 - Empresa de Pequeno Porte (EPP); 13 - Microempresário; 14 - Outros/Sem Vínculos; 15 - Nenhum; 16 - Nota Avulsa
 regtribut   0 - MEI; 1 - Simples Nacional; 2 - Lucro Presumido; 3 - Lucro Real
@@ -1062,166 +1163,7 @@ regtribut   0 - MEI; 1 - Simples Nacional; 2 - Lucro Presumido; 3 - Lucro Real
 <blockquote>
 <p>Listando notas fiscais</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1565988308026</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">69</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"cursor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8000/v1/invoices/?limit=2&amp;offset=6&amp;filter=nonce lte 69"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8000/v1/invoices/?limit=2&amp;offset=2&amp;filter=nonce lte 69"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ac09495db0a091bc04a2d4f76e644960a554e494eecda4d747712acfd65c08d"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"substitui"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"substituidaPor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"assetName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"tomadorEncriptado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"emissor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1UQo4dWebdbWEiUg2Xv7Vmt5TeJJbvUAtk1NF4"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29260066000100"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"notaPagamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"blocoConfirmacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"prestacao"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"dataPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1973-04-07"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prefeituraPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100346"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codTributMunicipio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100015"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"itemLista"</span><span class="p">:</span><span class="w"> </span><span class="s2">"76.66"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codCnae"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4572840"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codServico"</span><span class="p">:</span><span class="w"> </span><span class="s2">"33"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codNBS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"807073030"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"discriminacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"whisper sand stereo surprise answer engine hungry wrestle section warm rubber bargain"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valServicos"</span><span class="p">:</span><span class="w"> </span><span class="mi">13084</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"descontoIncond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"descontoCond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"exigibilidadeISS"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"numProcesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valDeducoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"baseCalculo"</span><span class="p">:</span><span class="w"> </span><span class="mi">13077</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"tributos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"issRetido"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"respRetencao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"regimeEspTribut"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"incentivoFiscal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"aliqServicos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46.0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valIss"</span><span class="p">:</span><span class="w"> </span><span class="mi">60186</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valPis"</span><span class="p">:</span><span class="w"> </span><span class="mi">471</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valCofins"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valInss"</span><span class="p">:</span><span class="w"> </span><span class="mi">238</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valIr"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valCsll"</span><span class="p">:</span><span class="w"> </span><span class="mi">158</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"outrasRetencoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">68</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valTotalTributos"</span><span class="p">:</span><span class="w"> </span><span class="mi">728</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valLiquiNfse"</span><span class="p">:</span><span class="w"> </span><span class="mi">12149</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"tomador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"identificacaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"nif"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"nomeRazaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"paisEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tel"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"intermediario"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"identificacaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"nomeRazaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"cidadeIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"constCivil"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"codObra"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"art"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1dbedc7de5f0f157dbf673a03e2c0e1a911793603a1ba1d4f5d839d1367f1c8"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"substitui"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"substituidaPor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"assetName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"tomadorEncriptado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"emissor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67188967000110"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"notaPagamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"blocoConfirmacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"prestacao"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"dataPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1931-09-28"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"prefeituraPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100403"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codTributMunicipio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100379"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"itemLista"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41.36"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codCnae"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codServico"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"codNBS"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"discriminacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hover urban volcano attend stool actor tissue other never crop reveal prevent"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valServicos"</span><span class="p">:</span><span class="w"> </span><span class="mi">11968</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"descontoIncond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"descontoCond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"exigibilidadeISS"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"numProcesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valDeducoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"baseCalculo"</span><span class="p">:</span><span class="w"> </span><span class="mi">11962</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"tributos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"issRetido"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"respRetencao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"regimeEspTribut"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"incentivoFiscal"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"aliqServicos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"47.0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valIss"</span><span class="p">:</span><span class="w"> </span><span class="mi">56250</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valPis"</span><span class="p">:</span><span class="w"> </span><span class="mi">218</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valCofins"</span><span class="p">:</span><span class="w"> </span><span class="mi">181</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valInss"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valIr"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valCsll"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"outrasRetencoes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valTotalTributos"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"valLiquiNfse"</span><span class="p">:</span><span class="w"> </span><span class="mi">11569</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"tomador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"identificacaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"nif"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"nomeRazaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"paisEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tel"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"intermediario"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"identificacaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"nomeRazaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"cidadeIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"constCivil"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"codObra"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"art"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">preencher</span><span class="w">
 </span></code></pre>
 <p><code>GET https://localhost:8000/v1/invoices/</code></p>
 
@@ -1246,82 +1188,11 @@ regtribut   0 - MEI; 1 - Simples Nacional; 2 - Lucro Presumido; 3 - Lucro Real
 <blockquote>
 <p>Retornando uma nota fiscal</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3550bbdba7934f3b02b940cc4c27f25fb0b796ef2216af639c79de37d8485d68"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"substitui"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"substituidaPor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"assetName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"estado"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tomadorEncriptado"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"emissor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cnpj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67188967000110"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"notaPagamento"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"blocoConfirmacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"prestacao"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"dataPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1998-09-06"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"prefeituraPrestacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100346"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"codTributMunicipio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1100015"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"itemLista"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58.54"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"codCnae"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"codServico"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"codNBS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"972191070"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"discriminacao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"museum cram rookie seed acoustic nurse side hundred wink capital junior acquire"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valServicos"</span><span class="p">:</span><span class="w"> </span><span class="mi">9452</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"descontoIncond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"descontoCond"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"exigibilidadeISS"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"numProcesso"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valDeducoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"baseCalculo"</span><span class="p">:</span><span class="w"> </span><span class="mi">9450</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"tributos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"issRetido"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"respRetencao"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"regimeEspTribut"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"incentivoFiscal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"aliqServicos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25.0"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valIss"</span><span class="p">:</span><span class="w"> </span><span class="mi">23630</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valPis"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valCofins"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valInss"</span><span class="p">:</span><span class="w"> </span><span class="mi">385</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valIr"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valCsll"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"outrasRetencoes"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valTotalTributos"</span><span class="p">:</span><span class="w"> </span><span class="mi">753</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"valLiquiNfse"</span><span class="p">:</span><span class="w"> </span><span class="mi">9012</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"tomador"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"identificacaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"nif"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"nomeRazaoTomador"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"logEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"numEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"compEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bairroEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cidadeEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"estadoEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"paisEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cepEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tel"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"intermediario"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"identificacaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"nomeRazaoIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cidadeIntermed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"constCivil"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"codObra"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"art"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">preencher</span><span class="w">
 </span></code></pre>
 <p><code>GET https://localhost:8000/v1/invoices/:txId</code></p>
 
-<ul>
-<li><code>txId</code>: id de transação da invoice a ser retornada.</li>
-</ul>
+<p>*<code>txId</code>: id de transação da invoice a ser retornada.</p>
 
 <p>Endpoint para retornar uma nota fiscal.</p>
 <h2 id='api-de-empresas'>API de Empresas</h2><h3 id='listando-empresas'>Listando empresas</h3>
