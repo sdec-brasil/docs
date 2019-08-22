@@ -273,6 +273,12 @@
                                 <li>
                                   <a href="#borrower" class="toc-h4 toc-link" data-title="Borrower">Borrower</a>
                                 </li>
+                                <li>
+                                  <a href="#intermediary" class="toc-h4 toc-link" data-title="Intermediary">Intermediary</a>
+                                </li>
+                                <li>
+                                  <a href="#construction" class="toc-h4 toc-link" data-title="Construction">Construction</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -575,14 +581,35 @@ Repositório: <a href="https://github.com/sdec-brasil/invoice-explorer">GH</a></
 <li><em>simpleNationalIssRate somente se taxRegime for 2 (Simples Nacional)</em></li>
 </ul>
 
-<p>Regime Tributário:
-Valor   | Descrição
---------|-----------
-1       | MEI
-2       | Simples Nacional
-3       | Lucro Presumido
-4       | Lucro Real
-5       | Autônomo</p>
+<p>Regime Tributário:</p>
+
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>MEI</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Simples Nacional</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Lucro Presumido</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Lucro Real</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Autônomo</td>
+</tr>
+</tbody></table>
 <h3 id='emissor'>Emissor</h3>
 <p><em>Emissor</em> é o nome atribuído à um endereço público na Blockchain que possui permissão para emitir notas fiscais em nome de um CNPJ. É recomendado que um endereço seja autorizado por somente uma empresa para emissão de notas afim de evitar erros e diminuir cenários de risco.</p>
 
@@ -1037,6 +1064,82 @@ Valor   | Descrição
 <td>Exigibilidade Suspensa por Processo Adminsitrativo</td>
 </tr>
 </tbody></table>
+<h5 id='specialtaxregime'>specialTaxRegime</h5>
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Tributação Normal</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Microempresa Municipal</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Estimativa</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Sociedade de Profissionais</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Cooperativa</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Microempresário Individual (MEI)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Microempresário e Empresa de Pequeno Porte (MP EPP)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Movimento Mensal/ISS/Fixo Autônomo</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Sociedade Limitada/Média Empresa</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Sociedade Anônima/Grande Empresa</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Empresa Individual de Responsabilidade Limita (EIRELI)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Empresa Individual</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Empresa de Pequeno Porte (EPP)</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Microempresário</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Outros/Sem Vínculos</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Nenhum</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Nota Avulsa</td>
+</tr>
+</tbody></table>
 <h4 id='borrower'>Borrower</h4>
 <table><thead>
 <tr>
@@ -1125,10 +1228,56 @@ Valor   | Descrição
 <td>?</td>
 </tr>
 </tbody></table>
-
-<!--> *regimeEspTribut  0 – Tributação Normal; 1 – Microempresa Municipal; 2 – Estimativa; 3 – Sociedade de Profissionais; 4 – Cooperativa; 5 – Microempresário Individual (MEI); 6 – Microempresário e Empresa de Pequeno Porte (ME EPP); 7 - Movimento Mensal/ISS/Fixo Autônomo; 8 - Sociedade Limitada/Média Empresa; 9 - Sociedade Anônima/Grande Empresa; 10 - Empresa Individual de Responsabilidade Limitada (EIRELI); 11 - Empresa Individual; 12 - Empresa de Pequeno Porte (EPP); 13 - Microempresário; 14 - Outros/Sem Vínculos; 15 - Nenhum; 16 - Nota Avulsa
-regtribut   0 - MEI; 1 - Simples Nacional; 2 - Lucro Presumido; 3 - Lucro Real
-<!-->
+<h4 id='intermediary'>Intermediary</h4>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Origem da Inf.</th>
+<th>Optativo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>taxNumber</td>
+<td>Cadastro da Pessoa Jurídica ou Física do Intermediário</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Razão Social ou Nome do Intermediário</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>city</td>
+<td>Cidade do Endereço Sede do Intermediário</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+</tbody></table>
+<h4 id='construction'>Construction</h4>
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+<th>Origem da Inf.</th>
+<th>Optativo</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>workCode</td>
+<td>Código da Obra da Construção Civil</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+<tr>
+<td>art</td>
+<td>Anotação de Responsabilidade Técnica</td>
+<td><em>Usuário</em></td>
+<td>?</td>
+</tr>
+</tbody></table>
 <h3 id='nota-de-pagamento'>Nota de Pagamento</h3>
 <p><em>Nota de Pagamento</em> é o dispositivo por qual a empresa demonstra sua intenção de pagar os tributos provenientes à um conjunto de notas fiscais de serviços.</p>
 
