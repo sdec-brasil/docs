@@ -156,10 +156,10 @@ Valor   | Descrição
 
 Campo           | Descrição
 ----------------|-------------------------------------------
-cnpj            | Cadastro Nacional da Pessoa Jurídica
-emissorAddress  | Endereço Público na Blockchain
+taxNumber       | Cadastro Nacional da Pessoa Jurídica ou Física
+emitterAddress  | Endereço Público na Blockchain
 
-A *tupla*, então, *(CNPJ, emissorAddress)* explicita a relação "O endereço público *emissorAddress* pode emitir notas fiscais que dizem respeito à empresa de *CNPJ*".
+A *tupla*, então, *(taxNumber, emitterAddress)* explicita a relação "O endereço público *emitterAddress* pode emitir notas fiscais que dizem respeito à empresa de *taxNumber*".
 
 ### Nota Fiscal de Serviço
 
@@ -170,149 +170,174 @@ Todos os valores financeiros *(R$)* estão em centavos.
 ```json
 {
   "nonce": 6,
-  "txId": "b1dbedc7de5f0f157dbf673a03e2c0e1a911793603a1ba1d4f5d839d1367f1c8",
-  "substitui": null,
-  "substituidaPor": null,
-  "assetName": null,
-  "estado": 0,
-  "tomadorEncriptado": null,
-  "emissor": "1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ",
-  "cnpj": "67188967000110",
-  "notaPagamento": null,
-  "blocoConfirmacao": "80",
-  "prestacao": {
-    "dataPrestacao": "1931-09-28",
-    "prefeituraPrestacao": "1100403",
-    "codTributMunicipio": "1100379",
-    "itemLista": "41.36",
-    "codCnae": null,
-    "codServico": "45",
-    "codNBS": null,
-    "discriminacao": "hover urban volcano attend stool actor tissue other never crop reveal prevent",
-    "valServicos": 11968,
-    "descontoIncond": null,
-    "descontoCond": null,
-    "exigibilidadeISS": 3,
-    "numProcesso": null,
-    "valDeducoes": 6,
-    "baseCalculo": 11962
+  "invoiceCode": "b1dbedc7de5f0f157dbf673a03e2c0e1a911793603a1ba1d4f5d839d1367f1c8",
+  "substitutes": null,
+  "substitutedBy": null,
+  "invoiceName": null,
+  "status": 0,
+  "encryptedBorrower": null,
+  "emitter": "1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ",
+  "taxNumber": "67188967000110",
+  "paymentInstructionsCode": null,
+  "blockHeight": "80",
+  "provision": {
+    "issuedOn": "1931-09-28",
+    "cityServiceLocation": "1100403",
+    "serviceCode": "41.36.01",
+    "cnaeCode": null,
+    "nbsCode": null,
+    "description": "hover urban volcano attend stool actor tissue other never crop reveal prevent",
+    "servicesAmount": 11968,
   },
-  "tributos": {
-    "issRetido": 2,
-    "respRetencao": null,
-    "regimeEspTribut": null,
-    "incentivoFiscal": 2,
-    "aliqServicos": "47.0",
-    "valIss": 56250,
-    "valPis": 218,
-    "valCofins": 181,
-    "valInss": null,
-    "valIr": null,
-    "valCsll": null,
-    "outrasRetencoes": null,
-    "valTotalTributos": null,
-    "valLiquiNfse": 11569
+  "tributes": {
+    "taxBenefit": true,
+    "issExigibility": 3,
+    "processNumber": null,
+    "issRate": "3",
+    "issAmount": 56250,
+    "issWithheld": true,
+    "retentionResponsible": null,
+    "specialTaxRegime": null,
+    "pisAmount": 218,
+    "cofinsAmount": 181,
+    "inssAmount": null,
+    "irAmount": null,
+    "csllAmount": null,
+    "unconditionedDiscountAmount": null,
+    "conditionedDiscountAmount": null,
+    "othersAmountsWithheld": null,
+    "deductionsAmount": 6,
+    "calculationBasis": 11962,
+    "approximateTax": null,
+    "netValueNfse": 11569
   },
-  "tomador": {
-    "identificacaoTomador": null,
+  "borrower": {
+    "taxNumber": null,
     "nif": null,
-    "nomeRazaoTomador": null,
-    "logEnd": null,
-    "numEnd": null,
-    "compEnd": null,
-    "bairroEnd": null,
-    "cidadeEnd": null,
-    "estadoEnd": null,
-    "paisEnd": null,
-    "cepEnd": null,
+    "name": null,
+    "street": null,
+    "number": null,
+    "additionalInformation": null,
+    "district": null,
+    "city": null,
+    "state": null,
+    "country": null,
+    "postalCode": null,
     "email": null,
-    "tel": null
+    "phoneNumber": null
   },
-  "intermediario": {
-    "identificacaoIntermed": null,
-    "nomeRazaoIntermed": null,
-    "cidadeIntermed": null
+  "intermediary": {
+    "taxNumber": null,
+    "name": null,
+    "city": null
   },
-  "constCivil": {
-    "codObra": null,
+  "construction": {
+    "workCode": null,
     "art": null
   }
 }
 ```
 
+#### Invoice
+
+Campo                   | Descrição                                         | Origem da Inf. |  Optativo  |
+------------------------|---------------------------------------------------|----------------|------------|
+nonce                   | Contador da Nota Fiscal no BD para Paginaçào      | *BD (Worker)*  |      N     |
+invoiceCode             | Identificador Único da Nota Fiscal                |  *Blockchain*  |      N     |
+substitutes             | txId da Nota Fiscal que está sendo substituída    |    *Usuário*   |      S     |
+substitutedBy           | txId da Nota Fiscal que substitui essa            |  *Blockchain*  |      S     |
+invoiceName             | Nome do Ativo que representa a NF na Blockchain   |  *Blockchain*  |      N     |
+status                  | Estado da Nota Fiscal de Serviço na Data Atual*   |  *BD (Worker)* |      N     |
+encryptedBorrower       | Tomador de Serviço Encriptado                     |   *Usuãrio*    |      S     |
+emitter                 | Endereço Público Emissor da Nota                  |   *Usuãrio*    |      N     |
+taxNumber               | Cadastro de Pessoa Jurídica ou Física do Prestodor|   *Usuãrio*    |      N     |
+paymentInstructionsCode | ID da Nota de Pagamento responsável pela NFS      |   *Usuãrio*    |      S     |
+blockHeight             | Bloco de Confirmação da NFS-e na Blockchain       |   *Usuãrio*    |      N     |
+provision               | Objeto de Prestação do Serviço (campos abaixo)    |   *Usuãrio*    |      N     |
+tributes                | Objeto referente à Tributação (campos abaixo)     |   *Usuãrio*    |      N     |
+borrower                | Objeto do Tomador do Serviço (campos abaixo)      |   *Usuãrio*    |      S     |
+intermediary            | Objeto do Intermediário do Serviço (campos abaixo)|   *Usuãrio*    |      S     |
+construction            | Objeto de Construções Civis                       |   *Usuãrio*    |      S     |
+
+##### Status
+
+Valor | Descrição                   |
+------|-----------------------------|
+0     | Pendente                    |
+1     | Atrasada                    |
+2     | Pago                        |
+3     | Substituída                 |
+4     | Tributação por Outro Órgão  |
+5     | Dados Inconsistentes        |
+
+#### Provision
+
 Campo               | Descrição                                       | Origem da Inf. |  Optativo  |
 --------------------|-------------------------------------------------|----------------|------------|
-nonce               | Contador da Nota Fiscal no BD para Paginaçào    | *BD (Worker)*  |      N     |
-txId                | Identificador Único da Nota Fiscal              |  *Blockchain*  |      N     |
-substitui           | txId da Nota Fiscal que está sendo substituída  |    *Usuário*   |      S     |
-substituidaPor      | txId da Nota Fiscal que substitui essa          |  *Blockchain*  |      S     |
-assetName           | Nome do Ativo que representa a NF na Blockchain |  *Blockchain*  |      N     |
-dataPrestacao       | Dia, mês e ano da prestação de serviço          |    *Usuário*   |      N     |
-prefeituraPrestacao | Código do Município onde é prestado o serviço   |    *Usuário*   |      N     |
-codTributMunicipio  | Cód. do Município onde é a incidência do imposto|    *Usuário*   |      N     |
-itemLista           | Código do serviço prestado Item da LC 116/2003  |    *Usuário*   |      N     |
-codCnae             | CNAE do serivço prestado na Nota Fiscal         |    *Usuário*   |      S     |
-codServico          | Código do serviço prestado próprio do município |
-codNBS              | Código da Nomenclatura Brasileira de Serviços   |
-discriminacao       | Discriminação dos serviços                      |
-valServicos         | Valor dos serviços em centavos                  |
-descontoIncond      | Valor do desconto incondicionado                |
-descontoCond        | Valor do desconto condicionado                  |
-exigibilidadeISS    | Exigência do ISS para o serviço prestado (1-6)* |
-numProcesso         | Processo judicial de suspensão da exigibilidade |
-valDeducoes         | Val. das deduções p/ Redução da Base de Cálculo |
-baseCalculo         | (valServicos – valDeducoes – descontoIncond)    |
-issRetido           | ISS foi retido? *(true or false)*               |
-respRetencao        | Retido por: *1 – Tomador; 2 – Intermediário*    |
-incentivoFiscal     | *true – Sim; false – Não*                       |
-aliqServicos        | Alíquota do serviço prestado                    |
-valIss	            | Valor do ISS devido em centavos                 |
-valPis	            | Valor da retenção do PIS em centavos            |
-valCofins	          | Valor da retenção do CONFINS em centavos        |
-valInss	            | Valor da retenção do INSS em centavos           |
-valIr	              | Valor da retenção do IR em centavos             |
-valCsll             | Valor da retenção do CSLL em centavos           |
-outrasRetencoes     | Outras retenções na Fonte  (em centavos)        |
-valTotalTributos    | Valor total aprox. dos tributos das 3 esferas   |
-valLiquiNfse        | (valServicos - tributos - retenções - desconts)*|
-tomadorEncriptado   |
-identificacaoTomador| Cadastro da Pessoa Jurídica ou Física do Tomador|
-nif                 | Identificação Fiscal da Empresa (SISCOSERV)     |
-nomeRazaoTomador    | 
-logEnd              |
-numEnd              |
-compEnd             |
-bairroEnd           |
-cidadeEnd           |
-estadoEnd           |
-paisEnd             |
-cepEnd              |
-email               |
-tel                 |
-codObra             |
-art                 |
-estado              |
-emissor             |
-cnpj                |
-notaPagamento       |
-blocoConfirmacao    |
+issuedOn            | Dia, mês e ano da prestação de serviço          |    *Usuário*   |      N     |
+cityServiceLocation | Código do Município onde é prestado o serviço   |    *Usuário*   |      N     |
+serviceCode         | Código do serviço prestado                      |    *Usuário*   |      N     |
+cnaeCode            | CNAE do serivço prestado na Nota Fiscal         |    *Usuário*   |      S     |
+nbsCode             | Código da Nomenclatura Brasileira de Serviços   |    *Usuário*   |      S     |
+description         | Discriminação dos serviços                      |    *Usuário*   |      N     |
+servicesAmount      | Valor dos serviços em centavos                  |    *Usuário*   |      N     |
 
+#### Tributes
 
-- *exigibilidadeISS*:
-  - 1 - Exigível
-  - 2 - Não Incidência
-  - 3 - Isenção
-  - 4 - Exportação
-  - 5 - Imunidade
-  - 6 - Exigiblidade Suspensa por Decisão Judicial
-  - 7 - Exigibilidade Suspensa por Processo Adminsitrativo
-- *valLiquiNfse*: `valServicos - valPis – valCofins – valIss – valIr – valCsll – OutrasRetençoes – ValorISSRetido – DescontoIncondicionado – DescontoCondicionado` em centavos 
-- *estado*:
-  - 0 - Pendente
-  - 1 - Atrasada
-  - 2 - Pago
-  - 3 - Substituída
-  - 4 - Dados Inconsistentes
+Campo                       | Descrição                                         | Origem da Inf. |  Optativo  |
+----------------------------|---------------------------------------------------|----------------|------------|
+taxBenefit                  | Incentivo Fiscal *(true or false)*                |    *Usuário*   |      ?     |
+issExigibility              | Exigência do ISS para o serviço prestado (1-6)*   |    *Usuário*   |      ?     |
+processNumber               | Processo judicial de suspensão da exigibilidade   |    *Usuário*   |      ?     |
+issRate                     | Alíquota do serviço prestado                      |    *Usuário*   |      ?     |
+issAmount                   | Valor do ISS devido em centavos                   |    *Usuário*   |      ?     |
+issWithheld                 | ISS foi retido? *(true or false)*                 |    *Usuário*   |      ?     |
+retentionResponsible        | Retido por: *1 – Tomador; 2 – Intermediário*      |    *Usuário*   |      ?     |
+specialTaxRegime            | Regime Especial de Tributação da Empresa (abaixo) |    *Usuário*   |      ?     |
+pisAmount                   | Valor da retenção do PIS em centavos              |    *Usuário*   |      ?     |
+cofinsAmount                | Valor da retenção do CONFINS em centavos          |    *Usuário*   |      ?     |
+inssAMount                  | Valor da retenção do INSS em centavos             |    *Usuário*   |      ?     |
+irAmount                    | Valor da retenção do IR em centavos               |    *Usuário*   |      ?     |
+csllAmount                  | Valor da retenção do CSLL em centavos             |    *Usuário*   |      ?     |
+unconditionedDiscountAmount | Valor do desconto incondicionado                  |    *Usuário*   |      ?     |
+conditionedDiscountAmount   | Valor do desconto condicionado                    |    *Usuário*   |      ?     |
+othersAmountsWithheld       | Outras retenções na Fonte  (em centavos)          |    *Usuário*   |      ?     |
+deductionsAmount            | Val. das deduções p/ Redução da Base de Cálculo   |    *Usuário*   |      ?     |
+calculationBasis            | (valServicos – valDeducoes – descontoIncond)      |    *Usuário*   |      ?     |
+approximateTax              | Valor total aprox. dos tributos das 3 esferas     |    *Usuário*   |      ?     |
+netValueNfse                | (valServicos - tributos - retenções - desconts)*  |    *Usuário*   |      ?     |
+
+- *netValueNfse*: `servicesAmount - pisAmount – cofinsAmount – issAmount – irAmount – csllAmount – othersAmountsWithheld – issWithheld – unconditionedDiscountAmount – conditionedDiscountAmount` em centavos
+
+##### issExigibility
+
+Valor | Descrição
+------|----------
+1     | Exigível
+2     | Não Incidência
+3     | Isenção
+4     | Exportação
+5     | Imunidade
+6     | Exigiblidade Suspensa por Decisão Judicial
+7     | Exigibilidade Suspensa por Processo Adminsitrativo
+
+#### Borrower
+
+Campo                 | Descrição                                         | Origem da Inf. |  Optativo  |
+----------------------|---------------------------------------------------|----------------|------------|
+taxNumber             | Cadastro da Pessoa Jurídica ou Física do Tomador  |    *Usuário*   |      ?     |
+nif                   | Identificação Fiscal da Empresa (SISCOSERV)       |    *Usuário*   |      ?     |
+name                  | Razão Social ou Nome do Tomador                   |    *Usuário*   |      ?     |
+street                | Logradouro do Endereço Sede do Tomador            |    *Usuário*   |      ?     |
+number                | Número do Endereço Sede do Tomador                |    *Usuário*   |      ?     |
+additionalInformation | Complemento do Endereço Sede do Tomador           |    *Usuário*   |      ?     |
+district              | Bairro do Endereço Sede do Tomador                |    *Usuário*   |      ?     |
+city                  | Cidade do Endereço Sede do Tomador                |    *Usuário*   |      ?     |
+state                 | Unidade Federativa do Endereço Sede do Tomador    |    *Usuário*   |      ?     |
+country               | Código do País do Tomador                         |    *Usuário*   |      ?     |
+postalCode            | Código Postal do Endereço Sede do Tomador         |    *Usuário*   |      ?     |
+email                 | E-mail de Contato Público do Tomador              |    *Usuário*   |      ?     |
+phoneNumber           | Telefone de Contato Público do Tomador            |    *Usuário*   |      ?     |
   
 
 <!--> *regimeEspTribut	0 – Tributação Normal; 1 – Microempresa Municipal; 2 – Estimativa; 3 – Sociedade de Profissionais; 4 – Cooperativa; 5 – Microempresário Individual (MEI); 6 – Microempresário e Empresa de Pequeno Porte (ME EPP); 7 - Movimento Mensal/ISS/Fixo Autônomo; 8 - Sociedade Limitada/Média Empresa; 9 - Sociedade Anônima/Grande Empresa; 10 - Empresa Individual de Responsabilidade Limitada (EIRELI); 11 - Empresa Individual; 12 - Empresa de Pequeno Porte (EPP); 13 - Microempresário; 14 - Outros/Sem Vínculos; 15 - Nenhum; 16 - Nota Avulsa
@@ -341,166 +366,7 @@ TBD                 | To be determined                                |   Blockc
 >Listando notas fiscais
 
 ```json
-{
-  "meta": {
-    "url": "/v1",
-    "query": {
-      "limit": "2",
-      "offset": "4"
-    },
-    "params": {},
-    "time": 1565988308026,
-    "count": 69
-  },
-  "cursor": {
-    "offset": 4,
-    "limit": 2,
-    "next": "http://localhost:8000/v1/invoices/?limit=2&offset=6&filter=nonce lte 69",
-    "previous": "http://localhost:8000/v1/invoices/?limit=2&offset=2&filter=nonce lte 69"
-  },
-  "data": [
-    {
-      "nonce": 5,
-      "txId": "9ac09495db0a091bc04a2d4f76e644960a554e494eecda4d747712acfd65c08d",
-      "substitui": null,
-      "substituidaPor": null,
-      "assetName": null,
-      "estado": 0,
-      "tomadorEncriptado": null,
-      "emissor": "1UQo4dWebdbWEiUg2Xv7Vmt5TeJJbvUAtk1NF4",
-      "cnpj": "29260066000100",
-      "notaPagamento": null,
-      "blocoConfirmacao": "80",
-      "prestacao": {
-        "dataPrestacao": "1973-04-07",
-        "prefeituraPrestacao": "1100346",
-        "codTributMunicipio": "1100015",
-        "itemLista": "76.66",
-        "codCnae": "4572840",
-        "codServico": "33",
-        "codNBS": "807073030",
-        "discriminacao": "whisper sand stereo surprise answer engine hungry wrestle section warm rubber bargain",
-        "valServicos": 13084,
-        "descontoIncond": null,
-        "descontoCond": null,
-        "exigibilidadeISS": 1,
-        "numProcesso": null,
-        "valDeducoes": 7,
-        "baseCalculo": 13077
-      },
-      "tributos": {
-        "issRetido": 2,
-        "respRetencao": null,
-        "regimeEspTribut": null,
-        "incentivoFiscal": true,
-        "aliqServicos": "46.0",
-        "valIss": 60186,
-        "valPis": 471,
-        "valCofins": null,
-        "valInss": 238,
-        "valIr": null,
-        "valCsll": 158,
-        "outrasRetencoes": 68,
-        "valTotalTributos": 728,
-        "valLiquiNfse": 12149
-      },
-      "tomador": {
-        "identificacaoTomador": null,
-        "nif": null,
-        "nomeRazaoTomador": null,
-        "logEnd": null,
-        "numEnd": null,
-        "compEnd": null,
-        "bairroEnd": null,
-        "cidadeEnd": null,
-        "estadoEnd": null,
-        "paisEnd": null,
-        "cepEnd": null,
-        "email": null,
-        "tel": null
-      },
-      "intermediario": {
-        "identificacaoIntermed": null,
-        "nomeRazaoIntermed": null,
-        "cidadeIntermed": null
-      },
-      "constCivil": {
-        "codObra": null,
-        "art": null
-      }
-    },
-    {
-      "nonce": 6,
-      "txId": "b1dbedc7de5f0f157dbf673a03e2c0e1a911793603a1ba1d4f5d839d1367f1c8",
-      "substitui": null,
-      "substituidaPor": null,
-      "assetName": null,
-      "estado": 0,
-      "tomadorEncriptado": null,
-      "emissor": "1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ",
-      "cnpj": "67188967000110",
-      "notaPagamento": null,
-      "blocoConfirmacao": "80",
-      "prestacao": {
-        "dataPrestacao": "1931-09-28",
-        "prefeituraPrestacao": "1100403",
-        "codTributMunicipio": "1100379",
-        "itemLista": "41.36",
-        "codCnae": null,
-        "codServico": "45",
-        "codNBS": null,
-        "discriminacao": "hover urban volcano attend stool actor tissue other never crop reveal prevent",
-        "valServicos": 11968,
-        "descontoIncond": null,
-        "descontoCond": null,
-        "exigibilidadeISS": 3,
-        "numProcesso": null,
-        "valDeducoes": 6,
-        "baseCalculo": 11962
-      },
-      "tributos": {
-        "issRetido": 2,
-        "respRetencao": null,
-        "regimeEspTribut": null,
-        "incentivoFiscal": 2,
-        "aliqServicos": "47.0",
-        "valIss": 56250,
-        "valPis": 218,
-        "valCofins": 181,
-        "valInss": null,
-        "valIr": null,
-        "valCsll": null,
-        "outrasRetencoes": null,
-        "valTotalTributos": null,
-        "valLiquiNfse": 11569
-      },
-      "tomador": {
-        "identificacaoTomador": null,
-        "nif": null,
-        "nomeRazaoTomador": null,
-        "logEnd": null,
-        "numEnd": null,
-        "compEnd": null,
-        "bairroEnd": null,
-        "cidadeEnd": null,
-        "estadoEnd": null,
-        "paisEnd": null,
-        "cepEnd": null,
-        "email": null,
-        "tel": null
-      },
-      "intermediario": {
-        "identificacaoIntermed": null,
-        "nomeRazaoIntermed": null,
-        "cidadeIntermed": null
-      },
-      "constCivil": {
-        "codObra": null,
-        "art": null
-      }
-    }
-  ]
-}
+preencher
 ```
 
 `GET https://localhost:8000/v1/invoices/`
@@ -517,81 +383,12 @@ offset | numero de objetos a serem pulados.
 >Retornando uma nota fiscal
 
 ```json
-{
-  "nonce": 1,
-  "txId": "3550bbdba7934f3b02b940cc4c27f25fb0b796ef2216af639c79de37d8485d68",
-  "substitui": null,
-  "substituidaPor": null,
-  "assetName": null,
-  "estado": 0,
-  "tomadorEncriptado": null,
-  "emissor": "1ZCjFJZgLVW1n4iTAkoiWBivEQFGxFm7EAoexQ",
-  "cnpj": "67188967000110",
-  "notaPagamento": null,
-  "blocoConfirmacao": "80",
-  "prestacao": {
-    "dataPrestacao": "1998-09-06",
-    "prefeituraPrestacao": "1100346",
-    "codTributMunicipio": "1100015",
-    "itemLista": "58.54",
-    "codCnae": null,
-    "codServico": "42",
-    "codNBS": "972191070",
-    "discriminacao": "museum cram rookie seed acoustic nurse side hundred wink capital junior acquire",
-    "valServicos": 9452,
-    "descontoIncond": null,
-    "descontoCond": null,
-    "exigibilidadeISS": 4,
-    "numProcesso": null,
-    "valDeducoes": 2,
-    "baseCalculo": 9450
-  },
-  "tributos": {
-    "issRetido": true,
-    "respRetencao": null,
-    "regimeEspTribut": null,
-    "incentivoFiscal": true,
-    "aliqServicos": "25.0",
-    "valIss": 23630,
-    "valPis": null,
-    "valCofins": 15,
-    "valInss": 385,
-    "valIr": null,
-    "valCsll": null,
-    "outrasRetencoes": 40,
-    "valTotalTributos": 753,
-    "valLiquiNfse": 9012
-  },
-  "tomador": {
-    "identificacaoTomador": null,
-    "nif": null,
-    "nomeRazaoTomador": null,
-    "logEnd": null,
-    "numEnd": null,
-    "compEnd": null,
-    "bairroEnd": null,
-    "cidadeEnd": null,
-    "estadoEnd": null,
-    "paisEnd": null,
-    "cepEnd": null,
-    "email": null,
-    "tel": null
-  },
-  "intermediario": {
-    "identificacaoIntermed": null,
-    "nomeRazaoIntermed": null,
-    "cidadeIntermed": null
-  },
-  "constCivil": {
-    "codObra": null,
-    "art": null
-  }
-}
+preencher
 ```
 
 `GET https://localhost:8000/v1/invoices/:txId`
 
-* `txId`: id de transação da invoice a ser retornada.
+*`txId`: id de transação da invoice a ser retornada.
 
 Endpoint para retornar uma nota fiscal.
 
