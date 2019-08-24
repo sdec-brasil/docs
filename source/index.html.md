@@ -104,7 +104,7 @@ As seções abaixo descrevem os modelos estruturais das tabelas relacionadas ao 
   "taxNumber": "23435652000154",
   "ranamezao": "Igor Moreira Razão Social",
   "tradeName": "Apenas um Nome Fantasia LTDA",
-  "economicAtivites": ["5231-1/01", "6613-4/00"],
+  "economicActivities": ["5231-1/01", "6613-4/00"],
   "postalCode": "47486820",
   "street": "Rua Estados Unidos",
   "number": "237",
@@ -125,7 +125,7 @@ taxNumber*            | Cadastro Nacional da Pessoa Jurídica ou Física  |     
 name                  | Razão Social da Empresa                         |     N     |
 tradeName             | Nome Fantasia da Empresa                        |     N     |
 taxRegime             | Regime Tributário da Empresa (1-4)              |     N     |
-economicAtivites      | Lista de CNAE's da Empresa                      |     N     |
+economicActivities      | Lista de CNAE's da Empresa                      |     N     |
 simpleNationalIssRate | Alíquota do ISS para Simples Nacional           |     S     |
 postalCode            | Código Postal do Endereço Sede da Empresa       |     N     |
 street                | Logradouro do Endereço Sede da Empresa          |     N     |
